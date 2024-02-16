@@ -18,7 +18,7 @@ public class HomeViewController {
     @FXML
     private void cambiarVista() throws IOException {
         //Cambiar de vista a "primary"
-        App.setRoot("primary");
+        App.setRoot("nuevoClienteView");
     }
 
     @FXML
