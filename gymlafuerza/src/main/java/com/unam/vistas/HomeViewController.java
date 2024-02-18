@@ -4,22 +4,19 @@ import java.io.IOException;
 
 import com.unam.App;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 public class HomeViewController {
 
     public HomeViewController() {
     }
 
+    
     @FXML
     private Button btnClientes;
-
-    @FXML
-    private void cambiarVista() throws IOException {
-        //Cambiar de vista a "primary"
-        App.setRoot("nuevoClienteView");
-    }
 
     @FXML
     private Button btnEjercicios;
@@ -41,4 +38,50 @@ public class HomeViewController {
 
     @FXML
     private Button btnNuevoGrupoMuscular;
+
+    @FXML
+    private Label labelTituloApp;
+
+    @FXML
+    void addCliente() throws IOException {
+
+    }
+
+    @FXML
+    void addEjercicio() throws IOException  {
+
+    }
+
+    @FXML
+    void addEntrenamiento() throws IOException  {
+
+    }
+
+    @FXML
+    void addGrupoMuscular() throws IOException  {
+
+    }
+
+    @FXML
+    void verEjercicios() throws IOException  {
+
+    }
+
+    @FXML
+    void verEntrenamientos() throws IOException  {
+
+    }
+
+    @FXML
+    void verGruposMusculares() throws IOException  {
+
+    }
+
+    @FXML
+    private void verClientes() throws IOException {
+        //Cambiar de vista a "primary"
+        App.setRoot("nuevoClienteView");
+    }
+
+    
 }

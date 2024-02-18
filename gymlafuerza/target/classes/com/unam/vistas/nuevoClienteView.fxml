@@ -84,12 +84,12 @@
          </font>
       </Label>
       <ComboBox fx:id="comboBoxSexo" editable="true" layoutX="462.0" layoutY="346.0" prefHeight="25.0" prefWidth="166.0" promptText="Seleccione su sexo..." />
-      <Button fx:id="btnGuardarNuevoCliente" layoutX="542.0" layoutY="421.0" mnemonicParsing="false" onAction="#guardarNuevoCliente" style="-fx-background-color: green; -fx-background-radius: 50;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardarNuevoCliente" layoutX="542.0" layoutY="421.0" mnemonicParsing="false" onAction="#guardarNuevoCliente" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnVolverHome" layoutX="468.0" layoutY="421.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50;" text="Volver" textFill="WHITE">
+      <Button fx:id="btnVolverHome" layoutX="468.0" layoutY="421.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font name="Arial" size="30.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="138.0" prefHeight="30.0" prefWidth="389.0" style="-fx-background-color: #574612;" text="Los campos con el símbolo (*) indican que son obligatorios" textFill="#bdb9b9b9">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="138.0" prefHeight="30.0" prefWidth="389.0" style="-fx-background-color: #574612;" text="Los campos con el símbolo (*) indican que son obligatorios" textFill="#bdb9b9ba">
          <font>
             <Font size="14.0" />
          </font>
