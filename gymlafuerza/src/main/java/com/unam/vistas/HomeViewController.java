@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.unam.App;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,12 +43,12 @@ public class HomeViewController {
 
     @FXML
     void addCliente() throws IOException {
-
+        App.setRoot("nuevoClienteView");
     }
 
     @FXML
     void addEjercicio() throws IOException  {
-
+        App.setRoot("nuevoEjercicioView");
     }
 
     @FXML
@@ -79,8 +78,8 @@ public class HomeViewController {
 
     @FXML
     private void verClientes() throws IOException {
-        //Cambiar de vista a "primary"
-        App.setRoot("nuevoClienteView");
+        
+        
     }
 
     
