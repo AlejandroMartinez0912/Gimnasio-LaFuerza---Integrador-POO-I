@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.unam.repositorio.MySqlConnection;
+
 /**
  * JavaFX App
  */
@@ -18,6 +20,10 @@ public class App extends Application {
     @SuppressWarnings("exports")
     @Override
     public void start(Stage stage) throws IOException {
+
+        //Conenxtar a BD
+        MySqlConnection.getConnection();
+
         scene = new Scene(loadFXML("homeView"), 640, 480);
         stage.setScene(scene);
         stage.show();
