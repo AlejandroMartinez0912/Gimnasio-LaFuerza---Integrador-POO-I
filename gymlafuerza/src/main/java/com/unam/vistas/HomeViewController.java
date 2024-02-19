@@ -43,12 +43,12 @@ public class HomeViewController {
 
     @FXML
     void addCliente() throws IOException {
-        App.setRoot("nuevoClienteView");
+        App.setRoot("addClientesView");
     }
 
     @FXML
     void addEjercicio() throws IOException  {
-        App.setRoot("nuevoEjercicioView");
+        App.setRoot("addEjerciciosView");
     }
 
     @FXML
@@ -58,7 +58,7 @@ public class HomeViewController {
 
     @FXML
     void addGrupoMuscular() throws IOException  {
-
+        App.setRoot("addGruposMuscularesView");
     }
 
     @FXML

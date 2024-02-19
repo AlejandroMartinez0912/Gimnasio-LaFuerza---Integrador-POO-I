@@ -19,7 +19,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="btnNuevoEjercicio" layoutX="33.0" layoutY="265.0" mnemonicParsing="false" onAction="#addEjercicio" prefHeight="36.0" prefWidth="218.0" style="-fx-background-radius: 50; -fx-background-color: green; -fx-font-size: 18; -fx-cursor: hand;" text="Nuevo Ejercicio" textFill="WHITE" />
+      <Button fx:id="btnNuevoEjercicio" layoutX="33.0" layoutY="265.0" mnemonicParsing="false" onAction="#addEjercicio" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: green; -fx-font-size: 18; -fx-cursor: hand;" text="Nuevo Ejercicio" textFill="WHITE" />
       <Button fx:id="btnNuevoGrupoMuscular" alignment="CENTER" contentDisplay="CENTER" layoutX="33.0" layoutY="204.0" mnemonicParsing="false" onAction="#addGrupoMuscular" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: green; -fx-font-size: 18; -fx-cursor: hand;" text="Nuevo Grupo Muscular" textAlignment="CENTER" textFill="WHITE" />
       <Button fx:id="btnEjercicios" layoutX="390.0" layoutY="265.0" mnemonicParsing="false" onAction="#verEjercicios" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Ejercicios" textFill="WHITE">
          <font>
