@@ -58,7 +58,7 @@ public class HomeViewController {
 
     @FXML
     void addGrupoMuscular() throws IOException  {
-
+        App.setRoot("addGruposMuscularesView");
     }
 
     @FXML
