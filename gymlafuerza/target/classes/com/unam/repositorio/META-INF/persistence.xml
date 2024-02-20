@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-
+instance" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <persistence-unit name="LaFuerzaGym" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    
+        <class>com.unam.modelo.Cliente</class>
+        <class>com.unam.modelo.Tutor</class>
+        <class>com.unam.modelo.DetalleEntrenamientoCliente</class>
+        <class>com.unam.modelo.Entrenamiento</class>
+        <class>com.unam.modelo.EntrenamientoCliente</class>
+        <class>com.unam.modelo.Ejercicio</class>
+        <class>com.unam.modelo.GrupoMuscular</class>
+        
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gym_la_fuerza"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+        </properties>
+    </persistence-unit>
+</persistence>
