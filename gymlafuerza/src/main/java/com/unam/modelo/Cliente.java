@@ -2,6 +2,7 @@ package com.unam.modelo;
 
 import java.util.Date;
 
+
 public class Cliente {
     private int idCliente;
     private String nombre;
