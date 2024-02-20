@@ -6,20 +6,17 @@ import com.unam.App;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class ClientesViewController {
-    @FXML
+public class viewClientesController {
+     @FXML
     private Button btnGuardarNuevoCliente;
 
     @FXML
     private Button btnVolverHome;
-
-    @FXML
-    private ComboBox<?> comboBoxSexo;
 
     @FXML
     private DatePicker dateFechaIngreso;
@@ -58,12 +55,15 @@ public class ClientesViewController {
     private TextField txtNombres;
 
     @FXML
-    void guardarNuevoCliente() throws IOException{
+    private TableView<?> clientesTable;
 
+    @FXML
+    void guardarNuevoCliente() throws IOException {
+        // Implementa lógica para guardar un nuevo cliente
     }
 
     @FXML
-    void volverHome() throws IOException{
+    void volverHome() throws IOException {
         App.setRoot("homeView");
     }
-}   
+}

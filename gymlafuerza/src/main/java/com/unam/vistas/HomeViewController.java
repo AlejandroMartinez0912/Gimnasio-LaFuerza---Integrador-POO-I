@@ -53,7 +53,7 @@ public class HomeViewController {
 
     @FXML
     void addEntrenamiento() throws IOException  {
-
+        App.setRoot("addNuevoEntrenamiento");
     }
 
     @FXML
@@ -63,22 +63,22 @@ public class HomeViewController {
 
     @FXML
     void verEjercicios() throws IOException  {
-
+        App.setRoot("viewEjercicios");
     }
 
     @FXML
     void verEntrenamientos() throws IOException  {
-
+        App.setRoot("viewEntrenamientos");
     }
 
     @FXML
     void verGruposMusculares() throws IOException  {
-
+        App.setRoot("viewGruposMusculares");
     }
 
     @FXML
     private void verClientes() throws IOException {
-        
+        App.setRoot("viewClientes");
         
     }
 
