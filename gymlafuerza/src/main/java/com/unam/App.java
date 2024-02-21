@@ -12,6 +12,7 @@ import com.unam.repositorio.MySqlConnection;
 
 /**
  * JavaFX App
+ * EL QUE LEE ES PUTO
  */
 public class App extends Application {
 
