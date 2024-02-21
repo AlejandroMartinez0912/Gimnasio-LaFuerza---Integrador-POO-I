@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2024 a las 22:38:04
+-- Tiempo de generación: 21-02-2024 a las 22:50:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -31,9 +31,9 @@ CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
   `nombre` varchar(255) DEFAULT NULL,
   `apellido` varchar(255) DEFAULT NULL,
-  `fechaNacimiento` date DEFAULT NULL,
+  `fecha_nacimiento` date DEFAULT NULL,
   `sexo` varchar(10) DEFAULT NULL,
-  `fechaIngreso` date DEFAULT NULL
+  `fecha_ingreso` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -44,11 +44,11 @@ CREATE TABLE `cliente` (
 
 CREATE TABLE `detalle_entrenamiento_liente` (
   `id` int(11) NOT NULL,
-  `entrenamientoRealizado` text DEFAULT NULL,
+  `entrenamiento_realizado` text DEFAULT NULL,
   `series` int(11) DEFAULT NULL,
   `repeticiones` int(11) DEFAULT NULL,
   `peso` double DEFAULT NULL,
-  `volumenEntrenamiento` int(11) DEFAULT NULL,
+  `volumen_entrenamiento` int(11) DEFAULT NULL,
   `entrenamiento_cliente_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -73,11 +73,10 @@ CREATE TABLE `ejercicio` (
 
 CREATE TABLE `entrenamiento` (
   `id` int(11) NOT NULL,
-  `idEjercicio` int(11) DEFAULT NULL,
   `series` int(11) DEFAULT NULL,
   `repeticiones` int(11) DEFAULT NULL,
   `descanso` int(11) DEFAULT NULL,
-  `duracionMinutos` int(11) DEFAULT NULL,
+  `duracion_minutos` int(11) DEFAULT NULL,
   `ejercicio_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -89,12 +88,10 @@ CREATE TABLE `entrenamiento` (
 
 CREATE TABLE `entrenamiento_cliente` (
   `id` int(11) NOT NULL,
-  `idCliente` int(11) DEFAULT NULL,
-  `duracionSemanas` int(11) DEFAULT NULL,
-  `fechaInicio` date DEFAULT NULL,
-  `idTutor` int(11) DEFAULT NULL,
+  `duracion_semanas` int(11) DEFAULT NULL,
+  `fecha_inicio` date DEFAULT NULL,
   `activo` tinyint(1) DEFAULT NULL,
-  `volumenSemanal` int(11) DEFAULT NULL,
+  `volumen_semanal` int(11) DEFAULT NULL,
   `cliente_id` int(11) DEFAULT NULL,
   `tutor_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
