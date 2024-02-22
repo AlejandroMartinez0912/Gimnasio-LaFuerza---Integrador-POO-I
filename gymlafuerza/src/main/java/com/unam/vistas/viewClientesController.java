@@ -2,14 +2,20 @@ package com.unam.vistas;
 
 import java.io.IOException;
 
-import com.unam.App;
 
+import com.unam.App;
+//import com.unam.modelo.Cliente;
+//import com.unam.modelo.ClienteDAO;
+
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+//import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewClientesController {
      @FXML
@@ -57,6 +63,7 @@ public class viewClientesController {
     @FXML
     private TableView<?> clientesTable;
 
+    
     @FXML
     void guardarNuevoCliente() throws IOException {
         // Implementa lógica para guardar un nuevo cliente

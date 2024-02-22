@@ -1,10 +1,12 @@
 package com.unam.vistas;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import com.unam.App;
-
-import javafx.event.ActionEvent;
+import com.unam.modelo.Cliente;
+import com.unam.modelo.ClienteDAO;
+//import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,7 +22,7 @@ public class AddClientesViewController {
     private Button btnVolverHome;
 
     @FXML
-    private ComboBox<?> comboBoxSexo;
+    private ComboBox<String> comboBoxSexo;
 
     @FXML
     private DatePicker dateFechaIngreso;
@@ -58,7 +60,58 @@ public class AddClientesViewController {
     @FXML
     private TextField txtNombres;
 
+    private final ClienteDAO clienteDAO = new ClienteDAO();
+
     @FXML
+    private void initialize() {
+        comboBoxSexo.getItems().addAll("Masculino", "Femenino", "Otro");
+    }
+
+    @FXML
+    private void guardarNuevoCliente() {
+        if (camposObligatoriosVacios()) {
+            lblObligatorio.setVisible(true);
+            return;
+        }
+
+        String nombres = txtNombres.getText();
+        String apellido = txtApellido.getText();
+        Date fechaNacimiento = Date.valueOf(dateFechaNacimiento.getValue());
+        Date fechaIngreso = Date.valueOf(dateFechaIngreso.getValue());
+        String sexo = comboBoxSexo.getValue();
+
+        Cliente nuevoCliente = new Cliente();
+        nuevoCliente.setNombre(nombres);
+        nuevoCliente.setApellido(apellido);
+        nuevoCliente.setFechaNacimiento(fechaNacimiento);
+        nuevoCliente.setFechaIngreso(fechaIngreso);
+        nuevoCliente.setSexo(sexo);
+
+        clienteDAO.crearCliente(nuevoCliente);
+
+        limpiarCampos();
+    }
+
+    @FXML
+    private void volverHome() throws IOException {
+        App.setRoot("homeView");
+    }
+
+    private boolean camposObligatoriosVacios() {
+        return txtNombres.getText().isEmpty() || txtApellido.getText().isEmpty() ||
+                dateFechaNacimiento.getValue() == null || dateFechaIngreso.getValue() == null ||
+                comboBoxSexo.getValue() == null;
+    }
+
+    private void limpiarCampos() {
+        txtNombres.clear();
+        txtApellido.clear();
+        dateFechaNacimiento.getEditor().clear();
+        dateFechaIngreso.getEditor().clear();
+        comboBoxSexo.setValue(null);
+        lblObligatorio.setVisible(false);
+    }
+   /* @FXML
     void guardarNuevoCliente(ActionEvent event) {
 
     }
@@ -66,6 +119,6 @@ public class AddClientesViewController {
     @FXML
     void volverHome() throws IOException{
         App.setRoot("homeView");
-    }
+    }*/
 
 }   

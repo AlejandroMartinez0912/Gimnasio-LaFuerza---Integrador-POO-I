@@ -14,6 +14,10 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
     public Cliente(int idCliente, String nombre, String apellido, Date fechaNacimiento, String sexo, Date fechaIngreso) {
         this.idCliente = idCliente;
         this.nombre = nombre;
