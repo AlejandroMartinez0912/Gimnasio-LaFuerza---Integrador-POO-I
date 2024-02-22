@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2024 a las 22:50:22
+-- Tiempo de generación: 22-02-2024 a las 20:22:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,6 +35,14 @@ CREATE TABLE `cliente` (
   `sexo` varchar(10) DEFAULT NULL,
   `fecha_ingreso` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `cliente`
+--
+
+INSERT INTO `cliente` (`id`, `nombre`, `apellido`, `fecha_nacimiento`, `sexo`, `fecha_ingreso`) VALUES
+(1, 'Mariano Alejandro', 'Da Silva', '2001-02-21', 'Otro', '2024-01-01'),
+(2, 'Exequiel no tengo', 'Britez', '1999-02-16', 'Otro', '2023-12-14');
 
 -- --------------------------------------------------------
 
@@ -173,6 +181,12 @@ ALTER TABLE `tutor`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `cliente`
+--
+ALTER TABLE `cliente`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_entrenamiento_liente`
