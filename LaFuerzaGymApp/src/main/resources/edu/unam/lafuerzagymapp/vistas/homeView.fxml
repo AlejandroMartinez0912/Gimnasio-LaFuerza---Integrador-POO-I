@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unam.vistas.HomeViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.lafuerzagymapp.vistas.HomeViewController">
    <children>
       <ImageView fitHeight="486.0" fitWidth="640.0" layoutY="-5.0" pickOnBounds="true">
          <image>
-            <Image url="@../../../images/gym.jpg" />
+            <Image url="@../../../../images/gym.jpg" />
          </image>
       </ImageView>
       <Button fx:id="btnNuevoCliente" layoutX="33.0" layoutY="141.0" mnemonicParsing="false" onAction="#addCliente" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: green; -fx-font-size: 18; -fx-cursor: hand;" text="Nuevo Cliente" textFill="WHITE" />

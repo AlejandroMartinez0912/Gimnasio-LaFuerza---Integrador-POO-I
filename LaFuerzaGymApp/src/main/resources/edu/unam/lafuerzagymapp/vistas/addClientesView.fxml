@@ -42,11 +42,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unam.vistas.AddClientesViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.lafuerzagymapp.vistas.AddClientesViewController">
    <children>
       <ImageView fitHeight="487.0" fitWidth="647.0" layoutX="-3.0" layoutY="-4.0">
          <image>
-            <Image url="@../../../images/gym.jpg" />
+            <Image url="@../../../../images/gym.jpg" />
          </image>
       </ImageView>
       <TextField fx:id="txtApellido" layoutX="13.0" layoutY="346.0" prefHeight="25.0" prefWidth="166.0" />
@@ -99,22 +99,22 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="86.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio2" layoutX="86.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="303.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio3" layoutX="303.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="594.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio4" layoutX="594.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="593.0" layoutY="243.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio5" layoutX="593.0" layoutY="243.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
