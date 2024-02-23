@@ -1,6 +1,4 @@
-package com.unam.modelo;
-
-import edu.unam.lafuerzagymapp.modelo.Ejercicio;
+package edu.unam.lafuerzagymapp.modelo;
 
 public class Entrenamiento {
     private int idEntrenamiento;
