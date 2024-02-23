@@ -8,4 +8,5 @@ module edu.unam.lafuerzagymapp {
     
     exports edu.unam.lafuerzagymapp;
     exports edu.unam.lafuerzagymapp.vistas;
+    requires java.persistence;
 }

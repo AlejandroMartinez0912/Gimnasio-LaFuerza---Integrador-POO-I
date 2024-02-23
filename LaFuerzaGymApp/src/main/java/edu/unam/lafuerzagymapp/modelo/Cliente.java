@@ -1,10 +1,17 @@
-package com.unam.modelo;
+package edu.unam.lafuerzagymapp.modelo;
 
 import java.util.Date;
-
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.GenerationType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 public class Cliente {
-    private int idCliente;
+
+    private int idCliente;  
     private String nombre;
     private String apellido;
     private Date fechaNacimiento;

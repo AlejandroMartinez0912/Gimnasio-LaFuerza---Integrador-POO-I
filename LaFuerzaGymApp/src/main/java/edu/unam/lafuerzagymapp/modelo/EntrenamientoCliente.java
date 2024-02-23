@@ -1,6 +1,7 @@
-package com.unam.modelo;
+package edu.unam.lafuerzagymapp.modelo;
 import java.util.Date;
 import java.util.Set;
+
 
 public class EntrenamientoCliente {
     private int idEntrenamientoCliente;
