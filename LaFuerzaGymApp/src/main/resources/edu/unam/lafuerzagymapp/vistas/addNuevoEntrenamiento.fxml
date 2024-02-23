@@ -9,12 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.unam.vistas.AddEjerciciosViewController">
    <children>
       <ImageView fitHeight="487.0" fitWidth="647.0" layoutX="-6.0" layoutY="-3.0">
          <image>
-            <Image url="@../../../images/gym.jpg" />
+            <Image url="@../../../../images/gym.jpg" />
          </image>
       </ImageView>
       <Label fx:id="labelTituloApp" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="24.0" prefHeight="36.0" prefWidth="413.0" style="-fx-background-color: coral;" text="La Fuerza GYM">
@@ -22,7 +21,7 @@
             <Font name="Arial" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="labelTítuloVista" layoutX="210.0" layoutY="82.0" text="Registrar Ejercicio" textFill="WHITE">
+      <Label fx:id="labelTítuloVista" alignment="CENTER" layoutX="113.0" layoutY="82.0" prefHeight="30.0" prefWidth="413.0" text="Nuevo Entrenamiento" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -32,24 +31,24 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxGrupoMuscular" layoutX="194.0" layoutY="372.0" prefHeight="12.0" prefWidth="232.0" promptText="Seleccione los grupos musculares asociados..." />
-      <Label fx:id="labelNombreEjercicio" layoutX="194.0" layoutY="226.0" prefHeight="30.0" prefWidth="166.0" text="Nombre Ejercicio" textFill="WHITE">
+      <ComboBox fx:id="comboBoxEjercicio" layoutX="111.0" layoutY="228.0" prefHeight="25.0" prefWidth="172.0" promptText="Seleccione el ejercicio" />
+      <Label fx:id="labelEjercicio" layoutX="114.0" layoutY="181.0" prefHeight="30.0" prefWidth="166.0" text="Ejercicio" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="360.0" layoutY="226.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="207.0" layoutY="181.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombreEjercicio" layoutX="194.0" layoutY="266.0" prefHeight="25.0" prefWidth="232.0" promptText="Nombre del ejercicio..." />
-      <Label fx:id="labelGrupoMuscular" layoutX="194.0" layoutY="328.0" prefHeight="30.0" prefWidth="254.0" text="Grupo Muscular asociado" textFill="WHITE">
+      <TextField fx:id="txtNombreSeries" layoutX="309.0" layoutY="228.0" prefHeight="25.0" prefWidth="232.0" promptText="Series del ejercicio" />
+      <Label fx:id="labelSeries" layoutX="309.0" layoutY="181.0" prefHeight="30.0" prefWidth="254.0" text="Series" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio1" layoutX="440.0" layoutY="328.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio1" layoutX="380.0" layoutY="181.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
@@ -64,5 +63,27 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
+      <TextField fx:id="txtRepeticiones" layoutX="113.0" layoutY="331.0" prefHeight="25.0" prefWidth="153.0" promptText="Número de repeticiones" />
+      <Label fx:id="labelRepeticiones" layoutX="113.0" layoutY="284.0" prefHeight="30.0" prefWidth="254.0" text="Repeticiones" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblObligatorio11" layoutX="240.0" layoutY="284.0" text="(*)" textFill="#bfbbbb">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtDescanso" layoutX="309.0" layoutY="331.0" prefHeight="25.0" prefWidth="232.0" promptText="Series del ejercicio" text="Tiempo de descanso" />
+      <Label fx:id="labelDescanso" layoutX="309.0" layoutY="284.0" prefHeight="30.0" prefWidth="254.0" text="Descanso" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblObligatorio12" layoutX="415.0" layoutY="284.0" text="(*)" textFill="#bfbbbb">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

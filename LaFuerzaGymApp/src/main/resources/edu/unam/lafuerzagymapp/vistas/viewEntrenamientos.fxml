@@ -45,7 +45,7 @@
    <children>
       <ImageView fitHeight="487.0" fitWidth="647.0" layoutX="-3.0" layoutY="-4.0">
          <image>
-            <Image url="@../../../images/gym.jpg" />
+            <Image url="@../../../../images/gym.jpg" />
          </image>
       </ImageView>
       <Label fx:id="labelTítuloVista" alignment="CENTER" layoutX="117.0" layoutY="85.0" prefHeight="30.0" prefWidth="413.0" text="Entrenamientos" textFill="WHITE">
