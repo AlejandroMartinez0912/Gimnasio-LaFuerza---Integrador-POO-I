@@ -1,7 +1,18 @@
-package com.unam.modelo;
+package edu.unam.lafuerzagymapp.modelo;
 
-public class GrupoMuscular {
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="grupo_muscular")
+public class GrupoMuscular implements Serializable {
+    @Id
+    @Column(name="id")
     private int idGrupoMuscular;
+    @Column(name="nombre")
     private String nombre;
 
     public GrupoMuscular() {
