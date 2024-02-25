@@ -1,22 +1,21 @@
 package edu.unam.lafuerzagymapp.modelo;
 
-import com.unam.modelo.GrupoMuscular;
 import java.util.Set;
 
 public class Ejercicio {
     private int idEjercicio;
     private String nombre;
     private String descripcion;
-    private Set<GrupoMuscular> gruposMusculares;
+    //private Set<GrupoMuscular> gruposMusculares;
 
     public Ejercicio() {
     }
 
-    public Ejercicio(int idEjercicio, String nombre, String descripcion, Set<GrupoMuscular> gruposMusculares) {
+    public Ejercicio(int idEjercicio, String nombre, String descripcion) {
         this.idEjercicio = idEjercicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.gruposMusculares = gruposMusculares;
+        //this.gruposMusculares = gruposMusculares;
     }
 
     public int getIdEjercicio() {
@@ -43,11 +42,11 @@ public class Ejercicio {
         this.descripcion = descripcion;
     }
 
-    public Set<GrupoMuscular> getGruposMusculares() {
+    /*public Set<GrupoMuscular> getGruposMusculares() {
         return gruposMusculares;
     }
 
     public void setGruposMusculares(Set<GrupoMuscular> gruposMusculares) {
         this.gruposMusculares = gruposMusculares;
-    }
+    }*/
 }

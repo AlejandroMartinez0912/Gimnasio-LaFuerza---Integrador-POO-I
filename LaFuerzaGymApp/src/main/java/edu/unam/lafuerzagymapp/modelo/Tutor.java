@@ -1,6 +1,11 @@
 package edu.unam.lafuerzagymapp.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Tutor {
+    @Id
     private int idTutor;
     private String nombre;
     private String apellido;
