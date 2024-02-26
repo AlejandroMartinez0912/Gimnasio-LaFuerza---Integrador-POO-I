@@ -1,16 +1,37 @@
 package edu.unam.lafuerzagymapp.modelo;
 
 import java.util.Date;
+import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Cliente {
 
-    private int idCliente;  
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private int idCliente;
+    @Basic
     private String nombre;
+    @Basic
     private String apellido;
+    
+    @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
+    @Basic
     private String sexo;
+    @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
-
+    
+    @OneToMany(mappedBy = "cliente")
+    private Set<EntrenamientoCliente> entrenamientosClientes;
+    
     public Cliente() {
     }
 

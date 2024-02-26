@@ -1,4 +1,4 @@
-package com.unam.modelo;
+package edu.unam.lafuerzagymapp.modelo;
 
 public class DetalleEntrenamientoCliente {
     private int idDetalleEntrenamientoCliente;
