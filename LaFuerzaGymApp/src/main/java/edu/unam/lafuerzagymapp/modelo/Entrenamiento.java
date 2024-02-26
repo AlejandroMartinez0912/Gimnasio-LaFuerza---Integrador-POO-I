@@ -1,12 +1,33 @@
 package edu.unam.lafuerzagymapp.modelo;
 
+
+import java.util.Set;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+
+@Entity
 public class Entrenamiento {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int idEntrenamiento;
+    
     private Ejercicio ejercicio;
+    @Basic
     private int series;
+    @Basic
     private int repeticiones;
+    @Basic
     private int descanso;
+    @Basic
     private int duracionMinutos;
+    
+    @ManyToMany(mappedBy = "entrenamientos")
+    private Set<EntrenamientoCliente> entrenamientosClientes;
 
     public Entrenamiento() {
     }

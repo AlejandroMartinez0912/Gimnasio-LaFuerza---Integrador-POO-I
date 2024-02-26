@@ -1,13 +1,20 @@
 package edu.unam.lafuerzagymapp.modelo;
 
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Tutor {
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int idTutor;
+    
+    @Basic
     private String nombre;
+    @Basic
     private String apellido;
 
     public Tutor() {
