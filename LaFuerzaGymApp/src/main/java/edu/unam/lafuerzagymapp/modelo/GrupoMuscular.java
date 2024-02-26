@@ -1,18 +1,19 @@
 package edu.unam.lafuerzagymapp.modelo;
 
 import java.io.Serializable;
-import javax.persistence.Column;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="grupo_muscular")
-public class GrupoMuscular implements Serializable {
+public class GrupoMuscular {
     @Id
-    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private int idGrupoMuscular;
-    @Column(name="nombre")
+    
+    @Basic
     private String nombre;
 
     public GrupoMuscular() {

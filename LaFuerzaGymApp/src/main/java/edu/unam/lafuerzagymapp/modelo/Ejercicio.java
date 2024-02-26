@@ -1,21 +1,30 @@
 package edu.unam.lafuerzagymapp.modelo;
 
 import java.util.Set;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
+@Entity
 public class Ejercicio {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int idEjercicio;
     private String nombre;
     private String descripcion;
-    //private Set<GrupoMuscular> gruposMusculares;
+    @ManyToMany
+    private Set<GrupoMuscular> gruposMusculares;
 
     public Ejercicio() {
     }
 
-    public Ejercicio(int idEjercicio, String nombre, String descripcion) {
+    public Ejercicio(int idEjercicio, String nombre, String descripcion, Set<GrupoMuscular> gruposMusculares) {
         this.idEjercicio = idEjercicio;
         this.nombre = nombre;
         this.descripcion = descripcion;
-        //this.gruposMusculares = gruposMusculares;
+        this.gruposMusculares = gruposMusculares;
     }
 
     public int getIdEjercicio() {
@@ -42,11 +51,11 @@ public class Ejercicio {
         this.descripcion = descripcion;
     }
 
-    /*public Set<GrupoMuscular> getGruposMusculares() {
+    public Set<GrupoMuscular> getGruposMusculares() {
         return gruposMusculares;
     }
 
     public void setGruposMusculares(Set<GrupoMuscular> gruposMusculares) {
         this.gruposMusculares = gruposMusculares;
-    }*/
+    }
 }
