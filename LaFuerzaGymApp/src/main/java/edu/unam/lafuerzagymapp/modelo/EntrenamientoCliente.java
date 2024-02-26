@@ -1,18 +1,44 @@
 package edu.unam.lafuerzagymapp.modelo;
+
 import java.util.Date;
 import java.util.Set;
-
-
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
 public class EntrenamientoCliente {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int idEntrenamientoCliente;
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @ManyToMany
+    @JoinTable(
+        name = "entrenamiento_entrenamientoCliente",
+        joinColumns = @JoinColumn(name = "idEntrenamientoCliente"),
+        inverseJoinColumns = @JoinColumn(name = "idEntrenamiento")
+    )
     private Set<Entrenamiento> entrenamientos;
+    @Basic
     private int duracionSemanas;
+    @Temporal(TemporalType.DATE)
     private Date fechaInicio;
+    
     private Tutor tutor;
+    @Basic
     private boolean activo; 
+    @Basic
     private int volumenSemanal;
-
+    
     public EntrenamientoCliente() {
     }
 
