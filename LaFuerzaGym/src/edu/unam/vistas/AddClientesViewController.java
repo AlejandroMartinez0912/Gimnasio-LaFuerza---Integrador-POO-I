@@ -1,6 +1,7 @@
 package edu.unam.vistas;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import edu.unam.App;
 //import javafx.event.ActionEvent;
@@ -65,6 +66,20 @@ public class AddClientesViewController {
 
    @FXML
     void guardarNuevoCliente() throws IOException{
+        //Variables
+        String apellido = txtApellido.getText();
+        String nombres = txtNombres.getText();
+        LocalDate fechaNacimiento = dateFechaNacimiento.getValue();
+        LocalDate fechaInicio = dateFechaIngreso.getValue();
+        String sexoBiologico = comboBoxSexo.getValue();
+        //Union 
+        
+        //Limpiar campos
+        txtApellido.clear();
+        txtNombres.clear();
+        dateFechaIngreso.setValue(null);
+        dateFechaNacimiento.setValue(null);
+        comboBoxSexo.setValue(null);
 
     }
     

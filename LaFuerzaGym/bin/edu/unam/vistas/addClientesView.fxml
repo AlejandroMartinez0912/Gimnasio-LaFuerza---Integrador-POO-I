@@ -17,41 +17,41 @@
             <Image url="@../../../images/gym.jpg" />
          </image>
       </ImageView>
-      <TextField fx:id="txtApellido" layoutX="13.0" layoutY="346.0" prefHeight="25.0" prefWidth="166.0" />
-      <Label fx:id="labelTítuloVista" layoutX="228.0" layoutY="85.0" text="Registrar Cliente" textFill="WHITE">
+      <TextField fx:id="txtApellido" layoutX="141.0" layoutY="249.0" prefHeight="25.0" prefWidth="166.0" />
+      <Label fx:id="labelTítuloVista" layoutX="228.0" layoutY="67.0" text="Registrar Cliente" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <Label fx:id="labelApellido" layoutX="13.0" layoutY="319.0" text="Apellido" textFill="WHITE">
+      <Label fx:id="labelApellido" layoutX="141.0" layoutY="222.0" text="Apellido" textFill="WHITE">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombres" layoutX="218.0" layoutY="346.0" prefHeight="25.0" prefWidth="187.0" />
-      <Label fx:id="labelNombres" layoutX="219.0" layoutY="319.0" text="Nombres" textFill="WHITE">
+      <TextField fx:id="txtNombres" layoutX="141.0" layoutY="181.0" prefHeight="25.0" prefWidth="187.0" />
+      <Label fx:id="labelNombres" layoutX="142.0" layoutY="154.0" text="Nombres" textFill="WHITE">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelFechaNacimiento" layoutX="13.0" layoutY="240.0" prefHeight="30.0" prefWidth="166.0" text="Fecha Nacimiento" textFill="WHITE">
+      <Label fx:id="labelFechaNacimiento" layoutX="143.0" layoutY="299.0" prefHeight="30.0" prefWidth="166.0" text="Fecha Nacimiento" textFill="WHITE">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateFechaNacimiento" layoutX="13.0" layoutY="270.0" prefHeight="25.0" prefWidth="166.0" promptText="dd/mm/aa" />
-      <Label fx:id="labelFechaIngreso" layoutX="462.0" layoutY="243.0" prefHeight="30.0" prefWidth="131.0" text="Fecha Ingreso" textFill="WHITE">
+      <DatePicker fx:id="dateFechaNacimiento" layoutX="143.0" layoutY="329.0" prefHeight="25.0" prefWidth="166.0" promptText="dd/mm/aa" />
+      <Label fx:id="labelFechaIngreso" layoutX="385.0" layoutY="150.0" prefHeight="30.0" prefWidth="131.0" text="Fecha Ingreso" textFill="WHITE">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateFechaIngreso" layoutX="462.0" layoutY="273.0" prefHeight="25.0" prefWidth="166.0" promptText="dd/mm/aa" />
-      <Label fx:id="labelSexo" layoutX="463.0" layoutY="319.0" text="Sexo biológico" textFill="WHITE">
+      <DatePicker fx:id="dateFechaIngreso" layoutX="385.0" layoutY="180.0" prefHeight="25.0" prefWidth="166.0" promptText="dd/mm/aa" />
+      <Label fx:id="labelSexo" layoutX="385.0" layoutY="223.0" text="Sexo biológico" textFill="WHITE">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxSexo" editable="true" layoutX="462.0" layoutY="346.0" prefHeight="25.0" prefWidth="166.0" promptText="Seleccione su sexo..." />
+      <ComboBox fx:id="comboBoxSexo" editable="true" layoutX="385.0" layoutY="249.0" prefHeight="25.0" prefWidth="166.0" promptText="Seleccione su sexo..." />
       <Button fx:id="btnGuardarNuevoCliente" layoutX="542.0" layoutY="421.0" mnemonicParsing="false" onAction="#guardarNuevoCliente" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
@@ -62,27 +62,27 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="lblObligatorio" layoutX="179.0" layoutY="240.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="309.0" layoutY="299.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="86.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="214.0" layoutY="219.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="303.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="226.0" layoutY="151.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="594.0" layoutY="316.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="517.0" layoutY="222.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="593.0" layoutY="243.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="516.0" layoutY="150.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
@@ -92,7 +92,7 @@
             <Font name="Arial" size="30.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="138.0" prefHeight="30.0" prefWidth="389.0" style="-fx-background-color: #574612;" text="Los campos con el símbolo (*) indican que son obligatorios" textFill="#bdb9b9ba">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="97.0" prefHeight="30.0" prefWidth="389.0" style="-fx-background-color: #574612;" text="Los campos con el símbolo (*) indican que son obligatorios" textFill="#bdb9b9ba">
          <font>
             <Font size="14.0" />
          </font>

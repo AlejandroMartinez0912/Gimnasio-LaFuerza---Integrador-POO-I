@@ -47,6 +47,14 @@ public class AddEjerciciosViewController {
 
     @FXML
     void guardarNuevoEjercicio() throws IOException {
+        //Variables
+        String nombreEjercicio = txtNombreEjercicio.getText();
+        String grupoMuscular ;
+        
+        //Coneccion
+        //Limpiar datos
+        txtNombreEjercicio.clear();
+        comboBoxGrupoMuscular.setValue(null);
 
     }
 

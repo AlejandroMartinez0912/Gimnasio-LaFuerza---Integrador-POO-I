@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.vistas.AddEjerciciosViewController">
    <children>
       <ImageView fitHeight="487.0" fitWidth="647.0" layoutX="-6.0" layoutY="-3.0">
@@ -32,24 +31,24 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxGrupoMuscular" layoutX="194.0" layoutY="372.0" prefHeight="12.0" prefWidth="232.0" promptText="Seleccione los grupos musculares asociados..." />
-      <Label fx:id="labelNombreEjercicio" layoutX="194.0" layoutY="226.0" prefHeight="30.0" prefWidth="166.0" text="Nombre Ejercicio" textFill="WHITE">
+      <ComboBox fx:id="comboBoxGrupoMuscular" layoutX="204.0" layoutY="324.0" prefHeight="12.0" prefWidth="232.0" promptText="Seleccione los grupos musculares asociados..." />
+      <Label fx:id="labelNombreEjercicio" layoutX="204.0" layoutY="178.0" prefHeight="30.0" prefWidth="166.0" text="Nombre Ejercicio" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio" layoutX="360.0" layoutY="226.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio" layoutX="370.0" layoutY="178.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombreEjercicio" layoutX="194.0" layoutY="266.0" prefHeight="25.0" prefWidth="232.0" promptText="Nombre del ejercicio..." />
-      <Label fx:id="labelGrupoMuscular" layoutX="194.0" layoutY="328.0" prefHeight="30.0" prefWidth="254.0" text="Grupo Muscular asociado" textFill="WHITE">
+      <TextField fx:id="txtNombreEjercicio" layoutX="204.0" layoutY="218.0" prefHeight="25.0" prefWidth="232.0" promptText="Nombre del ejercicio..." />
+      <Label fx:id="labelGrupoMuscular" layoutX="204.0" layoutY="280.0" prefHeight="30.0" prefWidth="254.0" text="Grupo Muscular asociado" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="lblObligatorio1" layoutX="440.0" layoutY="328.0" text="(*)" textFill="#bfbbbb">
+      <Label fx:id="lblObligatorio1" layoutX="450.0" layoutY="280.0" text="(*)" textFill="#bfbbbb">
          <font>
             <Font size="20.0" />
          </font>
