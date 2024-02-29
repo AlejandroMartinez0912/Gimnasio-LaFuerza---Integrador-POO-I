@@ -18,7 +18,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
-        ServicioGrupoMuscular servicio = new ServicioGrupoMuscular(new Repositorio(emf));
+
+        // Crear Repositorio
+        Repositorio repositorio = new Repositorio(emf);
+
+        ServicioGrupoMuscular servicioGrupoMuscular = new ServicioGrupoMuscular(repositorio);
         scene = new Scene(loadFXML("homeView"), 640, 480);
         stage.setScene(scene);
         stage.show();

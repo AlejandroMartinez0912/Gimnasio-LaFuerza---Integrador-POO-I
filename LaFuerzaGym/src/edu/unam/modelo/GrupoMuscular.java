@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 public class GrupoMuscular {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_grupo_muscular", nullable = false)
     private int idGrupoMuscular;
 
     @Column(name = "nombre_grupo_muscular", nullable = false, length = 80 )
