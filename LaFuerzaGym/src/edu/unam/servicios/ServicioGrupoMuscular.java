@@ -1,5 +1,7 @@
 package edu.unam.servicios;
 
+import java.util.List;
+
 import edu.unam.modelo.GrupoMuscular;
 import edu.unam.repositorio.Repositorio;
 
@@ -9,7 +11,7 @@ public class ServicioGrupoMuscular {
     public ServicioGrupoMuscular(Repositorio p) {
         this.repositorio = p;
     }
-
+    
     public void agregarGrupoMuscular(GrupoMuscular grupoMuscular) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.insertar(grupoMuscular);
@@ -26,5 +28,9 @@ public class ServicioGrupoMuscular {
         this.repositorio.iniciarTransaccion();
         this.repositorio.eliminar(grupoMuscular);
         this.repositorio.confirmarTransaccion();
+    }
+
+    public List<GrupoMuscular> obtenerTodos() {
+        return this.repositorio.buscarTodos(GrupoMuscular.class);
     }
 }
