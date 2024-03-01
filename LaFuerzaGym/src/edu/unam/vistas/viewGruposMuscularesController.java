@@ -2,6 +2,7 @@ package edu.unam.vistas;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import edu.unam.App;
 import edu.unam.modelo.GrupoMuscular;
@@ -174,7 +175,7 @@ public class viewGruposMuscularesController {
                     {
                         btnEditar.setOnAction((ActionEvent event) -> {
                             GrupoMuscular data = getTableView().getItems().get(getIndex());
-                            // Lógica para editar el grupo muscular
+                            abrirDialogoEdicion(data);
                         });
                     }
 
@@ -191,6 +192,15 @@ public class viewGruposMuscularesController {
             }
         });
         editColumn.setStyle("-fx-alignment: CENTER;");
+    }
+
+    private void abrirDialogoEdicion(GrupoMuscular grupoMuscular) {
+        EditGrupoMuscularDialog dialog = new EditGrupoMuscularDialog(grupoMuscular);
+        Optional<GrupoMuscular> result = dialog.showAndWait();
+        result.ifPresent(grupo -> {
+            servicioGrupoMuscular.editarGrupoMuscular(grupo);
+            gruposMuscularesTable.refresh();
+        });
     }
 
     @FXML
