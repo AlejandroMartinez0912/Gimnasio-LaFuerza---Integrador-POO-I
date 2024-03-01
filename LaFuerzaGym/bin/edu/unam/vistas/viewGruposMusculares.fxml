@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,30 +17,34 @@
             <Image url="@../../../images/gym.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="labelTítuloVista" alignment="CENTER" layoutX="117.0" layoutY="85.0" prefHeight="30.0" prefWidth="413.0" text="Grupos Musculares" textFill="WHITE">
+      <Label fx:id="labelTítuloVista" alignment="CENTER" layoutX="116.0" layoutY="14.0" prefHeight="30.0" prefWidth="413.0" style="-fx-text-fill: white;" text="Grupos Musculares" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
       </Label>
-      <Button fx:id="btnGuardarNuevoCliente" layoutX="542.0" layoutY="421.0" mnemonicParsing="false" onAction="#guardarNuevoCliente" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Editar" textFill="WHITE">
+      <Button fx:id="btnVolverHome" layoutX="47.0" layoutY="436.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnVolverHome" layoutX="468.0" layoutY="421.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
-         <font>
-            <Font name="Arial" size="16.0" />
-         </font>
-      </Button>
-      <Label fx:id="labelTituloApp" alignment="CENTER" contentDisplay="CENTER" layoutX="119.0" layoutY="14.0" prefHeight="36.0" prefWidth="413.0" style="-fx-background-color: coral;" text="La Fuerza GYM">
-         <font>
-            <Font name="Arial" size="30.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tableviewGrupoMuscular" layoutX="116.0" layoutY="137.0" prefHeight="255.0" prefWidth="413.0">
+      <TableView fx:id="gruposMuscularesTable" layoutX="47.0" layoutY="162.0" prefHeight="241.0" prefWidth="547.0">
         <columns>
-          <TableColumn prefWidth="132.0" text="Grupos Musculares" />
+          <TableColumn fx:id="idColumn" prefWidth="112.0" text="Id" />
+            <TableColumn fx:id="nombreColumn" prefWidth="279.0" text="Grupo Muscular" />
+            <TableColumn fx:id="eliminarColumn" prefWidth="55.0" />
+            <TableColumn fx:id="editColumn" prefWidth="108.0" />
         </columns>
       </TableView>
+      <Label fx:id="labelGrupoMuscular" layoutX="47.0" layoutY="77.0" prefHeight="30.0" prefWidth="165.0" style="-fx-text-fill: white;" text="Grupo Muscular:" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtGrupoMuscular" layoutX="216.0" layoutY="80.0" prefHeight="25.0" prefWidth="378.0" promptText="Grupo Muscular..." />
+      <Button fx:id="btnGuardarNuevoGrupoMuscular" layoutX="513.0" layoutY="120.0" mnemonicParsing="false" onAction="#guardarNuevoGrupoMuscular" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
