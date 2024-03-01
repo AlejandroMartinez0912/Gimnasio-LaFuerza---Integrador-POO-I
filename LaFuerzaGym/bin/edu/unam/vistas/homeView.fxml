@@ -34,10 +34,15 @@
             <Font name="System Bold" size="16.0" />
          </font></Button>
       <Button fx:id="btnNuevoEntrenamiento" layoutX="33.0" layoutY="331.0" mnemonicParsing="false" onAction="#addEntrenamiento" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: green; -fx-font-size: 18; -fx-cursor: hand;" text="Nuevo Entrenamiento" textFill="WHITE" />
-      <Label fx:id="labelTituloApp" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="24.0" prefHeight="36.0" prefWidth="413.0" style="-fx-background-color: coral;" text="La Fuerza GYM">
+      <Label fx:id="labelTituloApp" alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="24.0" prefHeight="36.0" prefWidth="538.0" style="-fx-background-color: coral;" text="La Fuerza GYM">
          <font>
             <Font name="Arial" size="30.0" />
          </font>
       </Label>
+      <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="15.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/logo_gym.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
