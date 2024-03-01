@@ -3,6 +3,7 @@ package edu.unam;
 import java.io.IOException;
 
 import edu.unam.repositorio.Repositorio;
+import edu.unam.servicios.ServicioEjercicio;
 import edu.unam.servicios.ServicioGrupoMuscular;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -23,6 +24,7 @@ public class App extends Application {
         Repositorio repositorio = new Repositorio(emf);
 
         ServicioGrupoMuscular servicioGrupoMuscular = new ServicioGrupoMuscular(repositorio);
+        ServicioEjercicio servicioEjercicio = new ServicioEjercicio(repositorio);
         scene = new Scene(loadFXML("homeView"), 640, 480);
         stage.setScene(scene);
         stage.show();
