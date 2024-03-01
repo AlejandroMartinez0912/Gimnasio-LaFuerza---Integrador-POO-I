@@ -73,7 +73,7 @@ public class AddClientesViewController {
         LocalDate fechaInicio = dateFechaIngreso.getValue();
         String sexoBiologico = comboBoxSexo.getValue();
         //Union 
-        
+        //Alerta
         //Limpiar campos
         txtApellido.clear();
         txtNombres.clear();
