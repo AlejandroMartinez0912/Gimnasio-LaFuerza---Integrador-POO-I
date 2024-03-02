@@ -115,12 +115,8 @@ public class viewGruposMuscularesController {
 
         if (gruposMusculares.isEmpty()) {
             // Si la lista está vacía, mostrar un mensaje en la tabla
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Información");
-            alert.setHeaderText(null);
-            alert.setContentText("No hay grupos musculares disponibles.");
+            gruposMuscularesTable.setPlaceholder(new Label("No hay grupos musculares para mostrar."));
 
-            alert.showAndWait();
         } else {
             // Si la lista no está vacía, mostrar los grupos musculares en la tabla
             gruposMuscularesTable.getItems().addAll(gruposMusculares);
@@ -137,17 +133,27 @@ public class viewGruposMuscularesController {
                         btnEliminar.setOnAction((ActionEvent event) -> {
                             GrupoMuscular data = getTableView().getItems().get(getIndex());
                             
-                            // Llamar al servicio para eliminar el grupo muscular
-                            servicioGrupoMuscular.eliminarGrupoMuscular(data);
-                            gruposMuscularesTable.getItems().remove(data);
-                            
-                            // Para mostrar un mensaje de éxito
-                            Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                            alertSuccess.setTitle("Éxito");
-                            alertSuccess.setHeaderText(null);
-                            alertSuccess.setContentText("El grupo muscular se eliminó correctamente.");
-
-                            alertSuccess.showAndWait();
+                            try {
+                                // Llamar al servicio para eliminar el grupo muscular
+                                servicioGrupoMuscular.eliminarGrupoMuscular(data);
+                                gruposMuscularesTable.getItems().remove(data);
+                                
+                                // Para mostrar un mensaje de éxito
+                                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                                alertSuccess.setTitle("Éxito");
+                                alertSuccess.setHeaderText(null);
+                                alertSuccess.setContentText("El grupo muscular se eliminó correctamente.");
+                    
+                                alertSuccess.showAndWait();
+                            } catch (Exception e) {
+                                // En caso de error, mostrar mensaje de error
+                                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                                alertError.setTitle("Error");
+                                alertError.setHeaderText(null);
+                                alertError.setContentText("No se puede eliminar el grupo muscular. Asegúrese de que no haya ejercicios asociados a este grupo muscular.");
+                    
+                                alertError.showAndWait();
+                            }
                         });
                     }
 
@@ -219,7 +225,7 @@ public class viewGruposMuscularesController {
         boton.setTooltip(new Tooltip(tooltip));
         boton.setText("Editar");
         boton.setPrefSize(50, 20);
-        boton.setStyle("-fx-background-color: #ffff00 -fx-text-fill: white; -fx-alignment: center;");
+        boton.setStyle("-fx-background-color: #ffff00; -fx-text-fill: white; -fx-alignment: center;");
         return boton;
     }
 

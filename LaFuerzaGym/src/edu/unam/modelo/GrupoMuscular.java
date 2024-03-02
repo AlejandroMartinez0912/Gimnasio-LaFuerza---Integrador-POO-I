@@ -30,6 +30,11 @@ public class GrupoMuscular {
         return idGrupoMuscular;
     }
 
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
     public void setIdGrupoMuscular(int idGrupoMuscular) {
         this.idGrupoMuscular = idGrupoMuscular;
     }

@@ -21,20 +21,15 @@ public class Ejercicio {
     @Basic
     private String nombre;
 
-    @Column(name = "descripcion_ejercicio", nullable = false, length = 255)
-    @Basic
-    private String descripcion;
-
     @OneToOne
     private GrupoMuscular grupoMuscular;
 
     public Ejercicio() {
     }
 
-    public Ejercicio(int idEjercicio, String nombre, String descripcion, GrupoMuscular grupoMuscular) {
+    public Ejercicio(int idEjercicio, String nombre, GrupoMuscular grupoMuscular) {
         this.idEjercicio = idEjercicio;
         this.nombre = nombre;
-        this.descripcion = descripcion;
         this.grupoMuscular = grupoMuscular;
     }
 
@@ -53,15 +48,7 @@ public class Ejercicio {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
+    
     public GrupoMuscular getGrupoMuscular() {
         return grupoMuscular;
     }
