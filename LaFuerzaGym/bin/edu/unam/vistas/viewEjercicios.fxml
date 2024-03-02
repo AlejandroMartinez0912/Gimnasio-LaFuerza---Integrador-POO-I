@@ -23,12 +23,13 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="tableViewEjercicios" layoutX="17.0" layoutY="255.0" prefHeight="171.0" prefWidth="599.0">
+      <TableView fx:id="tableViewEjercicios" layoutX="21.0" layoutY="218.0" prefHeight="199.0" prefWidth="599.0">
         <columns>
-          <TableColumn fx:id="tableEjercicios" prefWidth="132.0" text="Ejercicios" />
-            <TableColumn fx:id="tablaGrupoMuscular" prefWidth="132.0" text="Grupo Muscular" />
-            <TableColumn fx:id="tablaeliminarEjercicio" prefWidth="132.0" />
-            <TableColumn fx:id="tablaeditarEjercicio" prefWidth="132.0" />
+          <TableColumn fx:id="idColumn" prefWidth="53.0" text="Id" />
+            <TableColumn fx:id="ejercicioColumn" prefWidth="195.0" text="Ejercicio" />
+            <TableColumn fx:id="grupoMuscularColumn" prefWidth="224.0" text="Grupo Muscular" />
+            <TableColumn fx:id="eliminarColumn" prefWidth="48.0" />
+            <TableColumn fx:id="editarColumn" prefWidth="78.0" />
         </columns>
       </TableView>
       <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="17.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -36,19 +37,19 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="comboBoxGrupoMuscular" layoutX="323.0" layoutY="138.0" prefHeight="25.0" prefWidth="293.0" promptText="Seleccione el grupo muscular perteneciente" />
-      <Label fx:id="labelNombreEjercicio" layoutX="17.0" layoutY="99.0" prefHeight="30.0" prefWidth="166.0" text="Nombre Ejercicio" textFill="WHITE">
+      <ComboBox fx:id="comboBoxGrupoMuscular" layoutX="327.0" layoutY="131.0" prefHeight="25.0" prefWidth="293.0" promptText="Seleccione el grupo muscular perteneciente" />
+      <Label fx:id="labelNombreEjercicio" layoutX="17.0" layoutY="92.0" prefHeight="30.0" prefWidth="166.0" text="Nombre Ejercicio" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombreEjercicio" layoutX="17.0" layoutY="138.0" prefHeight="25.0" prefWidth="281.0" promptText="Nombre del ejercicio..." />
-      <Label fx:id="labelGrupoMuscular" layoutX="320.0" layoutY="92.0" prefHeight="30.0" prefWidth="254.0" text="Grupo Muscular asociado" textFill="WHITE">
+      <TextField fx:id="txtNombreEjercicio" layoutX="17.0" layoutY="131.0" prefHeight="25.0" prefWidth="281.0" promptText="Nombre del ejercicio..." />
+      <Label fx:id="labelGrupoMuscular" layoutX="327.0" layoutY="92.0" prefHeight="30.0" prefWidth="254.0" text="Grupo Muscular asociado" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnGuardarNuevoEjercicio" layoutX="276.0" layoutY="196.0" mnemonicParsing="false" onAction="#guardarNuevoEjercicio" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardarNuevoEjercicio" layoutX="545.0" layoutY="170.0" mnemonicParsing="false" onAction="#guardarNuevoEjercicio" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>

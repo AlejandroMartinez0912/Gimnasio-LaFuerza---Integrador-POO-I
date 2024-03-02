@@ -1,5 +1,7 @@
 package edu.unam.servicios;
 
+import java.util.List;
+
 import edu.unam.modelo.Ejercicio;
 import edu.unam.repositorio.Repositorio;
 
@@ -28,4 +30,7 @@ public class ServicioEjercicio {
         this.repositorio.confirmarTransaccion();
     }
     
+    public List<Ejercicio> obtenerTodos() {
+        return this.repositorio.buscarTodos(Ejercicio.class);
+    }
 }
