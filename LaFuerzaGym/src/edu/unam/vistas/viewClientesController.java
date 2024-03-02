@@ -4,31 +4,51 @@ import java.io.IOException;
 
 
 import edu.unam.App;
-//import com.unam.modelo.Cliente;
-//import com.unam.modelo.ClienteDAO;
-
-//import javafx.collections.FXCollections;
-//import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-//import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewClientesController {
-     @FXML
+    @FXML
+    private TableColumn<?, ?> apellidoColumn;
+
+    @FXML
     private Button btnGuardarNuevoCliente;
 
     @FXML
     private Button btnVolverHome;
 
     @FXML
+    private TableView<?> clientesTable;
+
+    @FXML
+    private ComboBox<?> comboBoxSexo;
+
+    @FXML
     private DatePicker dateFechaIngreso;
 
     @FXML
     private DatePicker dateFechaNacimiento;
+
+    @FXML
+    private TableColumn<?, ?> editarColumn;
+
+    @FXML
+    private TableColumn<?, ?> eliminarColumn;
+
+    @FXML
+    private TableColumn<?, ?> fechaIngresoColumn;
+
+    @FXML
+    private TableColumn<?, ?> fechaNacimientoColumn;
+
+    @FXML
+    private TableColumn<?, ?> idColumn;
 
     @FXML
     private Label labelApellido;
@@ -46,22 +66,20 @@ public class viewClientesController {
     private Label labelSexo;
 
     @FXML
-    private Label labelTituloApp;
-
-    @FXML
     private Label labelTítuloVista;
 
     @FXML
-    private Label lblObligatorio;
+    private TableColumn<?, ?> nombreColumn;
+
+    @FXML
+    private TableColumn<?, ?> sexoColumn;
 
     @FXML
     private TextField txtApellido;
 
     @FXML
-    private TextField txtNombres;
+    private TextField txtNombre;
 
-    @FXML
-    private TableView<?> clientesTable;
 
     
     @FXML
