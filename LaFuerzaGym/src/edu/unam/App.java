@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import edu.unam.servicios.ServicioCliente;
 
 public class App extends Application {
     private static Scene scene;
@@ -25,6 +26,7 @@ public class App extends Application {
 
         ServicioGrupoMuscular servicioGrupoMuscular = new ServicioGrupoMuscular(repositorio);
         ServicioEjercicio servicioEjercicio = new ServicioEjercicio(repositorio);
+        ServicioCliente servicioCliente = new ServicioCliente(repositorio);
         scene = new Scene(loadFXML("homeView"), 640, 480);
         stage.setScene(scene);
         stage.show();
