@@ -260,7 +260,7 @@ public class viewEjerciciosController {
         boton.setTooltip(new Tooltip(tooltip));
         boton.setPrefSize(20, 20);
         boton.setText("X");
-        boton.setStyle("-fx-background-color: #ff0000; -fx-text-fill: white; -fx-alignment: center;");
+        boton.setStyle("-fx-background-color: #ff0000; -fx-cursor: hand; -fx-text-fill: white; -fx-alignment: center;");
         return boton;
     }
 
@@ -270,7 +270,7 @@ public class viewEjerciciosController {
         boton.setTooltip(new Tooltip(tooltip));
         boton.setText("Editar");
         boton.setPrefSize(50, 20);
-        boton.setStyle("-fx-background-color: #ffff00; -fx-text-fill: white; -fx-alignment: center;");
+        boton.setStyle("-fx-background-color: #127e80; -fx-cursor: hand; -fx-text-fill: white; -fx-alignment: center;");
         return boton;
     }
 
