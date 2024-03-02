@@ -1,0 +1,40 @@
+package edu.unam.servicios;
+
+import edu.unam.modelos.Cliente;
+
+public class ServicioCliente {
+    // Atributos, métodos y lógica relacionada con el servicio de clientes
+    private Repositorio repositorio;
+
+    public ServicioCliente(Repositorio p) {
+        // Inicialización de atributos y otros elementos necesarios
+        this.repositorio = p;
+    }
+
+    public void agregarCliente(Cliente cliente) {
+        // Lógica para agregar un cliente a la base de datos
+        this.repositorio.iniciarTransaccion();
+        this.repositorio.insertar(cliente);
+        this.repositorio.confirmarTransaccion();
+    }
+
+    public void eliminarCliente(Cliente cliente) {
+        // Lógica para eliminar un cliente de la base de datos
+        this.repositorio.iniciarTransaccion();
+        this.repositorio.eliminar(cliente);
+        this.repositorio.confirmarTransaccion();
+    }
+
+    public void editarCliente(Cliente cliente) {
+        // Lógica para editar los datos de un cliente en la base de datos
+        this.repositorio.iniciarTransaccion(); // Inicia una transacción con la base de datos para realizar la modificación del cliente
+        this.repositorio.modificar(cliente);  // Modifica el cliente en la base de datos con los datos del cliente que se pasa como argumento
+        this.repositorio.confirmarTransaccion(); // Confirma la transacción con la base de datos para que los cambios se hagan permanentes
+    }
+    
+    public List<Cliente> obtenerTodos() {
+        // Lógica para obtener todos los clientes de la base de datos
+        return this.repositorio.buscarTodos(Cliente.class);
+    }
+
+}
