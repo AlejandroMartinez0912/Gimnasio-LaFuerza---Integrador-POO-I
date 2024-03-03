@@ -3,7 +3,6 @@ package edu.unam.vistas;
 import java.io.IOException;
 
 import edu.unam.App;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +12,6 @@ public class HomeViewController {
     public HomeViewController() {
     }
 
-    
     @FXML
     private Button btnClientes;
 

@@ -1,11 +1,39 @@
 package edu.unam.modelo;
 
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "entrenamiento")
 public class Entrenamiento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_entrenamiento", nullable = false)
     private int idEntrenamiento;
+
+    @OneToOne
     private Ejercicio ejercicio;
+
+    @Column(name = "series", nullable = false)
+    @Basic
     private int series;
+    
+    @Column(name = "repeticiones", nullable = false)
+    @Basic
     private int repeticiones;
+    
+    @Column(name = "descanso", nullable = false)
+    @Basic
     private int descanso;
+    
+    @Basic
+    @Column(name = "duracion_minutos", nullable = false)
     private int duracionMinutos;
 
     public Entrenamiento() {
