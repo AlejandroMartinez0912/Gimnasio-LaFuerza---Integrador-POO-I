@@ -1,23 +1,27 @@
 package edu.unam.vistas;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 import edu.unam.App;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class viewEntrenamientosController {
 
     @FXML
-    private Button btnGuardarNuevoEjercicio;
+    private Button btnEditarEntrenamiento;
+
+    @FXML
+    private Button btnEliminarEntrenamiento;
+
+    @FXML
+    private Button btnGuardarNuevoEntrenamiento;
 
     @FXML
     private Button btnVolverHome;
@@ -26,9 +30,20 @@ public class viewEntrenamientosController {
     private ComboBox<?> comboBoxEjercicio;
 
     @FXML
-    private ComboBox<Integer> comboBoxSeries;
-    
-        
+    private ComboBox<?> comboBoxSeries;
+
+    @FXML
+    private TableColumn<?, ?> descansoColumn;
+
+    @FXML
+    private TableColumn<?, ?> duracionColumn;
+
+    @FXML
+    private TableColumn<?, ?> ejercicioColumn;
+
+    @FXML
+    private TableColumn<?, ?> idColumn;
+
     @FXML
     private Label labelDescanso;
 
@@ -45,6 +60,12 @@ public class viewEntrenamientosController {
     private Label labelTítuloVista;
 
     @FXML
+    private TableColumn<?, ?> repetecionesColumn;
+
+    @FXML
+    private TableColumn<?, ?> seriesColumn;
+
+    @FXML
     private TableView<?> tableviewEntrenamientos;
 
     @FXML
@@ -54,7 +75,7 @@ public class viewEntrenamientosController {
     private TextField txtRepeticiones;
 
     @FXML
-    void guardarNuevoEjercicio(ActionEvent event) {
+    void guardarNuevoEntrenamiento(ActionEvent event) {
         // Implementa la lógica para guardar un nuevo ejercicio
         //String ejercicioSeleccionado = comboBoxEjercicio.getValue();
        // String nombreSeries = comboBoxSeries.getValue();

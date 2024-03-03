@@ -25,13 +25,18 @@
       </Button>
       <TableView fx:id="tableviewEntrenamientos" layoutX="28.0" layoutY="216.0" prefHeight="213.0" prefWidth="592.0">
         <columns>
-          <TableColumn prefWidth="132.0" text="Rutinas" />
+          <TableColumn fx:id="idColumn" prefWidth="44.0" text="Id" />
+            <TableColumn fx:id="ejercicioColumn" prefWidth="210.0" text="Ejercicio" />
+            <TableColumn fx:id="seriesColumn" minWidth="0.0" prefWidth="57.0" text="Series" />
+            <TableColumn fx:id="repetecionesColumn" prefWidth="93.0" text="Repeteciones" />
+            <TableColumn fx:id="descansoColumn" prefWidth="94.0" text="Descanso (m)" />
+            <TableColumn fx:id="duracionColumn" prefWidth="93.0" text="Duración (m)" />
         </columns>
       </TableView>
-      <ComboBox fx:id="comboBoxEjercicio" layoutX="117.0" layoutY="87.0" prefHeight="25.0" prefWidth="164.0" promptText="Seleccione el ejercicio" />
-      <TextField fx:id="txtRepeticiones" layoutX="452.0" layoutY="87.0" prefHeight="25.0" prefWidth="153.0" promptText="Número de repeticiones" />
-      <TextField fx:id="txtDescanso" layoutX="452.0" layoutY="127.0" prefHeight="25.0" prefWidth="153.0" promptText="Tiempo de descanso" />
-      <ComboBox fx:id="comboBoxEjercicio1" layoutX="117.0" layoutY="127.0" prefHeight="25.0" prefWidth="164.0" promptText="Cantidad de series" />
+      <ComboBox fx:id="comboBoxEjercicio" layoutX="117.0" layoutY="87.0" prefHeight="25.0" prefWidth="190.0" promptText="Seleccione el ejercicio" />
+      <TextField fx:id="txtRepeticiones" layoutX="456.0" layoutY="81.0" prefHeight="25.0" prefWidth="164.0" promptText="Número de repeticiones" />
+      <TextField fx:id="txtDescanso" layoutX="455.0" layoutY="127.0" prefHeight="25.0" prefWidth="164.0" promptText="Tiempo de descanso" />
+      <ComboBox fx:id="comboBoxSeries" layoutX="117.0" layoutY="127.0" prefHeight="25.0" prefWidth="190.0" promptText="Cantidad de series" />
       <Label fx:id="labelEjercicio" layoutX="25.0" layoutY="84.0" prefHeight="30.0" prefWidth="88.0" text="Ejercicio" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
@@ -42,17 +47,17 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelRepeticiones" layoutX="316.0" layoutY="85.0" prefHeight="30.0" prefWidth="130.0" text="Repeticiones" textFill="WHITE">
+      <Label fx:id="labelRepeticiones" layoutX="320.0" layoutY="79.0" prefHeight="30.0" prefWidth="130.0" text="Repeticiones" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelDescanso" layoutX="316.0" layoutY="125.0" prefHeight="30.0" prefWidth="104.0" text="Descanso" textFill="WHITE">
+      <Label fx:id="labelDescanso" layoutX="320.0" layoutY="124.0" prefHeight="30.0" prefWidth="104.0" text="Descanso" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnGuardarNuevoEjercicio" layoutX="260.0" layoutY="175.0" mnemonicParsing="false" onAction="#guardarNuevoEjercicio" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardarNuevoEntrenamiento" layoutX="537.0" layoutY="173.0" mnemonicParsing="false" onAction="#guardarNuevoEntrenamiento" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -62,5 +67,15 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnEditarEntrenamiento" disable="true" layoutX="433.0" layoutY="173.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminarEntrenamiento" disable="true" layoutX="343.0" layoutY="173.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
