@@ -56,8 +56,8 @@ public class viewEntrenamientosController {
     @FXML
     void guardarNuevoEjercicio(ActionEvent event) {
         // Implementa la lógica para guardar un nuevo ejercicio
-        String ejercicioSeleccionado = comboBoxEjercicio.getValue();
-        String nombreSeries = comboBoxSeries.getValue();
+        //String ejercicioSeleccionado = comboBoxEjercicio.getValue();
+       // String nombreSeries = comboBoxSeries.getValue();
         String repeticiones = txtRepeticiones.getText();
         String descanso = txtDescanso.getText();
         
