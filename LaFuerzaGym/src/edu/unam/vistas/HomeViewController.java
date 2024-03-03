@@ -3,7 +3,7 @@ package edu.unam.vistas;
 import java.io.IOException;
 
 import edu.unam.App;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -37,6 +37,9 @@ public class HomeViewController {
 
     @FXML
     private Button btnNuevoGrupoMuscular;
+
+    @FXML
+    private Button btnTutor;
 
     @FXML
     private Label labelTituloApp;
@@ -79,8 +82,12 @@ public class HomeViewController {
     @FXML
     private void verClientes() throws IOException {
         App.setRoot("viewClientes");
-        
     }
 
+    @FXML
+    private void verTutor() throws IOException {
+        App.setRoot("viewTutor");
+    }
     
+
 }

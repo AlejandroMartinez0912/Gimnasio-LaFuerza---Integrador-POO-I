@@ -44,5 +44,10 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnTutor" layoutX="390.0" layoutY="389.0" mnemonicParsing="false" onAction="#verTutor" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Tutor" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
