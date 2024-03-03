@@ -17,6 +17,7 @@ import edu.unam.servicios.ServicioCliente;
 public class App extends Application {
     private static Scene scene;
 
+    @SuppressWarnings("unused")
     @Override
     public void start(Stage stage) throws IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
