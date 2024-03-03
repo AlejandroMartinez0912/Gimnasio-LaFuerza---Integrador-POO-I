@@ -22,15 +22,14 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="TutoresTable" layoutX="47.0" layoutY="250.0" prefHeight="175.0" prefWidth="547.0">
+      <TableView fx:id="tutoresTable" layoutX="47.0" layoutY="250.0" prefHeight="175.0" prefWidth="547.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="112.0" text="Nombre" />
-            <TableColumn fx:id="nombreColumn" prefWidth="279.0" text="Apellido" />
-            <TableColumn fx:id="eliminarColumn" prefWidth="55.0" />
-            <TableColumn fx:id="editColumn" prefWidth="108.0" />
+          <TableColumn fx:id="idColumn" prefWidth="49.0" text="Id" />
+            <TableColumn fx:id="nombreColumn" prefWidth="262.0" text="Nombre" />
+            <TableColumn fx:id="apellidoColumn" prefWidth="235.0" text="Apellido" />
         </columns>
       </TableView>
-      <Label fx:id="labelNombreTutor" layoutX="47.0" layoutY="101.0" prefHeight="30.0" prefWidth="104.0" style="-fx-text-fill: white;" text="Nombres:" textFill="WHITE">
+      <Label fx:id="labelNombreTutor" layoutX="47.0" layoutY="101.0" prefHeight="30.0" prefWidth="104.0" style="-fx-text-fill: white;" text="Nombre:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
@@ -52,5 +51,15 @@
          </font>
       </Label>
       <TextField fx:id="txtApellidoTutor" layoutX="153.0" layoutY="159.0" prefHeight="25.0" prefWidth="441.0" promptText="Apellido del tutor" />
+      <Button fx:id="btnEditarTutor" disable="true" layoutX="411.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminarTutor" disable="true" layoutX="321.0" layoutY="200.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

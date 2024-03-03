@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import edu.unam.App;
 import edu.unam.modelo.Tutor;
+import edu.unam.repositorio.Repositorio;
 import edu.unam.servicios.ServicioTutor;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,23 +16,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 
 public class viewTutorController {
     @FXML
-    private TableView<Tutor> TutoresTable;
+    private TableView<?> tutoresTable;
+
+    @FXML
+    private TableColumn<?, ?> apellidoColumn;
+
+    @FXML
+    private Button btnEditarTutor;
+
+    @FXML
+    private Button btnEliminarTutor;
 
     @FXML
     private Button btnGuardarTutor;
 
     @FXML
     private Button btnVolverHome;
-
-    @FXML
-    private TableColumn<?, ?> editColumn;
-
-    @FXML
-    private TableColumn<?, ?> eliminarColumn;
 
     @FXML
     private TableColumn<?, ?> idColumn;
@@ -52,20 +57,14 @@ public class viewTutorController {
     @FXML
     private TextField txtNombreTutor;
 
-    @FXML
-    private Button crearBotonEliminar(String tooltip){
-        Button boton = new Button();
-        boton.setTooltip(new Tooltip(tooltip));
-        boton.setPrefSize(20, 20);
-        boton.setText("X");
-        boton.setStyle("-fx-background-color: #ff0000; -fx-cursor: hand; -fx-text-fill: white; -fx-alignment: center;");
-        return boton;
-    }
-
-    private ServicioTutor ServicioTutor;  // Agregamos una propiedad para el servicio
+    private EntityManagerFactory emf;
+    private Repositorio repositorio;
+    private ServicioTutor servicioTutor;
 
     public viewTutorController() {
-        this.ServicioTutor = new ServicioTutor();  // Creamos una instancia del servicio en el constructor
+        emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
+        repositorio = new Repositorio(emf);
+        servicioTutor = new ServicioTutor(repositorio);
     }
 
     @FXML
@@ -89,8 +88,8 @@ public class viewTutorController {
             nuevoTutor.setApellido(apellidoTutor);
 
             // Llamar al servicio para agregar el nuevo Tutor
-            ServicioTutor.agregarTutor(nuevoTutor);
-            TutoresTable.getItems().add(nuevoTutor);
+            //ServicioTutor.agregarTutor(nuevoTutor);
+            //tutoresTable.getItems().add(nuevoTutor);
             
             // Limpiar los campos de texto después de agregar el tutor
             txtNombreTutor.clear();
@@ -99,18 +98,8 @@ public class viewTutorController {
         } else {
             alertError.showAndWait();
         }
-}
-
-
-    @FXML
-    private Button crearBotonEditar(String tooltip){
-        Button boton = new Button();
-        boton.setTooltip(new Tooltip(tooltip));
-        boton.setText("Editar");
-        boton.setPrefSize(50, 20);
-        boton.setStyle("-fx-background-color: #127e80; -fx-cursor: hand; -fx-text-fill: white; -fx-alignment: center;");
-        return boton;
     }
+
 
     @FXML
     void volverHome() throws IOException {
