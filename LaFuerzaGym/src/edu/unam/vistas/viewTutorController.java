@@ -1,6 +1,7 @@
 package edu.unam.vistas;
 
 import java.io.IOException;
+import java.util.List;
 
 import edu.unam.App;
 import edu.unam.modelo.Tutor;
@@ -16,10 +17,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewTutorController {
-    @FXML
-    private TableView<?> tutoresTable;
+
+    private EntityManagerFactory emf;
+    private Repositorio repositorio;
+    private ServicioTutor servicioTutor;
+    
+    public viewTutorController() {
+        emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
+        repositorio = new Repositorio(emf);
+        servicioTutor = new ServicioTutor(repositorio);
+    }
 
     @FXML
     private TableColumn<?, ?> apellidoColumn;
@@ -52,59 +62,146 @@ public class viewTutorController {
     private TableColumn<?, ?> nombreColumn;
 
     @FXML
+    private TableView<Tutor> tutoresTable;
+
+    @FXML
     private TextField txtApellidoTutor;
 
     @FXML
     private TextField txtNombreTutor;
 
-    private EntityManagerFactory emf;
-    private Repositorio repositorio;
-    private ServicioTutor servicioTutor;
-
-    public viewTutorController() {
-        emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
-        repositorio = new Repositorio(emf);
-        servicioTutor = new ServicioTutor(repositorio);
-    }
-
     @FXML
     void guardarTutor(ActionEvent event) {
+        // Para mostrar un mensaje de éxito
         Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
         alertSuccess.setTitle("Éxito");
         alertSuccess.setHeaderText(null);
         alertSuccess.setContentText("El tutor se agregó correctamente.");
-
+        
         Alert alertError = new Alert(Alert.AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);
         alertError.setContentText("Hubo un error al agregar el tutor.");
 
-        String nombreTutor = txtNombreTutor.getText().trim();
+        String nombreTutor = txtNombreTutor.getText().trim(); // Obtener el texto del campo y eliminar espacios en blanco al inicio y al final
         String apellidoTutor = txtApellidoTutor.getText().trim();
 
-         if (!nombreTutor.isEmpty() && !apellidoTutor.isEmpty()) {
+        if (!nombreTutor.isEmpty() && nombreTutor.matches("[a-zA-Z]+") && !apellidoTutor.isEmpty() && apellidoTutor.matches("[a-zA-Z]+")) { // Verificar si el campo no está vacío y contiene solo letras
+            // Crear una nueva instancia de Tutor
             Tutor nuevoTutor = new Tutor();
             nuevoTutor.setNombre(nombreTutor);
             nuevoTutor.setApellido(apellidoTutor);
 
-            // Llamar al servicio para agregar el nuevo Tutor
-            //ServicioTutor.agregarTutor(nuevoTutor);
-            //tutoresTable.getItems().add(nuevoTutor);
-            
+            // Llamar al servicio para agregar el nuevo GrupoMuscular
+            servicioTutor.agregarTutor(nuevoTutor);
+            tutoresTable.getItems().add(nuevoTutor);
+
             // Limpiar los campos de texto después de agregar el tutor
             txtNombreTutor.clear();
             txtApellidoTutor.clear();
             alertSuccess.showAndWait();
+
         } else {
+            // Mostrar un mensaje de error al usuario indicando que el campo es obligatorio
             alertError.showAndWait();
         }
     }
+    @FXML
+    public void initialize() {
+        //Deshabilitar los botones de editar y eliminar al inicio
+        btnEditarTutor.setDisable(true);
+        btnEliminarTutor.setDisable(true);
 
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idTutor"));
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+
+        // Obtener todos los tutores de la base de datos
+        List<Tutor> tutores = servicioTutor.obtenerTodos();
+
+        if (tutores.isEmpty()) {
+            // Si la lista está vacía, mostrar un mensaje en la tabla
+            tutoresTable.setPlaceholder(new Label("No hay tutores para mostrar."));
+        } else {
+            // Si la lista no está vacía, mostrar los tutores en la tabla
+            tutoresTable.getItems().addAll(tutores);
+         }
+         tutoresTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                btnEditarTutor.setDisable(false);
+                btnEliminarTutor.setDisable(false);
+    
+                txtNombreTutor.setText(newSelection.getNombre());
+                txtApellidoTutor.setText(newSelection.getApellido());
+            } else {
+                btnEditarTutor.setDisable(true);
+                btnEliminarTutor.setDisable(true);
+                txtNombreTutor.clear();
+                txtApellidoTutor.clear();
+            }
+        });
+        btnEliminarTutor.setOnAction((ActionEvent event) -> {
+            Tutor data = tutoresTable.getSelectionModel().getSelectedItem();
+    
+            try {
+                // Llamar al servicio para eliminar el tutor
+                servicioTutor.eliminarTutor(data);
+                tutoresTable.getItems().remove(data);
+    
+                // Después de eliminar, deseleccionar el elemento
+                tutoresTable.getSelectionModel().clearSelection();
+    
+                // Para mostrar un mensaje de éxito
+                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                alertSuccess.setTitle("Éxito");
+                alertSuccess.setHeaderText(null);
+                alertSuccess.setContentText("El tutor se eliminó correctamente.");
+    
+                alertSuccess.showAndWait();
+            } catch (Exception e) {
+                // En caso de error, mostrar mensaje de error
+                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                alertError.setTitle("Error");
+                alertError.setHeaderText(null);
+                alertError.setContentText("No se puede eliminar el tutor.");
+    
+                alertError.showAndWait();
+            }
+        });
+    
+        btnEditarTutor.setOnAction((ActionEvent event) -> {
+            Tutor data = tutoresTable.getSelectionModel().getSelectedItem();
+    
+            try {
+                data.setNombre(txtNombreTutor.getText());
+                data.setApellido(txtApellidoTutor.getText());
+                servicioTutor.editarTutor(data);
+                tutoresTable.refresh();
+    
+                // Después de editar, deseleccionar el elemento
+                tutoresTable.getSelectionModel().clearSelection();
+    
+                // Mostramos mensaje de éxito
+                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                alertSuccess.setTitle("Éxito");
+                alertSuccess.setHeaderText(null);
+                alertSuccess.setContentText("El tutor se editó correctamente.");
+    
+                alertSuccess.showAndWait();
+            } catch (Exception e) {
+                // En caso de error, mostramos mensaje de error
+                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                alertError.setTitle("Error");
+                alertError.setHeaderText(null);
+                alertError.setContentText("No se puede editar el tutor.");
+    
+                alertError.showAndWait();
+            }
+        });
+    }
 
     @FXML
     void volverHome() throws IOException {
         App.setRoot("homeView");
     }
-
 }
-
