@@ -28,7 +28,7 @@ public class Cliente {
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_nacimiento", nullable = false)
     private Date fechaNacimiento;
-    @Column(name = "sexo", nullable = false, length = 1)
+    @Column(name = "sexo", nullable = false, length = 20)
     @Basic
     private String sexo;
     @Temporal(TemporalType.DATE)
