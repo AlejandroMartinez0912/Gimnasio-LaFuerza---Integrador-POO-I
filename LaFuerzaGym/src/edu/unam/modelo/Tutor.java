@@ -1,8 +1,24 @@
 package edu.unam.modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tutor")
 public class Tutor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_tutor", nullable = false)
     private int idTutor;
+
+    @Column(name = "nombre_tutor", nullable = false, length = 80 )
     private String nombre;
+
+    @Column(name = "apellido_tutor", nullable = false, length = 80 )
     private String apellido;
 
     public Tutor() {
@@ -13,7 +29,6 @@ public class Tutor {
         this.nombre = nombre;
         this.apellido = apellido;
     }
-
     public int getIdTutor() {
         return idTutor;
     }
@@ -37,6 +52,5 @@ public class Tutor {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-
-    
 }
+

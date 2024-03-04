@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #433232;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.vistas.viewGruposMuscularesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #433232;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.vistas.viewTutorController">
    <children>
       <Label fx:id="labelTítuloVista" alignment="CENTER" layoutX="77.0" layoutY="27.0" prefHeight="30.0" prefWidth="74.0" style="-fx-text-fill: white;" text="Tutor" textFill="WHITE">
          <font>
@@ -23,11 +23,11 @@
          </font>
       </Button>
       <TableView fx:id="tutoresTable" layoutX="47.0" layoutY="250.0" prefHeight="175.0" prefWidth="547.0">
-        <columns>
-          <TableColumn fx:id="idColumn" prefWidth="49.0" text="Id" />
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="49.0" text="Id" />
             <TableColumn fx:id="nombreColumn" prefWidth="262.0" text="Nombre" />
             <TableColumn fx:id="apellidoColumn" prefWidth="235.0" text="Apellido" />
-        </columns>
+         </columns>
       </TableView>
       <Label fx:id="labelNombreTutor" layoutX="47.0" layoutY="101.0" prefHeight="30.0" prefWidth="104.0" style="-fx-text-fill: white;" text="Nombre:" textFill="WHITE">
          <font>
