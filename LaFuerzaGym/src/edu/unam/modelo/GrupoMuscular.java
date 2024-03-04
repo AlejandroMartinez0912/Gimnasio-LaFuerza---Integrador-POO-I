@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name = "grupo_muscular")
 public class GrupoMuscular {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_grupo_muscular", nullable = false)
     private int idGrupoMuscular;
 

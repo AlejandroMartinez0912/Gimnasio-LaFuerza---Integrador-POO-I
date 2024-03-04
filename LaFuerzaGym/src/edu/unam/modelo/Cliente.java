@@ -16,7 +16,7 @@ import jakarta.persistence.TemporalType;
 @Table(name = "cliente")
 public class Cliente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente", nullable = false)
     private int idCliente;
     @Column(name = "nombre", nullable = false, length = 100)
