@@ -1,6 +1,8 @@
 package edu.unam.modelo;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -8,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -35,6 +38,10 @@ public class Cliente {
     @Column(name = "fecha_ingreso", nullable = false)
     private Date fechaIngreso;
     
+    @OneToMany  (mappedBy = "cliente"  )
+    private Set<EntrenamientoCliente> entrenamientoClientes = new HashSet<EntrenamientoCliente>();
+
+
     public Cliente() {
     }
 

@@ -1,15 +1,62 @@
 package edu.unam.modelo;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Basic;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+@Entity
+@Table(name = "entrenamiento_cliente")
 public class EntrenamientoCliente {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // @GeneratedValue
+    @Column(name = "id_entrenamiento_cliente")
     private int idEntrenamientoCliente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
+
+    @ManyToMany
+    @JoinTable(
+        name = "entrenamiento_x_entrenamiento_clientes", 
+        joinColumns = @JoinColumn(name = "id_entrenamiento_cliente"), 
+        inverseJoinColumns = @JoinColumn(name = "id_entrenamiento"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"id_entrenamiento_cliente", "id_entrenamiento"}
+        )
+    )
     private Set<Entrenamiento> entrenamientos;
+
+    @Basic
+    @Column(name = "duracion_semanas")
     private int duracionSemanas;
+
+    @Basic
+    @Column(name = "fecha_inicio")
     private Date fechaInicio;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tutor")
     private Tutor tutor;
+    
+    @Basic
+    @Column(name = "activo")
     private boolean activo; 
+
+    @Basic
+    @Column(name = "volumen_semanal")
     private int volumenSemanal;
 
     public EntrenamientoCliente() {
