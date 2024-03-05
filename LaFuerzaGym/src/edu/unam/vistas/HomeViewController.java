@@ -87,5 +87,13 @@ public class HomeViewController {
         App.setRoot("viewTutor");
     }
     
+    @FXML
+    private void verRutina() throws IOException   {
+        
+    }
 
+    @FXML
+    private void verDetalleEntrenamiento() throws IOException   {
+        
+    }
 }
