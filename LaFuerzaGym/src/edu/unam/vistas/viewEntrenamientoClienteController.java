@@ -1,4 +1,4 @@
-package edu.unam;
+package edu.unam.vistas;
 
 public class viewEntrenamientoClienteController {
     
