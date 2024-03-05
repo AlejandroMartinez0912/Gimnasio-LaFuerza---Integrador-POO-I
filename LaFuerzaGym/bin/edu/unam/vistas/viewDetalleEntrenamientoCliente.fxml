@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,5 +23,39 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
+      <TextField fx:id="txtRepeticiones" layoutX="414.0" layoutY="104.0" prefHeight="25.0" prefWidth="164.0" promptText="Número de repeticiones" />
+      <ComboBox fx:id="comboBoxSeries" layoutX="234.0" layoutY="104.0" prefHeight="25.0" prefWidth="152.0" promptText="Cantidad de series" />
+      <Label fx:id="labelSeries" layoutX="234.0" layoutY="73.0" prefHeight="30.0" prefWidth="68.0" text="Series" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelRepeticiones" layoutX="414.0" layoutY="73.0" prefHeight="30.0" prefWidth="130.0" text="Repeticiones" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnGuardarNuevoEntrenamiento" layoutX="496.0" layoutY="179.0" mnemonicParsing="false" onAction="#guardarNuevoEntrenamiento" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEditarEntrenamiento" disable="true" layoutX="392.0" layoutY="179.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnEliminarEntrenamiento" disable="true" layoutX="302.0" layoutY="179.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <ListView layoutX="193.0" layoutY="230.0" prefHeight="144.0" prefWidth="234.0" />
+      <ComboBox fx:id="comboBoxEjercicio" layoutX="14.0" layoutY="103.0" prefHeight="25.0" prefWidth="190.0" promptText="Seleccione el ejercicio" />
+      <Label fx:id="labelEjercicio" layoutX="14.0" layoutY="73.0" prefHeight="30.0" prefWidth="146.0" text="Entrenamiento" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
