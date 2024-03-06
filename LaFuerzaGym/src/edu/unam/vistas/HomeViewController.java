@@ -89,7 +89,7 @@ public class HomeViewController {
     
     @FXML
     private void verRutina() throws IOException   {
-        
+        App.setRoot("viewEntrenamientoCliente");
     }
 
     @FXML

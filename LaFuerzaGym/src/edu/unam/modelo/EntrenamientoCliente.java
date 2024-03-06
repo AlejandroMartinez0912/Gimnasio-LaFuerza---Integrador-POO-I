@@ -1,9 +1,7 @@
 package edu.unam.modelo;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,11 +39,15 @@ public class EntrenamientoCliente {
 
     @Basic
     @Column(name = "duracion_semanas")
-    private int duracionSemanas;
+    private int duracionSemanas; //¿Es necesario o dejamos en 4 semanas siempre?
 
     @Basic
     @Column(name = "fecha_inicio")
     private Date fechaInicio;
+
+    @Basic
+    @Column(name = "fecha_fin")
+    private Date fechaFin;
 
     @ManyToOne
     @JoinColumn(name = "id_tutor")
@@ -53,25 +55,29 @@ public class EntrenamientoCliente {
     
     @Basic
     @Column(name = "activo")
-    private boolean activo; 
+    private boolean activo; //Este debería actualizarse automáticamente una vez superada la fecha fin
 
     @Basic
     @Column(name = "volumen_semanal")
-    private int volumenSemanal;
+    private int volumenSemanal; //¿Borramos de acá y creamos un nuevo modelo DetallesCliente?
 
     public EntrenamientoCliente() {
     }
 
-    public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Entrenamiento> entrenamientos, int duracionSemanas, Date fechaInicio, Tutor tutor, boolean activo, int volumenSemanal) {
+    public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Entrenamiento> entrenamientos,
+            int duracionSemanas, Date fechaInicio, Date fechaFin, Tutor tutor, boolean activo, int volumenSemanal) {
         this.idEntrenamientoCliente = idEntrenamientoCliente;
         this.cliente = cliente;
         this.entrenamientos = entrenamientos;
         this.duracionSemanas = duracionSemanas;
         this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
         this.tutor = tutor;
         this.activo = activo;
         this.volumenSemanal = volumenSemanal;
     }
+
+    
 
     public int getIdEntrenamientoCliente() {
         return idEntrenamientoCliente;
@@ -135,6 +141,14 @@ public class EntrenamientoCliente {
 
     public void setVolumenSemanal(int volumenSemanal) {
         this.volumenSemanal = volumenSemanal;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     
