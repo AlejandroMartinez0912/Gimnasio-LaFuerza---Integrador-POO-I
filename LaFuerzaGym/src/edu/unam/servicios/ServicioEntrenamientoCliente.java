@@ -8,7 +8,7 @@ import edu.unam.repositorio.Repositorio;
 public class ServicioEntrenamientoCliente {
     private Repositorio repositorio;
     private EntrenamientoCliente entrenamientoCliente;
-
+    
 
     public ServicioEntrenamientoCliente(Repositorio p) {
         this.repositorio = p;
@@ -35,5 +35,5 @@ public class ServicioEntrenamientoCliente {
    public List<EntrenamientoCliente> obtenerTodos() {
         return this.repositorio.buscarTodos(EntrenamientoCliente.class);
     }
-    
+
 }
