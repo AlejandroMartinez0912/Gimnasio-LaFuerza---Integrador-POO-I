@@ -1,7 +1,7 @@
 package edu.unam.servicios;
 import java.util.List;
 
-import edu.unam.modelo.Entrenamiento;
+import edu.unam.modelo.Rutina;
 import edu.unam.modelo.EntrenamientoCliente;
 import edu.unam.repositorio.Repositorio;
 

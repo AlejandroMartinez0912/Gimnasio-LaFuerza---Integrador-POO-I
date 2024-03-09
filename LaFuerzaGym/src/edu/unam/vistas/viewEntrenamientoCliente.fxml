@@ -25,25 +25,25 @@
       </ImageView>
       <TableView fx:id="tableSeleccionEntrenamientos" layoutX="11.0" layoutY="160.0" prefHeight="101.0" prefWidth="614.0">
         <columns>
-          <TableColumn fx:id="entrenamientoColumn" prefWidth="278.0" text="Entrenamiento" />
+          <TableColumn fx:id="rutinaColumn" prefWidth="278.0" text="Rutina" />
             <TableColumn fx:id="seriesColumn" prefWidth="42.0" text="Series" />
             <TableColumn fx:id="repeticionesColumn" minWidth="2.0" prefWidth="88.0" text="Repeticiones" />
-            <TableColumn fx:id="grupoMuscularEntrenamientoColumn" prefWidth="205.0" text="Grupo muscular" />
+            <TableColumn fx:id="grupoMuscularRutinaColumn" prefWidth="205.0" text="Grupo muscular" />
         </columns>
       </TableView>
-      <DatePicker fx:id="dateFechaInicio" layoutX="419.0" layoutY="34.0" promptText="dd/mm/aa" />
-      <DatePicker fx:id="dateFechaFin" layoutX="419.0" layoutY="91.0" promptText="dd/mm/aa" />
-      <Label fx:id="labelFechaInicio" layoutX="419.0" layoutY="-1.0" prefHeight="30.0" prefWidth="125.0" text="Fecha inicio:" textFill="WHITE">
+      <DatePicker fx:id="dateFechaInicio" layoutX="446.0" layoutY="34.0" promptText="dd/mm/aa" />
+      <DatePicker fx:id="dateFechaFin" layoutX="446.0" layoutY="97.0" promptText="dd/mm/aa" />
+      <Label fx:id="labelFechaInicio" layoutX="446.0" layoutY="1.0" prefHeight="30.0" prefWidth="125.0" text="Fecha inicio:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelFechaFin" layoutX="419.0" layoutY="58.0" prefHeight="30.0" prefWidth="125.0" text="Fecha fin:" textFill="WHITE">
+      <Label fx:id="labelFechaFin" layoutX="446.0" layoutY="65.0" prefHeight="30.0" prefWidth="125.0" text="Fecha fin:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelEntrenamientos" layoutX="173.0" layoutY="130.0" prefHeight="30.0" prefWidth="295.0" text="Seleccione los entrenamientos" textFill="WHITE">
+      <Label fx:id="labelEntrenamientos" alignment="CENTER" layoutX="173.0" layoutY="130.0" prefHeight="30.0" prefWidth="295.0" text="Seleccione las rutinas" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
@@ -58,8 +58,8 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <ComboBox fx:id="comboBoxCliente" editable="true" layoutX="5.0" layoutY="91.0" prefWidth="150.0" promptText="Clientes..." />
-      <Label fx:id="labelCliente" layoutX="18.0" layoutY="58.0" prefHeight="30.0" prefWidth="125.0" text="Cliente:" textFill="WHITE">
+      <ComboBox fx:id="comboBoxCliente" editable="true" layoutX="12.0" layoutY="97.0" prefWidth="150.0" promptText="Clientes..." />
+      <Label fx:id="labelCliente" layoutX="13.0" layoutY="64.0" prefHeight="30.0" prefWidth="125.0" text="Cliente:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
@@ -84,11 +84,11 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="labelTutor" layoutX="193.0" layoutY="58.0" prefHeight="30.0" prefWidth="125.0" text="Tutor" textFill="WHITE">
+      <Label fx:id="labelTutor" layoutX="229.0" layoutY="64.0" prefHeight="30.0" prefWidth="125.0" text="Tutor:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboxTutor" editable="true" layoutX="181.0" layoutY="91.0" prefWidth="150.0" promptText="Clientes..." />
+      <ComboBox fx:id="comboBoxTutor" editable="true" layoutX="229.0" layoutY="97.0" prefWidth="150.0" promptText="Tutores..." />
    </children>
 </AnchorPane>

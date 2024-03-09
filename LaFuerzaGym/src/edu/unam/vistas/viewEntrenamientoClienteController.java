@@ -64,7 +64,7 @@ public class viewEntrenamientoClienteController {
     private TableColumn<?, ?> ejercicioColumn;
 
     @FXML
-    private TableColumn<?, ?> entrenamientoColumn;
+    private TableColumn<?, ?> rutinaColumn;
 
     @FXML
     private TableColumn<?, ?> fechaFinColumn;
@@ -76,7 +76,7 @@ public class viewEntrenamientoClienteController {
     private TableColumn<?, ?> grupoMuscularEntrenamientoClienteColumn;
 
     @FXML
-    private TableColumn<?, ?> grupoMuscularEntrenamientoColumn;
+    private TableColumn<?, ?> grupoMuscularRutinaColumn;
 
     @FXML
     private TableColumn<?, ?> idColumn;
@@ -140,10 +140,10 @@ public class viewEntrenamientoClienteController {
                 entrenamientoCliente.setFechaInicio(fechaInicio);
                 entrenamientoCliente.setFechaFin(fechaFin);
                 entrenamientoCliente.setTutor(tutor);
-                entrenamientoCliente.setActivo(activo);
+                //entrenamientoCliente.setActivo(activo);
 
                 servicioEntrenamientoCliente.agregarEntrenamientoCliente(entrenamientoCliente);
-                tableEntrenamientosClientes.getItems().add(entrenamientoCliente);
+                //tableEntrenamientosClientes.getItems().add(entrenamientoCliente);
                 
 
 

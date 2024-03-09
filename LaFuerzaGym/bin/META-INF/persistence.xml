@@ -4,7 +4,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
         <class>edu.unam.modelo.GrupoMuscular</class>
         <class>edu.unam.modelo.Ejercicio</class>
-        <class>edu.unam.modelo.Entrenamiento</class>
+        <class>edu.unam.modelo.Rutina</class>
         <class>edu.unam.modelo.Cliente</class>
         <class>edu.unam.modelo.Tutor</class>
         <class>edu.unam.modelo.EntrenamientoCliente</class>

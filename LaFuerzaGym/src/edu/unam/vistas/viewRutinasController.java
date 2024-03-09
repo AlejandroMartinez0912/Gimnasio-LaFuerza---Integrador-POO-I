@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import edu.unam.App;
 import edu.unam.modelo.Ejercicio;
-import edu.unam.modelo.Entrenamiento;
+import edu.unam.modelo.Rutina;
 import edu.unam.repositorio.Repositorio;
 import edu.unam.servicios.ServicioEjercicio;
-import edu.unam.servicios.ServicioEntrenamiento;
+import edu.unam.servicios.ServicioRutina;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import javafx.beans.property.SimpleStringProperty;
@@ -26,28 +26,28 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class viewEntrenamientosController {
+public class viewRutinasController {
 
     private EntityManagerFactory emf;
     private Repositorio repositorio;
     private ServicioEjercicio servicioEjercicio;
-    private ServicioEntrenamiento servicioEntrenamiento;
+    private ServicioRutina servicioRutina;
 
-    public viewEntrenamientosController() {
+    public viewRutinasController() {
         emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
         repositorio = new Repositorio(emf);
         servicioEjercicio = new ServicioEjercicio(repositorio);
-        servicioEntrenamiento = new ServicioEntrenamiento(repositorio);
+        servicioRutina = new ServicioRutina(repositorio);
     }
 
     @FXML
-    private Button btnEditarEntrenamiento;
+    private Button btnEditarRutina;
 
     @FXML
-    private Button btnEliminarEntrenamiento;
+    private Button btnEliminarRutina;
 
     @FXML
-    private Button btnGuardarNuevoEntrenamiento;
+    private Button btnGuardarNuevaRutina;
 
     @FXML
     private Button btnVolverHome;
@@ -59,16 +59,13 @@ public class viewEntrenamientosController {
     private ComboBox<Integer> comboBoxSeries;
 
     @FXML
-    private TableColumn<Entrenamiento, String> descansoColumn;
+    private TableColumn<Rutina, String> descansoColumn;
 
     @FXML
-    private TableColumn<Entrenamiento, String> duracionColumn;
+    private TableColumn<Rutina, String> ejercicioColumn;
 
     @FXML
-    private TableColumn<Entrenamiento, String> ejercicioColumn;
-
-    @FXML
-    private TableColumn<Entrenamiento, Integer> idColumn;
+    private TableColumn<Rutina, Integer> idColumn;
 
     @FXML
     private Label labelDescanso;
@@ -86,13 +83,13 @@ public class viewEntrenamientosController {
     private Label labelTítuloVista;
 
     @FXML
-    private TableColumn<Entrenamiento, Integer> repetecionesColumn;
+    private TableColumn<Rutina, Integer> repeticionesColumn;
 
     @FXML
-    private TableColumn<Entrenamiento, Integer> seriesColumn;
+    private TableColumn<Rutina, Integer> seriesColumn;
 
     @FXML
-    private TableView<Entrenamiento> tableviewEntrenamientos;
+    private TableView<Rutina> tableviewRutinas;
 
     @FXML
     private TextField txtDescanso;
@@ -101,18 +98,18 @@ public class viewEntrenamientosController {
     private TextField txtRepeticiones;
 
     @FXML
-    void guardarNuevoEntrenamiento(ActionEvent event) {
+    void guardarNuevaRutina(ActionEvent event) {
         // Creamos la alerta con un mensaje de éxito
         Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
         alertSuccess.setTitle("Éxito");
         alertSuccess.setHeaderText(null);
-        alertSuccess.setContentText("El entrenamiento se agregó correctamente.");
+        alertSuccess.setContentText("La rutina se agregó correctamente.");
         
         //Creamos la alerta con un mensaje de error
         Alert alertError = new Alert(Alert.AlertType.ERROR);
         alertError.setTitle("Error");
         alertError.setHeaderText(null);
-        alertError.setContentText("Hubo un error al agregar el entrenamiento.");
+        alertError.setContentText("Hubo un error al agregar la rutina.");
 
         //Obtenemos los datos ingresados por el usuario
         int descansoIngresado = Integer.parseInt(txtDescanso.getText());
@@ -137,16 +134,16 @@ public class viewEntrenamientosController {
         }
 
         //Creamos un nuevo entrenamiento
-        Entrenamiento nuevoEntrenamiento = new Entrenamiento();
-        nuevoEntrenamiento.setDescanso(descansoIngresado);
-        nuevoEntrenamiento.setRepeticiones(repeticionesIngresadas);
-        nuevoEntrenamiento.setSeries(seriesSeleccionada);
-        nuevoEntrenamiento.setEjercicio(ejercicioEncontrado);
+        Rutina nuevaRutina = new Rutina();
+        nuevaRutina.setDescanso(descansoIngresado);
+        nuevaRutina.setRepeticiones(repeticionesIngresadas);
+        nuevaRutina.setSeries(seriesSeleccionada);
+        nuevaRutina.setEjercicio(ejercicioEncontrado);
 
         //Guardamos el nuevo entrenamiento
         // Llamar al servicio para agregar el nuevo Entrenamiento
-        servicioEntrenamiento.agregarEntrenamiento(nuevoEntrenamiento);
-        tableviewEntrenamientos.getItems().add(nuevoEntrenamiento);
+        servicioRutina.agregarRutina(nuevaRutina);
+        tableviewRutinas.getItems().add(nuevaRutina);
         // Limpiar el campo de texto después de agregar el grupo muscular
         txtDescanso.clear();
         txtRepeticiones.clear();
@@ -160,8 +157,8 @@ public class viewEntrenamientosController {
     public void initialize() {
 
         //Deshabilitamos los botones de eliminar y editar
-        btnEditarEntrenamiento.setDisable(true);
-        btnEliminarEntrenamiento.setDisable(true);
+        btnEditarRutina.setDisable(true);
+        btnEliminarRutina.setDisable(true);
 
         comboBoxSeries.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 
@@ -181,36 +178,35 @@ public class viewEntrenamientosController {
         comboBoxEjercicio.setItems(items);
 
         //Comenzamos a rellenar la tabla
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idEntrenamiento"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idRutina"));
         ejercicioColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEjercicio().getNombre()));
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
-        repetecionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
+        repeticionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
         descansoColumn.setCellValueFactory(new PropertyValueFactory<>("descanso"));
-        duracionColumn.setCellValueFactory(new PropertyValueFactory<>("duracionMinutos"));
 
         //Obtenemos todos los ejercicios de la base de datos
-        List<Entrenamiento> entrenamientos = servicioEntrenamiento.obtenerTodos();
+        List<Rutina> rutinas = servicioRutina.obtenerTodos();
 
         //Si la lista está vacía, mostramos un mensaje en la tabla
-        if (entrenamientos.isEmpty()) {
-            tableviewEntrenamientos.setPlaceholder(new Label("No hay entrenamientos para mostrar."));
+        if (rutinas.isEmpty()) {
+            tableviewRutinas.setPlaceholder(new Label("No hay rutinas para mostrar."));
         } else {
             //Si hay ejercicios, los mostramos en la tabla
-            tableviewEntrenamientos.getItems().setAll(entrenamientos);
+            tableviewRutinas.getItems().setAll(rutinas);
         }
 
-        tableviewEntrenamientos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+        tableviewRutinas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                btnEditarEntrenamiento.setDisable(false);
-                btnEliminarEntrenamiento.setDisable(false);
+                btnEditarRutina.setDisable(false);
+                btnEliminarRutina.setDisable(false);
 
                 //txtDescanso.setText(newSelection.getDescanso());
                 //txtRepeticiones.setText(newSelection.getRepeticiones());
                 comboBoxEjercicio.setValue(newSelection.getEjercicio().getNombre());
 
             }else{
-                btnEditarEntrenamiento.setDisable(true);
-                btnEliminarEntrenamiento.setDisable(true);
+                btnEditarRutina.setDisable(true);
+                btnEliminarRutina.setDisable(true);
                 txtDescanso.clear();
                 txtRepeticiones.clear();
                 comboBoxEjercicio.setValue(null);
@@ -218,13 +214,13 @@ public class viewEntrenamientosController {
             }
         });
 
-        btnEliminarEntrenamiento.setOnAction((ActionEvent event) -> {
-            Entrenamiento data = tableviewEntrenamientos.getSelectionModel().getSelectedItem();
+        btnEliminarRutina.setOnAction((ActionEvent event) -> {
+            Rutina data = tableviewRutinas.getSelectionModel().getSelectedItem();
             
             try {
                 // Llamar al servicio para eliminar el ejercicio
-                servicioEntrenamiento.eliminarEntrenamiento(data);
-                tableviewEntrenamientos.getItems().remove(data);
+                servicioRutina.eliminarRutina(data);
+                tableviewRutinas.getItems().remove(data);
                 
                 // Para mostrar un mensaje de éxito
                 Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
@@ -243,8 +239,8 @@ public class viewEntrenamientosController {
             }
         });
 
-        btnEditarEntrenamiento.setOnAction((ActionEvent event) -> {
-            Entrenamiento data = tableviewEntrenamientos.getSelectionModel().getSelectedItem();
+        btnEditarRutina.setOnAction((ActionEvent event) -> {
+            Rutina data = tableviewRutinas.getSelectionModel().getSelectedItem();
 
             try {
                 // Llamar al servicio para editar el ejercicio
@@ -258,8 +254,8 @@ public class viewEntrenamientosController {
                 .findFirst()
                 .orElse(null);
                 data.setEjercicio(ejercicioSeleccionado);                
-                servicioEntrenamiento.editarEntrenamiento(data);
-                tableviewEntrenamientos.refresh();
+                servicioRutina.editarRutina(data);
+                tableviewRutinas.refresh();
                 
                 // Para mostrar un mensaje de éxito
                 Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
