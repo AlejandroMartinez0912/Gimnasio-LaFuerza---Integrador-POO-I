@@ -18,7 +18,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="btnEjercicios" layoutX="116.0" layoutY="259.0" mnemonicParsing="false" onAction="#verEjercicios" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Ejercicios" textFill="WHITE">
+      <Button fx:id="btnEjercicios" layoutX="354.0" layoutY="198.0" mnemonicParsing="false" onAction="#verEjercicios" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Ejercicios" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
@@ -26,7 +26,7 @@
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
-      <Button fx:id="btnEntrenamientos" layoutX="341.0" layoutY="135.0" mnemonicParsing="false" onAction="#verEntrenamientos" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Entrenamientos" textFill="WHITE">
+      <Button fx:id="btnRutinas" layoutX="116.0" layoutY="259.0" mnemonicParsing="false" onAction="#verRutinas" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Rutinas" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Button>
@@ -40,12 +40,12 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnTutor" layoutX="341.0" layoutY="198.0" mnemonicParsing="false" onAction="#verTutor" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Tutor" textFill="WHITE">
+      <Button fx:id="btnTutor" layoutX="354.0" layoutY="135.0" mnemonicParsing="false" onAction="#verTutor" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Tutor" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnRutina" layoutX="341.0" layoutY="259.0" mnemonicParsing="false" onAction="#verRutina" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Rutina" textFill="WHITE">
+      <Button fx:id="btnRutinasClientes" layoutX="354.0" layoutY="259.0" mnemonicParsing="false" onAction="#verRutinasClientes" prefHeight="36.0" prefWidth="212.0" style="-fx-background-radius: 50; -fx-background-color: teal; -fx-font-size: 18; -fx-cursor: hand;" text="Rutinas Clientes" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
