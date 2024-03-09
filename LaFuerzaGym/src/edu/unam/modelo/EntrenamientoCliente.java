@@ -19,7 +19,7 @@ import jakarta.persistence.UniqueConstraint;
 public class EntrenamientoCliente {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_entrenamiento_cliente")
     private int idEntrenamientoCliente;
 
@@ -29,17 +29,13 @@ public class EntrenamientoCliente {
 
     @ManyToMany
     @JoinTable(
-        name = "entrenamiento_x_entrenamiento_clientes", 
+        name = "rutina_x_entrenamiento_clientes", 
         joinColumns = @JoinColumn(name = "id_entrenamiento_cliente"), 
-        inverseJoinColumns = @JoinColumn(name = "id_entrenamiento"),
-            uniqueConstraints = @UniqueConstraint(columnNames = {"id_entrenamiento_cliente", "id_entrenamiento"}
+        inverseJoinColumns = @JoinColumn(name = "id_rutina"),
+            uniqueConstraints = @UniqueConstraint(columnNames = {"id_entrenamiento_cliente", "id_rutina"}
         )
     )
-    private Set<Entrenamiento> entrenamientos;
-
-    @Basic
-    @Column(name = "duracion_semanas")
-    private int duracionSemanas; //¿Es necesario o dejamos en 4 semanas siempre?
+    private Set<Rutina> rutinas;
 
     @Basic
     @Column(name = "fecha_inicio")
@@ -54,26 +50,25 @@ public class EntrenamientoCliente {
     private Tutor tutor;
     
     @Basic
-    @Column(name = "activo")
-    private boolean activo; //Este debería actualizarse automáticamente una vez superada la fecha fin
+    @Column(name = "evaluacion_tutor")
+    private boolean evaluacionTutor; 
 
     @Basic
     @Column(name = "volumen_semanal")
-    private int volumenSemanal; //¿Borramos de acá y creamos un nuevo modelo DetallesCliente?
+    private int volumenSemanal;
 
     public EntrenamientoCliente() {
     }
 
-    public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Entrenamiento> entrenamientos,
-            int duracionSemanas, Date fechaInicio, Date fechaFin, Tutor tutor, boolean activo, int volumenSemanal) {
+    public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Rutina> rutinas,
+            int duracionSemanas, Date fechaInicio, Date fechaFin, Tutor tutor, boolean evaluacionTutor, int volumenSemanal) {
         this.idEntrenamientoCliente = idEntrenamientoCliente;
         this.cliente = cliente;
-        this.entrenamientos = entrenamientos;
-        this.duracionSemanas = duracionSemanas;
+        this.rutinas = rutinas;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.tutor = tutor;
-        this.activo = activo;
+        this.evaluacionTutor = evaluacionTutor;
         this.volumenSemanal = volumenSemanal;
     }
 
@@ -95,20 +90,12 @@ public class EntrenamientoCliente {
         this.cliente = cliente;
     }
 
-    public Set<Entrenamiento> getEntrenamientos() {
-        return entrenamientos;
+    public Set<Rutina> getrutinas() {
+        return rutinas;
     }
 
-    public void setEntrenamientos(Set<Entrenamiento> entrenamientos) {
-        this.entrenamientos = entrenamientos;
-    }
-
-    public int getDuracionSemanas() {
-        return duracionSemanas;
-    }
-
-    public void setDuracionSemanas(int duracionSemanas) {
-        this.duracionSemanas = duracionSemanas;
+    public void setrutinas(Set<Rutina> rutinas) {
+        this.rutinas = rutinas;
     }
 
     public Date getFechaInicio() {
@@ -127,12 +114,12 @@ public class EntrenamientoCliente {
         this.tutor = tutor;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isevaluacionTutor() {
+        return evaluacionTutor;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setevaluacionTutor(boolean evaluacionTutor) {
+        this.evaluacionTutor = evaluacionTutor;
     }
 
     public int getVolumenSemanal() {

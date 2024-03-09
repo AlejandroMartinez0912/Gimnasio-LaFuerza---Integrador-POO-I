@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #433232;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.vistas.viewEntrenamientosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" style="-fx-background-color: #433232;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.unam.vistas.viewRutinasController">
    <children>
-      <Label fx:id="labelTítuloVista" alignment="CENTER" layoutX="61.0" layoutY="17.0" prefHeight="30.0" prefWidth="200.0" text="Entrenamientos" textFill="WHITE">
+      <Label fx:id="labelTítuloVista" layoutX="61.0" layoutY="17.0" prefHeight="30.0" prefWidth="200.0" text="Rutinas" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="25.0" />
          </font>
@@ -23,14 +23,13 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="tableviewEntrenamientos" layoutX="28.0" layoutY="216.0" prefHeight="213.0" prefWidth="592.0">
+      <TableView fx:id="tableviewRutinas" layoutX="28.0" layoutY="216.0" prefHeight="213.0" prefWidth="592.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="44.0" text="Id" />
-            <TableColumn fx:id="ejercicioColumn" prefWidth="210.0" text="Ejercicio" />
-            <TableColumn fx:id="seriesColumn" minWidth="0.0" prefWidth="57.0" text="Series" />
-            <TableColumn fx:id="repetecionesColumn" prefWidth="93.0" text="Repeteciones" />
-            <TableColumn fx:id="descansoColumn" prefWidth="94.0" text="Descanso (m)" />
-            <TableColumn fx:id="duracionColumn" prefWidth="93.0" text="Duración (m)" />
+            <TableColumn fx:id="ejercicioColumn" prefWidth="307.0" text="Ejercicio" />
+            <TableColumn fx:id="seriesColumn" minWidth="0.0" prefWidth="74.0" text="Series" />
+            <TableColumn fx:id="repeticionesColumn" prefWidth="79.0" text="Repeticiones" />
+            <TableColumn fx:id="descansoColumn" prefWidth="87.0" text="Descanso (m)" />
         </columns>
       </TableView>
       <ComboBox fx:id="comboBoxEjercicio" layoutX="117.0" layoutY="87.0" prefHeight="25.0" prefWidth="190.0" promptText="Seleccione el ejercicio" />
@@ -57,7 +56,7 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnGuardarNuevoEntrenamiento" layoutX="537.0" layoutY="173.0" mnemonicParsing="false" onAction="#guardarNuevoEntrenamiento" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardarNuevaRutina" layoutX="537.0" layoutY="173.0" mnemonicParsing="false" onAction="#guardarNuevaRutina" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -67,12 +66,12 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnEditarEntrenamiento" disable="true" layoutX="433.0" layoutY="173.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
+      <Button fx:id="btnEditarRutina" disable="true" layoutX="433.0" layoutY="173.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnEliminarEntrenamiento" disable="true" layoutX="343.0" layoutY="173.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+      <Button fx:id="btnEliminarRutina" disable="true" layoutX="343.0" layoutY="173.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
