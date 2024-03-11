@@ -38,10 +38,7 @@ public class Cliente {
     @Column(name = "fecha_ingreso", nullable = false)
     private Date fechaIngreso;
     
-    @OneToMany  (mappedBy = "cliente"  )
-    private Set<EntrenamientoCliente> entrenamientoClientes = new HashSet<EntrenamientoCliente>();
-
-
+    
     public Cliente() {
     }
 

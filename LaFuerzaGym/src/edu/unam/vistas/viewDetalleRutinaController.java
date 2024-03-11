@@ -13,7 +13,7 @@ import javafx.scene.control.TableView;
 
 
 
-public class viewDetalleEntrenamientoClienteController {
+public class viewDetalleRutinaController {
 
     @FXML
     private Button btnEditarDetalleEntrenamiento;

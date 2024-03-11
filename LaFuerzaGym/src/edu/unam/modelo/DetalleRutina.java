@@ -6,19 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "detalle_entrenamiento_cliente")
-public class DetalleEntrenamientoCliente {
+@Table(name = "detalle_rutina")
+public class DetalleRutina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDetalleEntrenamientoCliente;
-    /* 
-        @ManyToOne
-        private EntrenamientoCliente entrenamientoCliente; //Desde esta relacion obengo el nombre del ejercicio
-    */
+    private int idDetalleRutina;
+     
+    @ManyToOne
+    @JoinColumn(name = "id_rutina")
+    private Rutina rutina; //Desde esta relacion obengo el nombre del ejercicio
+    
     /* 
         @Column(name = "entrenamiento_realizado", nullable = false, length = 100)
         @Basic
@@ -40,11 +42,11 @@ public class DetalleEntrenamientoCliente {
     @Basic
     private int volumenEntrenamiento;
 
-    public DetalleEntrenamientoCliente() {
+    public DetalleRutina() {
     }
 
-    public DetalleEntrenamientoCliente(int idDetalleEntrenamientoCliente, int series, int repeticiones, double peso, int volumenEntrenamiento) {
-        this.idDetalleEntrenamientoCliente = idDetalleEntrenamientoCliente;
+    public DetalleRutina(int idDetalleRutina, int series, int repeticiones, double peso, int volumenEntrenamiento) {
+        this.idDetalleRutina = idDetalleRutina;
        // this.entrenamientoRealizado = entrenamientoRealizado;
         this.series = series;
         this.repeticiones = repeticiones;
@@ -53,11 +55,11 @@ public class DetalleEntrenamientoCliente {
     }
 
     public int getIdDetalleEntrenamientoCliente() {
-        return idDetalleEntrenamientoCliente;
+        return idDetalleRutina;
     }
 
     public void setIdDetalleEntrenamientoCliente(int idDetalleEntrenamientoCliente) {
-        this.idDetalleEntrenamientoCliente = idDetalleEntrenamientoCliente;
+        this.idDetalleRutina = idDetalleEntrenamientoCliente;
     }
     /* 
         public String getEntrenamientoRealizado() {
