@@ -1,4 +1,5 @@
 package edu.unam.modelo;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -39,11 +40,11 @@ public class EntrenamientoCliente {
 
     @Basic
     @Column(name = "fecha_inicio")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
     @Basic
     @Column(name = "fecha_fin")
-    private Date fechaFin;
+    private LocalDate fechaFin;
 
     @ManyToOne
     @JoinColumn(name = "id_tutor")
@@ -60,8 +61,8 @@ public class EntrenamientoCliente {
     public EntrenamientoCliente() {
     }
 
-    public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Rutina> rutinas,
-            int duracionSemanas, Date fechaInicio, Date fechaFin, Tutor tutor, boolean evaluacionTutor, int volumenSemanal) {
+    public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Rutina> rutinas, LocalDate fechaInicio,
+            LocalDate fechaFin, Tutor tutor, boolean evaluacionTutor, int volumenSemanal) {
         this.idEntrenamientoCliente = idEntrenamientoCliente;
         this.cliente = cliente;
         this.rutinas = rutinas;
@@ -71,8 +72,6 @@ public class EntrenamientoCliente {
         this.evaluacionTutor = evaluacionTutor;
         this.volumenSemanal = volumenSemanal;
     }
-
-    
 
     public int getIdEntrenamientoCliente() {
         return idEntrenamientoCliente;
@@ -90,20 +89,28 @@ public class EntrenamientoCliente {
         this.cliente = cliente;
     }
 
-    public Set<Rutina> getrutinas() {
+    public Set<Rutina> getRutinas() {
         return rutinas;
     }
 
-    public void setrutinas(Set<Rutina> rutinas) {
+    public void setRutinas(Set<Rutina> rutinas) {
         this.rutinas = rutinas;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
     }
 
     public Tutor getTutor() {
@@ -114,11 +121,11 @@ public class EntrenamientoCliente {
         this.tutor = tutor;
     }
 
-    public boolean isevaluacionTutor() {
+    public boolean isEvaluacionTutor() {
         return evaluacionTutor;
     }
 
-    public void setevaluacionTutor(boolean evaluacionTutor) {
+    public void setEvaluacionTutor(boolean evaluacionTutor) {
         this.evaluacionTutor = evaluacionTutor;
     }
 
@@ -130,13 +137,7 @@ public class EntrenamientoCliente {
         this.volumenSemanal = volumenSemanal;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
-    }
+    
 
     
     

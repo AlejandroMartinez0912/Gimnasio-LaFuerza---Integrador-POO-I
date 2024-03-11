@@ -1,15 +1,12 @@
 package edu.unam.servicios;
 import java.util.List;
 
-import edu.unam.modelo.Rutina;
 import edu.unam.modelo.EntrenamientoCliente;
 import edu.unam.repositorio.Repositorio;
 
 public class ServicioEntrenamientoCliente {
     private Repositorio repositorio;
-    private EntrenamientoCliente entrenamientoCliente;
     
-
     public ServicioEntrenamientoCliente(Repositorio p) {
         this.repositorio = p;
     }
