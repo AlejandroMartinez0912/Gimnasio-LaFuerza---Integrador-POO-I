@@ -3,7 +3,9 @@ package edu.unam.vistas;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import edu.unam.App;
 import edu.unam.modelo.Cliente;
@@ -151,41 +153,54 @@ public class viewEntrenamientoClienteController {
         LocalDate fechaFin = dateFechaFin.getValue();
         Tutor tutor = comboBoxTutor.getValue();
         ObservableList<Rutina> rutinasSeleccionadas = tableSeleccionEntrenamientos.getSelectionModel().getSelectedItems();
+        Set<Rutina> rutinasSet = new HashSet<>(rutinasSeleccionadas);
 
         if (cliente == null || fechaInicio == null || fechaFin == null|| tutor == null){ 
             alertError.setContentText("Todos los campos son obligatorios");
             alertError.showAndWait();
             return;
         }
-        else{
-            try {
+        
+        try {
                 
-                EntrenamientoCliente entrenamientoCliente = new EntrenamientoCliente();
-                entrenamientoCliente.setCliente(cliente);
-                entrenamientoCliente.setFechaInicio(fechaInicio);
-                entrenamientoCliente.setFechaFin(fechaFin);
-                entrenamientoCliente.setTutor(tutor);
-                
-                
-                alertSuccess.setContentText("Entrenamiento del cliente guardado correctamente");
-                alertSuccess.showAndWait();
-                
-            }
-            catch(Exception e){
-                alertError.setContentText("Error al guardar el entrenamiento del cliente");
-                alertError.showAndWait();
-                return;
-            }
+            EntrenamientoCliente entrenamientoCliente = new EntrenamientoCliente();
+            entrenamientoCliente.setCliente(cliente);
+            entrenamientoCliente.setFechaInicio(fechaInicio);
+            entrenamientoCliente.setFechaFin(fechaFin);
+            entrenamientoCliente.setTutor(tutor);
+            entrenamientoCliente.setRutinas(rutinasSet);
+            
+            //Guardamos el entrenamiento del cliente
+            servicioEntrenamientoCliente.agregarEntrenamientoCliente(entrenamientoCliente);
+            
+            //Mostramos un mensaje de éxito
+            alertSuccess.setContentText("Entrenamiento del cliente guardado correctamente");
+            alertSuccess.showAndWait();
+
+            //Limpiamos los campos de selección
+            comboBoxCliente.getSelectionModel().clearSelection();
+            comboBoxTutor.getSelectionModel().clearSelection();
+
+            //Limpiamos la tabla de rutinas seleccionadas
+            tableSeleccionEntrenamientos.getSelectionModel().clearSelection();
+
+            //Limpiamos los input date
+            dateFechaInicio.setValue(null);
+            dateFechaFin.setValue(null);
+            
+        }
+        catch(Exception e){
+            alertError.setContentText("Error al guardar el entrenamiento del cliente");
+            alertError.showAndWait();
+            return;
         }
     }
 
     public void initialize() {
+        System.out.println("Método initialize() llamado");
         // Deshabilitar los botones eliminar y editar
         btnEliminarEntrenamientoCliente.setDisable(true);
         btnActualizarEntrenamientoCliente.setDisable(true);
-
-        //Hacemos que la tabla de rutinas sea de selección múltiple
-        tableSeleccionEntrenamientos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         // Obtener los tutores y clientes del repositorio
         List<Tutor> tutores = servicioTutor.obtenerTodos();
@@ -236,7 +251,6 @@ public class viewEntrenamientoClienteController {
         repeticionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
         grupoMuscularRutinaColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEjercicio().getGrupoMuscular().getNombre()));
 
-
         List<Rutina> rutinas = servicioRutina.obtenerTodos();
 
         //Si la lista está vacía, mostramos un mensaje en la tabla
@@ -247,6 +261,12 @@ public class viewEntrenamientoClienteController {
             tableSeleccionEntrenamientos.getItems().setAll(rutinas);
         }
 
+        //Hacemos que la tabla de rutinas sea de selección múltiple
+        tableSeleccionEntrenamientos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+
+
+        /* 
         // Obtener los entrenamientos de los clientes
         LocalDate fechaInicio = dateFechaInicio.getValue();
         LocalDate fechaFin = dateFechaFin.getValue();
@@ -266,6 +286,7 @@ public class viewEntrenamientoClienteController {
         } else {
             // Manejar el caso cuando fechaFin es nula...
         }
+        */
     }
 
     @FXML
