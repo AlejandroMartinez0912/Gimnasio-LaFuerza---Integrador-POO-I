@@ -64,14 +64,14 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tableEntrenamientosClientes" layoutX="12.0" layoutY="318.0" prefHeight="118.0" prefWidth="614.0">
+      <TableView fx:id="tableEntrenamientosClientes" layoutX="14.0" layoutY="324.0" prefHeight="118.0" prefWidth="614.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="39.0" text="Id" />
-          <TableColumn fx:id="clienteColumn" prefWidth="151.0" text="Cliente" />
-            <TableColumn fx:id="ejercicioColumn" prefWidth="135.0" text="Ejercicio" />
-            <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="143.0" text="Grupo muscular" />
-            <TableColumn fx:id="fechaInicioColumn" prefWidth="75.0" text="Fecha inicio" />
-            <TableColumn fx:id="fechaFinColumn" prefWidth="75.0" text="Fecha fin" />
+          <TableColumn fx:id="clienteColumn" prefWidth="135.0" text="Cliente" />
+            <TableColumn fx:id="ejercicioColumn" prefWidth="117.0" text="Ejercicio" />
+            <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="158.0" text="Grupo muscular" />
+            <TableColumn fx:id="fechaFinColumn" prefWidth="81.0" text="Fecha fin" />
+            <TableColumn fx:id="evaluacionColumn" prefWidth="81.0" text="Evaluación" />
         </columns>
       </TableView>
       <Button fx:id="btnEliminarEntrenamientoCliente" disable="true" layoutX="348.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">

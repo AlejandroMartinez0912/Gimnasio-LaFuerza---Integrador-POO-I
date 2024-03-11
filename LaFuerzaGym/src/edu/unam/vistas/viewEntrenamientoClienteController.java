@@ -92,7 +92,7 @@ public class viewEntrenamientoClienteController {
     private TableColumn<?, ?> fechaFinColumn;
 
     @FXML
-    private TableColumn<?, ?> fechaInicioColumn;
+    private TableColumn<?, ?> evaluacionColumn;
 
     @FXML
     private TableColumn<?, ?> grupoMuscularEntrenamientoClienteColumn;
