@@ -25,9 +25,6 @@ public class Tutor {
     @Column(name = "apellido_tutor", nullable = false, length = 80 )
     private String apellido;
 
-    @OneToMany (mappedBy = "tutor"  )
-    private Set<EntrenamientoCliente> entrenamientoClientes = new HashSet<EntrenamientoCliente>();
-    
     public Tutor() {
     }
 

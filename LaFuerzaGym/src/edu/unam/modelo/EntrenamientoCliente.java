@@ -24,7 +24,7 @@ public class EntrenamientoCliente {
     @Column(name = "id_entrenamiento_cliente")
     private int idEntrenamientoCliente;
 
-    @ManyToOne
+    @ManyToOne 
     @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
