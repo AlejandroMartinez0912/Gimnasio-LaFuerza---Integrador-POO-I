@@ -184,7 +184,7 @@ public class viewRutinasController {
         repeticionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
         descansoColumn.setCellValueFactory(new PropertyValueFactory<>("descanso"));
 
-        //Obtenemos todos los ejercicios de la base de datos
+        //Obtenemos todos las rutinas de la base de datos
         List<Rutina> rutinas = servicioRutina.obtenerTodos();
 
         //Si la lista está vacía, mostramos un mensaje en la tabla
