@@ -58,7 +58,7 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <ComboBox fx:id="comboBoxCliente" editable="true" layoutX="12.0" layoutY="97.0" prefWidth="150.0" promptText="Clientes..." />
+      <ComboBox fx:id="comboBoxCliente" layoutX="12.0" layoutY="97.0" prefWidth="150.0" promptText="Clientes..." />
       <Label fx:id="labelCliente" layoutX="13.0" layoutY="64.0" prefHeight="30.0" prefWidth="125.0" text="Cliente:" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
@@ -89,6 +89,6 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxTutor" editable="true" layoutX="229.0" layoutY="97.0" prefWidth="150.0" promptText="Tutores..." />
+      <ComboBox fx:id="comboBoxTutor" layoutX="229.0" layoutY="97.0" prefWidth="150.0" promptText="Tutores..." />
    </children>
 </AnchorPane>
