@@ -20,7 +20,7 @@ public class DetalleRutina {
     @ManyToOne
     @JoinColumn(name = "id_rutina")
     private Rutina rutina; //Desde esta relacion obengo el nombre del ejercicio
-    
+
     /* 
         @Column(name = "entrenamiento_realizado", nullable = false, length = 100)
         @Basic
@@ -29,6 +29,10 @@ public class DetalleRutina {
     @Column(name = "series", nullable = false)
     @Basic
     private int series;
+
+    @ManyToOne
+    @JoinColumn(name = "id_Cliente")
+    private Cliente cliente; 
 
     @Column(name = "repeticiones", nullable = false)
     @Basic
@@ -101,4 +105,5 @@ public class DetalleRutina {
     public void setVolumenEntrenamiento(int volumenEntrenamiento) {
         this.volumenEntrenamiento = volumenEntrenamiento;
     }
+
 }
