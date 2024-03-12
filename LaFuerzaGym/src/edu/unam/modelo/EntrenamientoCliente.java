@@ -52,7 +52,7 @@ public class EntrenamientoCliente {
     
     @Basic
     @Column(name = "evaluacion_tutor")
-    private boolean evaluacionTutor; 
+    private String evaluacionTutor; 
 
     @Basic
     @Column(name = "volumen_semanal")
@@ -62,7 +62,7 @@ public class EntrenamientoCliente {
     }
 
     public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Rutina> rutinas, LocalDate fechaInicio,
-            LocalDate fechaFin, Tutor tutor, boolean evaluacionTutor, int volumenSemanal) {
+            LocalDate fechaFin, Tutor tutor, String evaluacionTutor, int volumenSemanal) {
         this.idEntrenamientoCliente = idEntrenamientoCliente;
         this.cliente = cliente;
         this.rutinas = rutinas;
@@ -121,11 +121,11 @@ public class EntrenamientoCliente {
         this.tutor = tutor;
     }
 
-    public boolean isEvaluacionTutor() {
+    public String isEvaluacionTutor() {
         return evaluacionTutor;
     }
 
-    public void setEvaluacionTutor(boolean evaluacionTutor) {
+    public void setEvaluacionTutor(String evaluacionTutor) {
         this.evaluacionTutor = evaluacionTutor;
     }
 
@@ -136,9 +136,4 @@ public class EntrenamientoCliente {
     public void setVolumenSemanal(int volumenSemanal) {
         this.volumenSemanal = volumenSemanal;
     }
-
-    
-
-    
-    
 }

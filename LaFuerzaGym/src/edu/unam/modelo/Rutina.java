@@ -117,8 +117,4 @@ public class Rutina {
     public void setEntrenamientoCliente(Set<EntrenamientoCliente> entrenamientoCliente) {
         this.entrenamientoCliente = entrenamientoCliente;
     }
-
-    
-
-    
 }

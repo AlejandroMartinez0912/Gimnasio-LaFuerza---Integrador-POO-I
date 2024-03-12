@@ -3,12 +3,14 @@ package edu.unam.vistas;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import edu.unam.App;
 import edu.unam.modelo.Cliente;
+import edu.unam.modelo.Ejercicio;
 import edu.unam.modelo.EntrenamientoCliente;
 import edu.unam.modelo.GrupoMuscular;
 import edu.unam.modelo.Rutina;
@@ -68,7 +70,7 @@ public class viewEntrenamientoClienteController {
     private Button btnVolverHome;
 
     @FXML
-    private TableColumn<?, ?> clienteColumn;
+    private TableColumn<EntrenamientoCliente, String> clienteColumn;
 
     @FXML
     private ComboBox<Cliente> comboBoxCliente;
@@ -83,25 +85,25 @@ public class viewEntrenamientoClienteController {
     private DatePicker dateFechaInicio;
 
     @FXML
-    private TableColumn<?, ?> ejercicioColumn;
+    private TableColumn<EntrenamientoCliente, String> ejercicioColumn;
 
     @FXML
     private TableColumn<Rutina, String> rutinaColumn;
 
     @FXML
-    private TableColumn<?, ?> fechaFinColumn;
+    private TableColumn<EntrenamientoCliente, LocalDate> fechaFinColumn;
 
     @FXML
-    private TableColumn<?, ?> evaluacionColumn;
+    private TableColumn<EntrenamientoCliente, String> evaluacionColumn;
 
     @FXML
-    private TableColumn<?, ?> grupoMuscularEntrenamientoClienteColumn;
+    private TableColumn<EntrenamientoCliente, String> grupoMuscularEntrenamientoClienteColumn;
 
     @FXML
     private TableColumn<Rutina, String> grupoMuscularRutinaColumn;
 
     @FXML
-    private TableColumn<?, ?> idColumn;
+    private TableColumn<EntrenamientoCliente, Integer> idColumn;
 
     @FXML
     private Label labelCliente;
@@ -172,6 +174,7 @@ public class viewEntrenamientoClienteController {
             
             //Guardamos el entrenamiento del cliente
             servicioEntrenamientoCliente.agregarEntrenamientoCliente(entrenamientoCliente);
+            tableEntrenamientosClientes.getItems().add(entrenamientoCliente);
             
             //Mostramos un mensaje de éxito
             alertSuccess.setContentText("Entrenamiento del cliente guardado correctamente");
@@ -180,7 +183,6 @@ public class viewEntrenamientoClienteController {
             //Limpiamos los campos de selección
             comboBoxCliente.getSelectionModel().clearSelection();
             comboBoxTutor.getSelectionModel().clearSelection();
-
             //Limpiamos la tabla de rutinas seleccionadas
             tableSeleccionEntrenamientos.getSelectionModel().clearSelection();
 
@@ -264,29 +266,146 @@ public class viewEntrenamientoClienteController {
         //Hacemos que la tabla de rutinas sea de selección múltiple
         tableSeleccionEntrenamientos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+        //Comenzamos a rellenar la tabla de entrenamientos de clientes
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idEntrenamientoCliente"));
+        clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombre() + " " + cellData.getValue().getCliente().getApellido()));
+        fechaFinColumn.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
+        evaluacionColumn.setCellValueFactory(new PropertyValueFactory<>("evaluacionTutor"));
+        grupoMuscularEntrenamientoClienteColumn.setCellValueFactory(cellData -> {
+            Set<Rutina> misRutinas = cellData.getValue().getRutinas();
+            StringBuilder nombresGruposMusculares = new StringBuilder();
+            
+            for (Rutina rutina : misRutinas) {
+                if (nombresGruposMusculares.length() > 0) {
+                    nombresGruposMusculares.append(", ");
+                }
+                nombresGruposMusculares.append(rutina.getEjercicio().getGrupoMuscular().getNombre());
+            }
+            
+            return new SimpleStringProperty(nombresGruposMusculares.toString());
+        });
+        ejercicioColumn.setCellValueFactory(cellData -> {
+            Set<Rutina> misRutinas = cellData.getValue().getRutinas();
+            StringBuilder nombresEjercicios = new StringBuilder();
+            for (Rutina rutina : misRutinas) {
+                if (nombresEjercicios.length() > 0) {
+                    nombresEjercicios.append(", ");
+                }
+                nombresEjercicios.append(rutina.getEjercicio().getNombre());
+            }
+            
+            return new SimpleStringProperty(nombresEjercicios.toString());
+        });        
 
+        // Obtener los entrenamientos de los clientes del repositorio
+        List<EntrenamientoCliente> entrenamientosClientes = servicioEntrenamientoCliente.obtenerTodos();
 
-        /* 
-        // Obtener los entrenamientos de los clientes
-        LocalDate fechaInicio = dateFechaInicio.getValue();
-        LocalDate fechaFin = dateFechaFin.getValue();
-
-        EntrenamientoCliente entrenamientoCliente = new EntrenamientoCliente();
-
-        if (entrenamientoCliente.getFechaInicio() != null) {
-            String fechaInicioFormateada = entrenamientoCliente.getFechaInicio().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            // Lógica para usar la fecha formateada...
+         //Si la lista está vacía, mostramos un mensaje en la tabla
+        if (entrenamientosClientes.isEmpty()) {
+            tableEntrenamientosClientes.setPlaceholder(new Label("No hay rutinas para mostrar."));
         } else {
-            // Manejar el caso cuando fechaInicio es nula...
+            //Si hay ejercicios, los mostramos en la tabla
+            tableEntrenamientosClientes.getItems().setAll(entrenamientosClientes);
         }
 
-        if (entrenamientoCliente.getFechaFin() != null) {
-            String fechaFinFormateada = entrenamientoCliente.getFechaFin().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            // Lógica para usar la fecha formateada...
-        } else {
-            // Manejar el caso cuando fechaFin es nula...
-        }
-        */
+        tableEntrenamientosClientes.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                btnActualizarEntrenamientoCliente.setDisable(false);
+                btnEliminarEntrenamientoCliente.setDisable(false);
+                btnGuardarEntrenamientoCliente.setDisable(true);
+                
+                comboBoxCliente.setValue(newSelection.getCliente());
+                comboBoxTutor.setValue(newSelection.getTutor());
+                dateFechaInicio.setValue(newSelection.getFechaInicio());
+                dateFechaFin.setValue(newSelection.getFechaFin());
+
+                List<Rutina> rutinasSeleccionadas = new ArrayList<>(newSelection.getRutinas());
+                
+                // Limpiar la selección previa
+                tableSeleccionEntrenamientos.getSelectionModel().clearSelection();
+
+                // Obtener el índice de cada rutina seleccionada y seleccionar esos índices
+                for (Rutina rutina : rutinasSeleccionadas) {
+                    int index = tableSeleccionEntrenamientos.getItems().indexOf(rutina);
+                    if (index >= 0) {
+                        tableSeleccionEntrenamientos.getSelectionModel().select(index);
+                    }
+                }
+            }else{
+                btnActualizarEntrenamientoCliente.setDisable(true);
+                btnEliminarEntrenamientoCliente.setDisable(true);
+                btnGuardarEntrenamientoCliente.setDisable(false);
+                comboBoxCliente.setValue(null);
+                comboBoxTutor.setValue(null);
+                dateFechaInicio.setValue(null);
+                dateFechaFin.setValue(null);
+            }
+        });
+
+        btnEliminarEntrenamientoCliente.setOnAction((ActionEvent event) -> {
+            EntrenamientoCliente data = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
+            
+            try {
+                // Llamar al servicio para eliminar el ejercicio
+                servicioEntrenamientoCliente.eliminarEntrenamientoCliente(data);
+                tableEntrenamientosClientes.getItems().remove(data);
+                
+                // Para mostrar un mensaje de éxito
+                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                alertSuccess.setTitle("Éxito");
+                alertSuccess.setHeaderText(null);
+                alertSuccess.setContentText("El entrenamiento del cliente se eliminó correctamente.");
+    
+                alertSuccess.showAndWait();
+            } catch (Exception e) {
+                // En caso de error, mostrar mensaje de error
+                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                alertError.setTitle("Error");
+                alertError.setHeaderText(null);
+                alertError.setContentText("Hubo un error al eliminar el entrenamiento del cliente.");
+                alertError.showAndWait();
+            }
+        });
+
+        btnActualizarEntrenamientoCliente.setOnAction((ActionEvent event) -> {
+            EntrenamientoCliente data = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
+
+            try {
+                // Llamar al servicio para editar el ejercicio
+                
+                data.setCliente(comboBoxCliente.getValue());
+                data.setTutor(comboBoxTutor.getValue());
+                data.setFechaInicio(dateFechaInicio.getValue());
+                data.setFechaFin(dateFechaFin.getValue());           
+
+                ObservableList<Rutina> rutinasSeleccionadas = tableSeleccionEntrenamientos.getSelectionModel().getSelectedItems();
+                Set<Rutina> rutinasSet = new HashSet<>(rutinasSeleccionadas);
+                data.setRutinas(rutinasSet);
+
+                servicioEntrenamientoCliente.editarEntrenamientoCliente(data);
+                tableEntrenamientosClientes.refresh();
+                
+                // Para mostrar un mensaje de éxito
+                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                alertSuccess.setTitle("Éxito");
+                alertSuccess.setHeaderText(null);
+                alertSuccess.setContentText("El entrenamiento del cliente se editó correctamente.");
+    
+                btnGuardarEntrenamientoCliente.setDisable(false);
+                btnActualizarEntrenamientoCliente.setDisable(true);
+                btnEliminarEntrenamientoCliente.setDisable(true);
+
+                alertSuccess.showAndWait();
+            } catch (Exception e) {
+                // En caso de error, mostrar mensaje de error
+                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                alertError.setTitle("Error");
+                alertError.setHeaderText(null);
+                alertError.setContentText("Hubo un error al editar el entrenamiento del cliente.");
+                alertError.showAndWait();
+            }
+        });
+
     }
 
     @FXML
