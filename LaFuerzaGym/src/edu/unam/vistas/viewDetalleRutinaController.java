@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-
-
 public class viewDetalleRutinaController {
 
     @FXML
@@ -52,6 +50,9 @@ public class viewDetalleRutinaController {
     private Label labelEjercicio;
 
     @FXML
+    private Label labelEjercicio1;
+
+    @FXML
     private Label labelRepeticiones;
 
     @FXML
@@ -70,13 +71,13 @@ public class viewDetalleRutinaController {
     private TableView<?> tableDetalleEntrenamiento;
 
     @FXML
-    void guardarNuevoEntrenamiento(ActionEvent event) throws IOException {
+    void guardarNuevoEntrenamiento(ActionEvent event) {
 
     }
 
     @FXML
     void volverHome(ActionEvent event) throws IOException {
-        App.setRoot("homeView");     
+        App.setRoot("homeView");
     }
 
 }
