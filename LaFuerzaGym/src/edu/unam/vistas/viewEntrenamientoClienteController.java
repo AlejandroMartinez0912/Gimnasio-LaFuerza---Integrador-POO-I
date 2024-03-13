@@ -87,7 +87,7 @@ public class viewEntrenamientoClienteController {
     private ComboBox<Tutor> comboBoxTutor;
 
     @FXML
-    private ComboBox<?> comboBoxEvaluacion;
+    private ComboBox<String> comboBoxEvaluacion;
 
     @FXML
     private DatePicker dateFechaFin;
@@ -214,6 +214,7 @@ public class viewEntrenamientoClienteController {
         // Deshabilitar los botones eliminar y editar
         btnEliminarEntrenamientoCliente.setDisable(true);
         btnActualizarEntrenamientoCliente.setDisable(true);
+        btnEvaluarTutor.setDisable(true);
 
         // Obtener los tutores y clientes del repositorio
         List<Tutor> tutores = servicioTutor.obtenerTodos();
@@ -224,6 +225,10 @@ public class viewEntrenamientoClienteController {
 
         //Llenamos el comboBox de tutores
         comboBoxTutor.setItems(FXCollections.observableArrayList(tutores));
+
+        // Llenar el comboBox de evaluación
+        comboBoxEvaluacion.setItems(FXCollections.observableArrayList("Excelente", "Bueno", "Regular", "Malo"));
+               
 
         //Convertimos los datos de los combobox para que se muestren solo los nombre y apellidos
         comboBoxCliente.setConverter(new StringConverter<Cliente>() {
@@ -325,6 +330,8 @@ public class viewEntrenamientoClienteController {
                 btnEliminarEntrenamientoCliente.setDisable(false);
                 btnDetalleEntrenamientoCliente.setDisable(false);
                 btnGuardarEntrenamientoCliente.setDisable(true);
+                btnEvaluarTutor.setDisable(false);
+                comboBoxEvaluacion.setDisable(false);
                 
                 comboBoxCliente.setValue(newSelection.getCliente());
                 comboBoxTutor.setValue(newSelection.getTutor());
@@ -377,7 +384,9 @@ public class viewEntrenamientoClienteController {
                 alertError.setContentText("Hubo un error al eliminar el entrenamiento del cliente.");
                 alertError.showAndWait();
             }
+            btnEliminarEntrenamientoCliente.setDisable(true);
         });
+
 
         btnActualizarEntrenamientoCliente.setOnAction((ActionEvent event) -> {
             EntrenamientoCliente data = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
@@ -416,7 +425,45 @@ public class viewEntrenamientoClienteController {
                 alertError.setContentText("Hubo un error al editar el entrenamiento del cliente.");
                 alertError.showAndWait();
             }
+            btnActualizarEntrenamientoCliente.setDisable(true);
         });
+
+        //Ahora creamos el evento para habilitar el botón para ir a la vista EvaluarTutor
+        btnEvaluarTutor.setOnAction((ActionEvent event) ->{
+            EntrenamientoCliente entrenamientoCliente = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
+            String evaluacion = comboBoxEvaluacion.getValue();
+            if (evaluacion == null) {
+                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                alertError.setTitle("Error");
+                alertError.setHeaderText(null);
+                alertError.setContentText("Debes seleccionar una evaluación para el tutor.");
+                alertError.showAndWait();
+                return;
+            }
+            try {
+                // Llamar al servicio para editar el ejercicio
+                entrenamientoCliente.setEvaluacionTutor(evaluacion); // Aquí se guarda la evaluación del tutor
+                servicioEntrenamientoCliente.editarEntrenamientoCliente(entrenamientoCliente); // Aquí se guarda la evaluación del tutor
+                tableEntrenamientosClientes.refresh(); // Aquí se guarda la evaluación del tutor
+                
+                // Para mostrar un mensaje de éxito
+                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                alertSuccess.setTitle("Éxito");
+                alertSuccess.setHeaderText(null);
+                alertSuccess.setContentText("El entrenamiento del cliente se editó correctamente.");
+    
+                alertSuccess.showAndWait();
+            } catch (Exception e) {
+                // En caso de error, mostrar mensaje de error
+                Alert alertError = new Alert(Alert.AlertType.ERROR);
+                alertError.setTitle("Error");
+                alertError.setHeaderText(null);
+                alertError.setContentText("Hubo un error al editar el entrenamiento del cliente.");
+                alertError.showAndWait();
+            }
+            btnEvaluarTutor.setDisable(true);
+            comboBoxEvaluacion.setDisable(true);
+        } );
 
         //Ahora creamos el evento para habilitar el botón para ir a la vista DetalleRutina
         btnDetalleEntrenamientoCliente.setOnAction((ActionEvent event) -> {
