@@ -23,59 +23,60 @@
             <Image url="@../../../images/logo_gym.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="comboBoxSeries" layoutX="249.0" layoutY="103.0" prefHeight="25.0" prefWidth="152.0" promptText="Cantidad de series" />
-      <Label fx:id="labelSeries" layoutX="249.0" layoutY="76.0" prefHeight="30.0" prefWidth="68.0" text="Series" textFill="WHITE">
+      <ComboBox fx:id="comboBoxSeries" layoutX="15.0" layoutY="161.0" prefHeight="25.0" prefWidth="152.0" promptText="Cantidad de series" />
+      <Label fx:id="labelSeries" layoutX="15.0" layoutY="134.0" prefHeight="30.0" prefWidth="68.0" text="Series" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelRepeticiones" layoutX="443.0" layoutY="76.0" prefHeight="30.0" prefWidth="130.0" text="Repeticiones" textFill="WHITE">
+      <Label fx:id="labelRepeticiones" layoutX="245.0" layoutY="135.0" prefHeight="30.0" prefWidth="130.0" text="Repeticiones" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="btnGuardarNuevoDetalleEntrenamiento" layoutX="541.0" layoutY="191.0" mnemonicParsing="false" onAction="#guardarNuevoEntrenamiento" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
+      <Button fx:id="btnGuardarNuevoDetalleRutina" layoutX="541.0" layoutY="210.0" mnemonicParsing="false" onAction="#guardarNuevoEntrenamiento" prefHeight="18.0" prefWidth="83.0" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnEditarDetalleEntrenamiento" disable="true" layoutX="437.0" layoutY="191.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
+      <Button fx:id="btnEditarDetalleRutina" disable="true" layoutX="437.0" layoutY="210.0" mnemonicParsing="false" style="-fx-background-color: #127e80; -fx-background-radius: 50; -fx-cursor: hand;" text="Actualizar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnEliminarDetalleEntrenamiento" disable="true" layoutX="347.0" layoutY="191.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
+      <Button fx:id="btnEliminarDetalleRutina" disable="true" layoutX="347.0" layoutY="210.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <ComboBox fx:id="comboBoxEjercicio" layoutX="15.0" layoutY="103.0" prefHeight="25.0" prefWidth="201.0" promptText="Seleccione el ejercicio" />
-      <Label fx:id="labelEjercicio" layoutX="18.0" layoutY="76.0" prefHeight="30.0" prefWidth="146.0" text="Ejercicio" textFill="WHITE">
+      <ComboBox fx:id="comboBoxEjercicio" layoutX="15.0" layoutY="95.0" prefHeight="25.0" prefWidth="201.0" promptText="Seleccione el ejercicio" />
+      <Label fx:id="labelEjercicio" layoutX="18.0" layoutY="66.0" prefHeight="30.0" prefWidth="146.0" text="Ejercicio" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxRepeticiones" layoutX="444.0" layoutY="103.0" prefHeight="25.0" prefWidth="182.0" promptText="Número de repeticiones" />
-      <TableView fx:id="tableDetalleEntrenamiento" layoutX="16.0" layoutY="227.0" prefHeight="200.0" prefWidth="608.0">
+      <ComboBox fx:id="comboBoxRepeticiones" layoutX="245.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Repeticiones" />
+      <TableView fx:id="tableDetalleEntrenamiento" layoutX="16.0" layoutY="247.0" prefHeight="180.0" prefWidth="608.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="42.0" text="Id" />
           <TableColumn fx:id="clienteColumn" prefWidth="140.0" text="Cliente" />
             <TableColumn fx:id="ejercicioColumn" prefWidth="134.0" text="Ejercicio" />
-            <TableColumn fx:id="grupoMuscularColumn" prefWidth="138.0" text="Grupo muscular" />
-            <TableColumn fx:id="repeticionesColumn" text="Repeticiones" />
-            <TableColumn fx:id="seriesColumn" prefWidth="75.0" text="Series" />
+            <TableColumn fx:id="pesoColumn" prefWidth="73.0" text="Peso" />
+            <TableColumn fx:id="repeticionesColumn" prefWidth="77.0" text="Repeticiones" />
+            <TableColumn fx:id="seriesColumn" prefWidth="40.0" text="Series" />
+            <TableColumn fx:id="volumenRutinaColumn" prefWidth="101.0" text="Volumen rutina" />
         </columns>
       </TableView>
-      <Button fx:id="btnVolverHome" layoutX="18.0" layoutY="427.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
+      <Button fx:id="btnVolverHome" layoutX="18.0" layoutY="436.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="labelEjercicio1" layoutX="18.0" layoutY="136.0" prefHeight="30.0" prefWidth="55.0" text="Peso" textFill="WHITE">
+      <Label fx:id="labelPeso" layoutX="477.0" layoutY="134.0" prefHeight="30.0" prefWidth="55.0" text="Peso" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <TextField layoutX="16.0" layoutY="166.0" prefHeight="25.0" prefWidth="201.0" promptText="Ingrese el peso que se realizó" />
+      <TextField fx:id="txtPeso" layoutX="475.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Ingrese el peso" />
    </children>
 </AnchorPane>

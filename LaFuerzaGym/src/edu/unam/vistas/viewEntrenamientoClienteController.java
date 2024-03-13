@@ -55,8 +55,6 @@ public class viewEntrenamientoClienteController {
         servicioTutor = new ServicioTutor(repositorio);
     }
 
-    
-
     @FXML
     private Button btnActualizarEntrenamientoCliente;
 
@@ -65,6 +63,12 @@ public class viewEntrenamientoClienteController {
 
     @FXML
     private Button btnGuardarEntrenamientoCliente;
+
+    @FXML
+    private Button btnEvaluarTutor;
+
+    @FXML
+    private Button btnDetalleEntrenamientoCliente;
 
     @FXML
     private Button btnVolverHome;
@@ -77,6 +81,9 @@ public class viewEntrenamientoClienteController {
 
     @FXML
     private ComboBox<Tutor> comboBoxTutor;
+
+    @FXML
+    private ComboBox<?> comboBoxEvaluacion;
 
     @FXML
     private DatePicker dateFechaFin;
