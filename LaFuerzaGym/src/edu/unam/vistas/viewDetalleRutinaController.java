@@ -101,6 +101,9 @@ public class viewDetalleRutinaController {
     @FXML
     private TextField txtPeso;
 
+    public void initEntrenamientoCliente(EntrenamientoCliente entrenamientoCliente){
+        System.out.println(entrenamientoCliente.getCliente().getNombre());
+    }
 
     @FXML 
     public void initialize(){

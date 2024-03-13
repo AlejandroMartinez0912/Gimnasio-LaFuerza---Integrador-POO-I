@@ -27,6 +27,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -36,6 +39,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class viewEntrenamientoClienteController {
@@ -319,6 +323,7 @@ public class viewEntrenamientoClienteController {
             if (newSelection != null) {
                 btnActualizarEntrenamientoCliente.setDisable(false);
                 btnEliminarEntrenamientoCliente.setDisable(false);
+                btnDetalleEntrenamientoCliente.setDisable(false);
                 btnGuardarEntrenamientoCliente.setDisable(true);
                 
                 comboBoxCliente.setValue(newSelection.getCliente());
@@ -413,6 +418,25 @@ public class viewEntrenamientoClienteController {
             }
         });
 
+        //Ahora creamos el evento para habilitar el botón para ir a la vista DetalleRutina
+        btnDetalleEntrenamientoCliente.setOnAction((ActionEvent event) -> {
+            EntrenamientoCliente entrenamientoCliente = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
+            
+            try {
+                 // Cargamos el FXMLLoader para la nueva vista
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("viewDetalleRutina.fxml"));
+                Parent root = loader.load();
+
+                //Obtenemos el controlador de la vista DetalleRutina y pasamos el objeto
+                viewDetalleRutinaController detalleRutinaController = loader.getController();
+                detalleRutinaController.initEntrenamientoCliente(entrenamientoCliente);
+
+                App.setRoot(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return;
+            }
+        });
     }
 
     @FXML
