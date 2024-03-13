@@ -53,7 +53,7 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Button>
-      <Button fx:id="btnVolverHome" layoutX="12.0" layoutY="442.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
+      <Button fx:id="btnVolverHome" layoutX="12.0" layoutY="440.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -64,14 +64,14 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tableEntrenamientosClientes" layoutX="14.0" layoutY="324.0" prefHeight="118.0" prefWidth="614.0">
+      <TableView fx:id="tableEntrenamientosClientes" layoutX="14.0" layoutY="317.0" prefHeight="118.0" prefWidth="614.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="39.0" text="Id" />
-          <TableColumn fx:id="clienteColumn" prefWidth="135.0" text="Cliente" />
-            <TableColumn fx:id="ejercicioColumn" prefWidth="117.0" text="Ejercicio" />
-            <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="158.0" text="Grupo muscular" />
-            <TableColumn fx:id="fechaFinColumn" prefWidth="81.0" text="Fecha fin" />
-            <TableColumn fx:id="evaluacionColumn" prefWidth="81.0" text="Evaluación" />
+          <TableColumn fx:id="clienteColumn" prefWidth="116.0" text="Cliente" />
+            <TableColumn fx:id="ejercicioColumn" prefWidth="177.0" text="Ejercicios" />
+            <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="130.0" text="Grupo muscular" />
+            <TableColumn fx:id="fechaFinColumn" prefWidth="68.0" text="Fecha fin" />
+            <TableColumn fx:id="evaluacionColumn" prefWidth="83.0" text="Evaluación" />
         </columns>
       </TableView>
       <Button fx:id="btnEliminarEntrenamientoCliente" disable="true" layoutX="348.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
@@ -90,5 +90,16 @@
          </font>
       </Label>
       <ComboBox fx:id="comboBoxTutor" layoutX="229.0" layoutY="97.0" prefWidth="150.0" promptText="Tutores..." />
+      <Button fx:id="btnDetalleEntrenamientoCliente" disable="true" layoutX="556.0" layoutY="440.0" mnemonicParsing="false" style="-fx-background-color: #8d8a2d; -fx-background-radius: 50; -fx-cursor: hand;" text="Detalle" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="comboBoxEvaluacion" disable="true" layoutX="16.0" layoutY="276.0" prefHeight="25.0" prefWidth="119.0" promptText="Evaluación" />
+      <Button fx:id="btnEvaluarTutor" disable="true" layoutX="146.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-color: #1f9061; -fx-background-radius: 50; -fx-cursor: hand;" text="Evaluar" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

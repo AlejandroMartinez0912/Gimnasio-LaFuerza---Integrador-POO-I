@@ -15,24 +15,16 @@ import jakarta.persistence.Table;
 public class DetalleRutina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_detalle_rutina")
     private int idDetalleRutina;
      
     @ManyToOne
-    @JoinColumn(name = "id_rutina")
-    private Rutina rutina; //Desde esta relacion obengo el nombre del ejercicio
+    @JoinColumn(name = "id_entrenamiento_cliente")
+    private EntrenamientoCliente entrenamientoCliente; //Desde esta relacion obengo el nombre del ejercicio y el cliente
 
-    /* 
-        @Column(name = "entrenamiento_realizado", nullable = false, length = 100)
-        @Basic
-        private String entrenamientoRealizado;
-    */
     @Column(name = "series", nullable = false)
     @Basic
     private int series;
-
-    @ManyToOne
-    @JoinColumn(name = "id_Cliente")
-    private Cliente cliente; 
 
     @Column(name = "repeticiones", nullable = false)
     @Basic
@@ -42,38 +34,39 @@ public class DetalleRutina {
     @Basic
     private double peso;
 
-    @Column(name = "volumen_entrenamiento", nullable = false)
+    @Column(name = "volumen_rutina", nullable = false)
     @Basic
-    private int volumenEntrenamiento;
+    private double volumenRutina;
 
     public DetalleRutina() {
     }
 
-    public DetalleRutina(int idDetalleRutina, int series, int repeticiones, double peso, int volumenEntrenamiento) {
+    public DetalleRutina(int idDetalleRutina, EntrenamientoCliente entrenamientoCliente, int series, int repeticiones,
+            double peso, double volumenRutina) {
         this.idDetalleRutina = idDetalleRutina;
-       // this.entrenamientoRealizado = entrenamientoRealizado;
+        this.entrenamientoCliente = entrenamientoCliente;
         this.series = series;
         this.repeticiones = repeticiones;
         this.peso = peso;
-        this.volumenEntrenamiento = volumenEntrenamiento;
+        this.volumenRutina = volumenRutina;
     }
 
-    public int getIdDetalleEntrenamientoCliente() {
+    public int getIdDetalleRutina() {
         return idDetalleRutina;
     }
 
-    public void setIdDetalleEntrenamientoCliente(int idDetalleEntrenamientoCliente) {
-        this.idDetalleRutina = idDetalleEntrenamientoCliente;
+    public void setIdDetalleRutina(int idDetalleRutina) {
+        this.idDetalleRutina = idDetalleRutina;
     }
-    /* 
-        public String getEntrenamientoRealizado() {
-            return entrenamientoRealizado;
-        }
 
-        public void setEntrenamientoRealizado(String entrenamientoRealizado) {
-            this.entrenamientoRealizado = entrenamientoRealizado;
-        }
-    */
+    public EntrenamientoCliente getEntrenamientoCliente() {
+        return entrenamientoCliente;
+    }
+
+    public void setEntrenamientoCliente(EntrenamientoCliente entrenamientoCliente) {
+        this.entrenamientoCliente = entrenamientoCliente;
+    }
+
     public int getSeries() {
         return series;
     }
@@ -98,12 +91,13 @@ public class DetalleRutina {
         this.peso = peso;
     }
 
-    public int getVolumenEntrenamiento() {
-        return volumenEntrenamiento;
+    public double getVolumenRutina() {
+        return volumenRutina;
     }
 
-    public void setVolumenEntrenamiento(int volumenEntrenamiento) {
-        this.volumenEntrenamiento = volumenEntrenamiento;
+    public void setVolumenRutina(double volumenRutina) {
+        this.volumenRutina = volumenRutina;
     }
 
+    
 }
