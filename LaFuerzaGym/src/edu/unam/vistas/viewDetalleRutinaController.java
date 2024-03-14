@@ -2,6 +2,7 @@ package edu.unam.vistas;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import edu.unam.App;
@@ -24,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewDetalleRutinaController {
     //Declaración del repositorio
@@ -83,28 +85,28 @@ public class viewDetalleRutinaController {
     private ComboBox<Integer> comboBoxSeries;
 
     @FXML
-    private TableColumn<?, ?> clienteColumn;
+    private TableColumn<DetalleRutina, String> clienteColumn;
 
     @FXML
-    private TableColumn<?, ?> ejercicioColumn;
+    private TableColumn<DetalleRutina, String> ejercicioColumn;
 
     @FXML
-    private TableColumn<?, ?> idColumn;
+    private TableColumn<DetalleRutina, Integer> idColumn;
 
     @FXML
-    private TableColumn<?, ?> pesoColumn;
+    private TableColumn<DetalleRutina, Double> pesoColumn;
 
     @FXML
-    private TableColumn<?, ?> repeticionesColumn;
+    private TableColumn<DetalleRutina, Integer> repeticionesColumn;
 
     @FXML
-    private TableColumn<?, ?> seriesColumn;
+    private TableColumn<DetalleRutina, Integer> seriesColumn;
 
     @FXML
-    private TableColumn<?, ?> volumenRutinaColumn;
+    private TableColumn<DetalleRutina, Double> volumenRutinaColumn;
 
     @FXML
-    private TableView<?> tableDetalleEntrenamiento;
+    private TableView<DetalleRutina> tableDetalleEntrenamiento;
 
     @FXML
     private TextField txtPeso;
@@ -140,6 +142,26 @@ public class viewDetalleRutinaController {
 
         //Agregamos los valores al combobox repeticiones
         comboBoxRepeticiones.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
+
+        //Comenzamos a rellenar la tabla
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("idDetalleRutina"));
+        clienteColumn.setCellValueFactory(new PropertyValueFactory<>("entrenamientoCliente"));
+        ejercicioColumn.setCellValueFactory(new PropertyValueFactory<>("entrenamientoCliente"));
+        seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
+        repeticionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
+        pesoColumn.setCellValueFactory(new PropertyValueFactory<>("peso"));
+        volumenRutinaColumn.setCellValueFactory(new PropertyValueFactory<>("volumenRutina"));
+
+        // Obtener los entrenamientos de los clientes del repositorio
+        List<DetalleRutina> detalleRutinas = servicioDetalleRutina.obtenerTodos();
+
+        //Si la lista está vacía, mostramos un mensaje en la tabla
+        if (detalleRutinas.isEmpty()) {
+            tableDetalleEntrenamiento.setPlaceholder(new Label("No hay detalle de rutinas para mostrar."));
+        } else {
+            //Si hay ejercicios, los mostramos en la tabla
+            tableDetalleEntrenamiento.getItems().setAll(detalleRutinas);
+        }
 
     }
 
@@ -180,6 +202,7 @@ public class viewDetalleRutinaController {
 
             //Guardamos el detalle de la rutina
             servicioDetalleRutina.agregarDetalleRutina(detalleRutina);
+            tableDetalleEntrenamiento.getItems().add(detalleRutina);
 
             //Mostramos mensaje de éxito
             alertSuccess.showAndWait();
