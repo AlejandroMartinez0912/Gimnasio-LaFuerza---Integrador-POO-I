@@ -1,7 +1,9 @@
 package edu.unam.vistas;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import edu.unam.App;
 import edu.unam.modelo.EntrenamientoCliente;
@@ -51,10 +53,10 @@ public class viewDetalleRutinaController {
     private Button btnVolverHome;
 
     @FXML
-    private ComboBox<?> comboBoxEjercicio;
+    private ComboBox<String> comboBoxEjercicio;
 
     @FXML
-    private ComboBox<?> comboBoxRepeticiones;
+    private ComboBox<Integer> comboBoxRepeticiones;
     
     @FXML
     private Label labelEjercicio;
@@ -72,7 +74,7 @@ public class viewDetalleRutinaController {
     private Label labelTítuloVista;
 
     @FXML
-    private ComboBox<?> comboBoxSeries;
+    private ComboBox<Integer> comboBoxSeries;
 
     @FXML
     private TableColumn<?, ?> clienteColumn;
@@ -101,8 +103,24 @@ public class viewDetalleRutinaController {
     @FXML
     private TextField txtPeso;
 
+    private EntrenamientoCliente entrenamientoCliente;
+
     public void initEntrenamientoCliente(EntrenamientoCliente entrenamientoCliente){
-        System.out.println(entrenamientoCliente.getCliente().getNombre());
+        this.entrenamientoCliente = entrenamientoCliente;
+
+        //Obtenemos las rutinas del EntrenamientoCliente y los nombres de los ejercicios
+        Set<Rutina> rutinas = entrenamientoCliente.getRutinas();
+        //Creamos un HashSet para guardar los nombres y así evitar duplicados
+        Set<String> nombresEjercicios = new HashSet<String>();
+        //Obtenemos los ejercicios de la rutina
+        for(Rutina rutina : rutinas){
+            //Obtenemos el ejercicio de la rutina y lo guardamos en el hashset
+            nombresEjercicios.add(rutina.getEjercicio().getNombre());
+        }
+
+        //Agregamos los nombres de los ejercicios al comboBox
+        comboBoxEjercicio.getItems().addAll(nombresEjercicios);
+
     }
 
     @FXML 
@@ -111,9 +129,11 @@ public class viewDetalleRutinaController {
         btnEditarDetalleRutina.setDisable(true);
         btnEliminarDetalleRutina.setDisable(true);
 
-        //Obtenemos las rutinas del EntrenamientoCliente y los nombres de los ejercicios
-        //EntrenamientoCliente entrenamientoCliente = servicioEntrenamientoCliente.obtenerTodos().get(0);
+        //Agregamos los valores al combobox series
+        comboBoxSeries.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 
+        //Agregamos los valores al combobox repeticiones
+        comboBoxRepeticiones.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 
     }
 
