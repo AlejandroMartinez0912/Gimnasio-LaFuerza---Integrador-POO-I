@@ -22,6 +22,10 @@ public class DetalleRutina {
     @JoinColumn(name = "id_entrenamiento_cliente")
     private EntrenamientoCliente entrenamientoCliente; //Desde esta relacion obengo el nombre del ejercicio y el cliente
 
+    @Column(name = "nombre_ejercicio", nullable = false)
+    @Basic
+    private String nombreEjercicio;
+
     @Column(name = "series", nullable = false)
     @Basic
     private int series;
@@ -41,15 +45,17 @@ public class DetalleRutina {
     public DetalleRutina() {
     }
 
-    public DetalleRutina(int idDetalleRutina, EntrenamientoCliente entrenamientoCliente, int series, int repeticiones,
-            double peso, double volumenRutina) {
+    public DetalleRutina(int idDetalleRutina, EntrenamientoCliente entrenamientoCliente, String nombreEjercicio,
+            int series, int repeticiones, double peso, double volumenRutina) {
         this.idDetalleRutina = idDetalleRutina;
         this.entrenamientoCliente = entrenamientoCliente;
+        this.nombreEjercicio = nombreEjercicio;
         this.series = series;
         this.repeticiones = repeticiones;
         this.peso = peso;
         this.volumenRutina = volumenRutina;
     }
+
 
     public int getIdDetalleRutina() {
         return idDetalleRutina;
@@ -99,5 +105,11 @@ public class DetalleRutina {
         this.volumenRutina = volumenRutina;
     }
 
-    
+    public String getNombreEjercicio() {
+        return nombreEjercicio;
+    }
+
+    public void setNombreEjercicio(String nombreEjercicio) {
+        this.nombreEjercicio = nombreEjercicio;
+    }
 }

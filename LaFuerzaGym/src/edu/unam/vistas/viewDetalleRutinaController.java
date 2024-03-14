@@ -7,6 +7,7 @@ import java.util.Set;
 
 import edu.unam.App;
 import edu.unam.modelo.DetalleRutina;
+import edu.unam.modelo.Ejercicio;
 import edu.unam.modelo.EntrenamientoCliente;
 import edu.unam.modelo.Rutina;
 import edu.unam.repositorio.Repositorio;
@@ -16,10 +17,12 @@ import edu.unam.servicios.ServicioEntrenamientoCliente;
 import edu.unam.servicios.ServicioRutina;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -145,12 +148,14 @@ public class viewDetalleRutinaController {
 
         //Comenzamos a rellenar la tabla
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idDetalleRutina"));
-        clienteColumn.setCellValueFactory(new PropertyValueFactory<>("entrenamientoCliente"));
-        ejercicioColumn.setCellValueFactory(new PropertyValueFactory<>("entrenamientoCliente"));
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
         repeticionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
         pesoColumn.setCellValueFactory(new PropertyValueFactory<>("peso"));
         volumenRutinaColumn.setCellValueFactory(new PropertyValueFactory<>("volumenRutina"));
+        ejercicioColumn.setCellValueFactory(new PropertyValueFactory<>("nombreEjercicio"));
+
+        //Obtenemos el nombre y apellido del cliente de entrenamientoCliente
+        clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEntrenamientoCliente().getCliente().getNombre())); 
 
         // Obtener los entrenamientos de los clientes del repositorio
         List<DetalleRutina> detalleRutinas = servicioDetalleRutina.obtenerTodos();
@@ -162,6 +167,87 @@ public class viewDetalleRutinaController {
             //Si hay ejercicios, los mostramos en la tabla
             tableDetalleEntrenamiento.getItems().setAll(detalleRutinas);
         }
+
+        //Ahora procedemos a realizar las operaciones de eliminación y edición
+        //Primero habilitamos los botones de eliminación y edición al selecionar un elemento
+        tableDetalleEntrenamiento.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newSelection) -> {
+            if (newSelection != null) {
+                btnEditarDetalleRutina.setDisable(false);
+                btnEliminarDetalleRutina.setDisable(false);
+                btnGuardarNuevoDetalleRutina.setDisable(true);
+
+                //Obtener los datos cargados anteriormente
+                comboBoxEjercicio.setValue(newSelection.getNombreEjercicio());
+                comboBoxRepeticiones.setValue(newSelection.getRepeticiones());
+                comboBoxSeries.setValue(newSelection.getSeries());
+                txtPeso.setText(Double.toString(newSelection.getPeso()));
+
+            } else {
+                btnEditarDetalleRutina.setDisable(true);
+                btnEliminarDetalleRutina.setDisable(true);
+                btnGuardarNuevoDetalleRutina.setDisable(false);
+            }
+        });
+
+        //Eliminación de datos
+        btnEliminarDetalleRutina.setOnAction(event -> {
+            //Obtenemos el detalle de la rutina seleccionado
+            DetalleRutina detalleRutina = tableDetalleEntrenamiento.getSelectionModel().getSelectedItem();
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Estás seguro de eliminar el detalle de la rutina del cliente?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    //Si el usuario confirma, eliminamos el detalle de la rutina
+                    servicioDetalleRutina.eliminarDetalleRutina(detalleRutina);
+                    tableDetalleEntrenamiento.getItems().remove(detalleRutina);
+
+                    //Mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El detalle de la rutina del cliente se eliminó correctamente.");
+                    alertSuccess.showAndWait();
+                }
+            });
+        });
+
+        //Edición de datos
+        btnEditarDetalleRutina.setOnAction(event -> {
+            //Obtenemos el detalle seleccionado
+            DetalleRutina data = tableDetalleEntrenamiento.getSelectionModel().getSelectedItem();
+
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Estás seguro de editar el detalle de la rutina del cliente?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    //Si el usuario confirma, editamos el detalle de la rutina
+                    data.setEntrenamientoCliente(entrenamientoCliente);
+                    data.setNombreEjercicio(comboBoxEjercicio.getValue());
+                    data.setSeries(comboBoxSeries.getValue());
+                    data.setRepeticiones(comboBoxRepeticiones.getValue());
+                    data.setPeso(Double.parseDouble(txtPeso.getText()));
+                    data.setVolumenRutina(comboBoxSeries.getValue() * comboBoxRepeticiones.getValue() * Double.parseDouble(txtPeso.getText()));
+                    servicioDetalleRutina.editarDetalleRutina(data);
+
+                    tableDetalleEntrenamiento.refresh();
+
+                    //Mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El detalle de la rutina del cliente se editó correctamente.");
+                    alertSuccess.showAndWait();
+                }
+            });
+
+        });
+
 
     }
 
@@ -195,6 +281,7 @@ public class viewDetalleRutinaController {
         try {
             DetalleRutina detalleRutina = new DetalleRutina();
             detalleRutina.setEntrenamientoCliente(entrenamientoCliente);
+            detalleRutina.setNombreEjercicio(nombreEjercicio);
             detalleRutina.setSeries(series);
             detalleRutina.setRepeticiones(repeticiones);
             detalleRutina.setPeso(peso);
@@ -206,6 +293,13 @@ public class viewDetalleRutinaController {
 
             //Mostramos mensaje de éxito
             alertSuccess.showAndWait();
+
+            //Limpiamos los campos de entrada
+            comboBoxEjercicio.getSelectionModel().clearSelection();
+            comboBoxRepeticiones.getSelectionModel().clearSelection();
+            comboBoxSeries.getSelectionModel().clearSelection();
+            txtPeso.clear();
+            txtPeso.setText(null);
 
         } catch (Exception e) {
             alertError.showAndWait();
