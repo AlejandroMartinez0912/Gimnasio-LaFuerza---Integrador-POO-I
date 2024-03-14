@@ -167,6 +167,7 @@ public class viewTutorController {
     
                 alertError.showAndWait();
             }
+            btnEliminarTutor.setDisable(true);
         });
     
         btnEditarTutor.setOnAction((ActionEvent event) -> {
@@ -197,6 +198,7 @@ public class viewTutorController {
     
                 alertError.showAndWait();
             }
+            btnEditarTutor.setDisable(true);
         });
     }
 

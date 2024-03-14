@@ -208,6 +208,7 @@ public class viewEjerciciosController {
                 alertError.setContentText("Hubo un error al eliminar el ejercicio.");
                 alertError.showAndWait();
             }
+            btnEliminarEjercicio.setDisable(true);
         });
 
         btnEditarEjercicio.setOnAction((ActionEvent event) -> {
@@ -241,6 +242,7 @@ public class viewEjerciciosController {
                 alertError.setContentText("Hubo un error al editar el ejercicio.");
                 alertError.showAndWait();
             }
+            btnEditarEjercicio.setDisable(true);
         });
        
     }

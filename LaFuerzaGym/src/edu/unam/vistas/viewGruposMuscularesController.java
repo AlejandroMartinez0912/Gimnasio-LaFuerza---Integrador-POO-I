@@ -157,6 +157,7 @@ public class viewGruposMuscularesController {
     
                 alertError.showAndWait();
             }
+            btnEditarGrupoMuscular.setDisable(true);
         });
 
         btnEditarGrupoMuscular.setOnAction((ActionEvent event) -> {
@@ -186,6 +187,7 @@ public class viewGruposMuscularesController {
     
                 alertError.showAndWait();
             }
+            btnEditarGrupoMuscular.setDisable(true);
         });
     }
 
