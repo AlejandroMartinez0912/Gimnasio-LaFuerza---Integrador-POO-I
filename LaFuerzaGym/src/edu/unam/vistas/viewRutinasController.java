@@ -200,8 +200,8 @@ public class viewRutinasController {
                 btnEditarRutina.setDisable(false);
                 btnEliminarRutina.setDisable(false);
 
-                //txtDescanso.setText(newSelection.getDescanso());
-                //txtRepeticiones.setText(newSelection.getRepeticiones());
+                txtDescanso.setText(Integer.toString(newSelection.getDescanso()));
+                txtRepeticiones.setText(Integer.toString(newSelection.getRepeticiones()));
                 comboBoxEjercicio.setValue(newSelection.getEjercicio().getNombre());
 
             }else{
