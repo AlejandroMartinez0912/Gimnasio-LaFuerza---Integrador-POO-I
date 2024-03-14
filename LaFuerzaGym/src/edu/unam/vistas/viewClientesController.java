@@ -234,6 +234,7 @@ public class viewClientesController {
                 alertError.setContentText("Error al eliminar el cliente.");
                 alertError.showAndWait();
             }   
+            btnEliminarCliente.setDisable(true);
         });
         btnActualizarCliente.setOnAction((ActionEvent event) -> {
             Cliente cliente = clientesTable.getSelectionModel().getSelectedItem();
@@ -266,6 +267,7 @@ public class viewClientesController {
                 alertError.setContentText("Error al actualizar el cliente.");
                 alertError.showAndWait();
             }
+            btnActualizarCliente.setDisable(true);
         });
     }
     @FXML

@@ -237,6 +237,7 @@ public class viewRutinasController {
                 alertError.setContentText("Hubo un error al eliminar el entrenamiento.");
                 alertError.showAndWait();
             }
+            btnEliminarRutina.setDisable(true);
         });
 
         btnEditarRutina.setOnAction((ActionEvent event) -> {
@@ -272,6 +273,7 @@ public class viewRutinasController {
                 alertError.setContentText("Hubo un error al editar el ejercicio.");
                 alertError.showAndWait();
             }
+            btnEditarRutina.setDisable(true);
         });
        
     }
