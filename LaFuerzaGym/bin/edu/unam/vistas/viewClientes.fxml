@@ -21,12 +21,12 @@
       </Button>
       <TableView fx:id="clientesTable" layoutX="7.0" layoutY="259.0" prefHeight="177.0" prefWidth="627.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="50.0" text="Id" />
-          <TableColumn fx:id="nombreColumn" prefWidth="123.0" text="Nombre" />
-            <TableColumn fx:id="apellidoColumn" prefWidth="117.0" text="Apellido" />
-            <TableColumn fx:id="fechaNacimientoColumn" text="Fecha Nac." />
-            <TableColumn fx:id="sexoColumn" prefWidth="42.0" text="Sexo" />
-            <TableColumn fx:id="fechaIngresoColumn" prefWidth="100.0" text="Fecha Ingreso" />
+          <TableColumn fx:id="idColumn" prefWidth="31.0" text="Id" />
+          <TableColumn fx:id="nombreColumn" prefWidth="132.0" text="Nombre" />
+            <TableColumn fx:id="apellidoColumn" prefWidth="124.0" text="Apellido" />
+            <TableColumn fx:id="fechaNacimientoColumn" prefWidth="124.0" text="Fecha Nac." />
+            <TableColumn fx:id="sexoColumn" prefWidth="120.0" text="Sexo" />
+            <TableColumn fx:id="fechaIngresoColumn" prefWidth="95.0" text="Fecha Ingreso" />
         </columns>
       </TableView>
       <Label fx:id="labelTítuloVista" alignment="BASELINE_LEFT" layoutX="70.0" layoutY="22.0" prefHeight="30.0" prefWidth="200.0" text="Clientes" textFill="WHITE">
@@ -68,7 +68,7 @@
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxSexo" editable="true" layoutX="474.0" layoutY="162.0" prefHeight="25.0" prefWidth="153.0" promptText="Seleccione su sexo..." />
+      <ComboBox fx:id="comboBoxSexo" layoutX="474.0" layoutY="162.0" prefHeight="25.0" prefWidth="153.0" promptText="Seleccione su sexo..." />
       <Button fx:id="btnGuardarNuevoCliente" layoutX="545.0" layoutY="210.0" mnemonicParsing="false" onAction="#guardarNuevoCliente" style="-fx-background-color: green; -fx-background-radius: 50; -fx-cursor: hand;" text="Guardar" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />

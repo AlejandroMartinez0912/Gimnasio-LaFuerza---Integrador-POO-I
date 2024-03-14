@@ -100,6 +100,7 @@ public class viewClientesController {
 
     @FXML
     private TextField txtApellido;
+    
 
     @FXML
     private TextField txtNombre;
