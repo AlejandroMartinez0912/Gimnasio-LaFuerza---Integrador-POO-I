@@ -13,19 +13,19 @@ public class ServicioDetalleRutina {
         this.repositorio = p;
     }
 
-    public void agregarCliente(DetalleRutina detalleRutina) {
+    public void agregarDetalleRutina(DetalleRutina detalleRutina) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.insertar(detalleRutina);
         this.repositorio.confirmarTransaccion();
     }
 
-    public void editarCliente(DetalleRutina detalleRutina) {
+    public void editarDetalleRutina(DetalleRutina detalleRutina) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.modificar(detalleRutina);
         this.repositorio.confirmarTransaccion();
     }
 
-    public void eliminarCliente(DetalleRutina detalleRutina) {
+    public void eliminarDetalleRutina(DetalleRutina detalleRutina) {
         this.repositorio.iniciarTransaccion();
         this.repositorio.eliminar(detalleRutina);
         this.repositorio.confirmarTransaccion();

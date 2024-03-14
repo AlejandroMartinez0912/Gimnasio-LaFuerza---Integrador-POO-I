@@ -2,7 +2,6 @@ package edu.unam.vistas;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,9 +9,7 @@ import java.util.Set;
 
 import edu.unam.App;
 import edu.unam.modelo.Cliente;
-import edu.unam.modelo.Ejercicio;
 import edu.unam.modelo.EntrenamientoCliente;
-import edu.unam.modelo.GrupoMuscular;
 import edu.unam.modelo.Rutina;
 import edu.unam.modelo.Tutor;
 import edu.unam.repositorio.Repositorio;
@@ -29,7 +26,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -39,7 +35,6 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class viewEntrenamientoClienteController {
@@ -159,7 +154,7 @@ public class viewEntrenamientoClienteController {
         alertError.setHeaderText(null);
         alertSuccess.setContentText("Error al guardar el entrenamiento del cliente.");
 
-        //Obtenemos los valors ingresados en los inputs
+        //Obtenemos los valores ingresados en los inputs
         Cliente cliente = comboBoxCliente.getValue();
         //Date fechaInicio = java.sql.Date.valueOf(dateFechaInicio.getValue());
         LocalDate fechaInicio = dateFechaInicio.getValue();
