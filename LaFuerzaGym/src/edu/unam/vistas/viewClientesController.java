@@ -214,7 +214,15 @@ public class viewClientesController {
         });
 
         btnEliminarCliente.setOnAction((ActionEvent event) -> {
+            // Obtener el cliente seleccionado
             Cliente cliente = clientesTable.getSelectionModel().getSelectedItem();
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que desea eliminar el cliente?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) {
+                //Si el usuario presiona OK, eliminamos el cliente
             try {
                 // Llamar al servicio para eliminar el cliente
                 servicioCliente.eliminarCliente(cliente);
@@ -236,9 +244,19 @@ public class viewClientesController {
                 alertError.showAndWait();
             }   
             btnEliminarCliente.setDisable(true);
+        }
         });
+        
         btnActualizarCliente.setOnAction((ActionEvent event) -> {
+            // Obtener el cliente seleccionado
             Cliente cliente = clientesTable.getSelectionModel().getSelectedItem();
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que desea actualizar el cliente?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) {
+                //Si el usuario presiona OK, actualizamos el cliente
             try {
                 // Llamar al servicio para editar el cliente
                 cliente.setNombre(txtNombre.getText());
@@ -269,6 +287,7 @@ public class viewClientesController {
                 alertError.showAndWait();
             }
             btnActualizarCliente.setDisable(true);
+        }
         });
     }
     @FXML

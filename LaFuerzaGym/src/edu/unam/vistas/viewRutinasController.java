@@ -215,34 +215,49 @@ public class viewRutinasController {
         });
 
         btnEliminarRutina.setOnAction((ActionEvent event) -> {
+            // Obtenemos Rutina seleccionada
             Rutina data = tableviewRutinas.getSelectionModel().getSelectedItem();
-            
-            try {
-                // Llamar al servicio para eliminar el ejercicio
-                servicioRutina.eliminarRutina(data);
-                tableviewRutinas.getItems().remove(data);
-                
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("El entrenamiento se eliminó correctamente.");
-    
-                alertSuccess.showAndWait();
-            } catch (Exception e) {
-                // En caso de error, mostrar mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("Hubo un error al eliminar el entrenamiento.");
-                alertError.showAndWait();
+            //Mostramos una alerta para confirmar la eliminación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Estás seguro de que deseas eliminar el entrenamiento?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) {
+                try {
+                    // Llamar al servicio para eliminar el ejercicio
+                    servicioRutina.eliminarRutina(data);
+                    tableviewRutinas.getItems().remove(data);
+                    
+                    // Para mostrar un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El entrenamiento se eliminó correctamente.");
+        
+                    alertSuccess.showAndWait();
+                } catch (Exception e) {
+                    // En caso de error, mostrar mensaje de error
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("Hubo un error al eliminar el entrenamiento.");
+                    alertError.showAndWait();
+                }
+                btnEliminarRutina.setDisable(true);   
             }
-            btnEliminarRutina.setDisable(true);
         });
 
         btnEditarRutina.setOnAction((ActionEvent event) -> {
+            //Obtenemos la rutina seleccionada
             Rutina data = tableviewRutinas.getSelectionModel().getSelectedItem();
-
+            //Mostramos una alerta para confirmar la edición
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Estás seguro de que deseas editar la Rutina?");
+            if (alert.showAndWait().get().getText().equals("Aceptar"))
+            //Si el usuario acepta, editamos la rutina
+            {
             try {
                 // Llamar al servicio para editar el ejercicio
                 data.setDescanso(Integer.parseInt(txtDescanso.getText()));
@@ -274,6 +289,7 @@ public class viewRutinasController {
                 alertError.showAndWait();
             }
             btnEditarRutina.setDisable(true);
+        }
         });
        
     }

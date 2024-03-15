@@ -357,35 +357,51 @@ public class viewEntrenamientoClienteController {
         });
 
         btnEliminarEntrenamientoCliente.setOnAction((ActionEvent event) -> {
+            //Obtenemos el entrenamiento del cliente seleccionado
             EntrenamientoCliente data = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
-            
-            try {
-                // Llamar al servicio para eliminar el ejercicio
-                servicioEntrenamientoCliente.eliminarEntrenamientoCliente(data);
-                tableEntrenamientosClientes.getItems().remove(data);
-                
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("El entrenamiento del cliente se eliminó correctamente.");
-    
-                alertSuccess.showAndWait();
-            } catch (Exception e) {
-                // En caso de error, mostrar mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("Hubo un error al eliminar el entrenamiento del cliente.");
-                alertError.showAndWait();
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que desea eliminar el entrenamiento del cliente?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) {
+                //Si el usuario acepta, eliminamos el entrenamiento del cliente
+                try {
+                    // Llamar al servicio para eliminar el ejercicio
+                    servicioEntrenamientoCliente.eliminarEntrenamientoCliente(data);
+                    tableEntrenamientosClientes.getItems().remove(data);
+                    
+                    // Para mostrar un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El entrenamiento del cliente se eliminó correctamente.");
+        
+                    alertSuccess.showAndWait();
+                } catch (Exception e) {
+                    // En caso de error, mostrar mensaje de error
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("Hubo un error al eliminar el entrenamiento del cliente.");
+                    alertError.showAndWait();
+                }
+                btnEliminarEntrenamientoCliente.setDisable(true);
             }
-            btnEliminarEntrenamientoCliente.setDisable(true);
         });
 
 
         btnActualizarEntrenamientoCliente.setOnAction((ActionEvent event) -> {
+            //Obtenemos el entrenamiento del cliente seleccionado
             EntrenamientoCliente data = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
-
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que desea editar el entrenamiento del cliente?");
+            if (alert.showAndWait().get().getText().equals("Aceptar"))
+            //Si el usuario acepta, editamos el entrenamiento del cliente
+            {
             try {
                 // Llamar al servicio para editar el ejercicio
                 
@@ -421,12 +437,24 @@ public class viewEntrenamientoClienteController {
                 alertError.showAndWait();
             }
             btnActualizarEntrenamientoCliente.setDisable(true);
+        }
         });
 
         //Ahora creamos el evento para habilitar el botón para ir a la vista EvaluarTutor
         btnEvaluarTutor.setOnAction((ActionEvent event) ->{
+            //Obtenemos el entrenamiento del cliente seleccionado
             EntrenamientoCliente entrenamientoCliente = tableEntrenamientosClientes.getSelectionModel().getSelectedItem();
+            //Cargamos el comboBox de evaluación
             String evaluacion = comboBoxEvaluacion.getValue();
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que desea evaluar el entrenamiento del cliente?");
+            
+            if (alert.showAndWait().get().getText().equals("Aceptar"))
+            //Si el usuario acepta, editamos el entrenamiento del cliente
+            {
             if (evaluacion == null) {
                 Alert alertError = new Alert(Alert.AlertType.ERROR);
                 alertError.setTitle("Error");
@@ -458,6 +486,7 @@ public class viewEntrenamientoClienteController {
             }
             btnEvaluarTutor.setDisable(true);
             comboBoxEvaluacion.setDisable(true);
+        }
         } );
 
         //Ahora creamos el evento para habilitar el botón para ir a la vista DetalleRutina
