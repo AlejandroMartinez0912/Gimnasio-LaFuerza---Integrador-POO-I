@@ -131,63 +131,80 @@ public class viewGruposMuscularesController {
         });
 
         btnEliminarGrupoMuscular.setOnAction((ActionEvent event) -> {
+            //Obtenemos el grupo muscular seleccionado
             GrupoMuscular data = gruposMuscularesTable.getSelectionModel().getSelectedItem();
-            
-            try {
-                // Llamar al servicio para eliminar el grupo muscular
-                servicioGrupoMuscular.eliminarGrupoMuscular(data);
-                gruposMuscularesTable.getItems().remove(data);
-
-                // Después de eliminar, deseleccionar el elemento
-                gruposMuscularesTable.getSelectionModel().clearSelection();
-                
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("El grupo muscular se eliminó correctamente.");
+            // Mostrar un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro de que desea eliminar el grupo muscular?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) {
+                // Si el usuario confirma, eliminar el grupo muscular
+                try {
+                    // Llamar al servicio para eliminar el grupo muscular
+                    servicioGrupoMuscular.eliminarGrupoMuscular(data);
+                    gruposMuscularesTable.getItems().remove(data);
     
-                alertSuccess.showAndWait();
-            } catch (Exception e) {
-                // En caso de error, mostrar mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("No se puede eliminar el grupo muscular. Asegúrese de que no haya ejercicios asociados a este grupo muscular.");
-    
-                alertError.showAndWait();
+                    // Después de eliminar, deseleccionar el elemento
+                    gruposMuscularesTable.getSelectionModel().clearSelection();
+                    
+                    // Para mostrar un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El grupo muscular se eliminó correctamente.");
+        
+                    alertSuccess.showAndWait();
+                } catch (Exception e) {
+                    // En caso de error, mostrar mensaje de error
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("No se puede eliminar el grupo muscular. Asegúrese de que no haya ejercicios asociados a este grupo muscular.");
+        
+                    alertError.showAndWait();
+                }
+                btnEditarGrupoMuscular.setDisable(true);
             }
-            btnEditarGrupoMuscular.setDisable(true);
+            
         });
 
         btnEditarGrupoMuscular.setOnAction((ActionEvent event) -> {
+            //Obtenemos el grupo muscular seleccionado
             GrupoMuscular data = gruposMuscularesTable.getSelectionModel().getSelectedItem();
-
-            try {
-                data.setNombre(txtGrupoMuscular.getText());
-                servicioGrupoMuscular.editarGrupoMuscular(data);
-                gruposMuscularesTable.refresh();
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro de que desea editar el grupo muscular?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) {
+                // Si el usuario confirma, editar el grupo muscular
+                try {
+                    data.setNombre(txtGrupoMuscular.getText());
+                    servicioGrupoMuscular.editarGrupoMuscular(data);
+                    gruposMuscularesTable.refresh();
+        
+                    // Después de editar, deseleccionar el elemento
+                    gruposMuscularesTable.getSelectionModel().clearSelection();
     
-                // Después de editar, deseleccionar el elemento
-                gruposMuscularesTable.getSelectionModel().clearSelection();
-
-                // Mostramos mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("El grupo muscular se editó correctamente.");
-    
-                alertSuccess.showAndWait();
-            } catch (Exception e) {
-                // En caso de error, mostramos mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("No se puede editar el grupo muscular.");
-    
-                alertError.showAndWait();
+                    // Mostramos mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El grupo muscular se editó correctamente.");
+        
+                    alertSuccess.showAndWait();
+                } catch (Exception e) {
+                    // En caso de error, mostramos mensaje de error
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("No se puede editar el grupo muscular.");
+        
+                    alertError.showAndWait();
+                }
+                btnEditarGrupoMuscular.setDisable(true);
             }
-            btnEditarGrupoMuscular.setDisable(true);
         });
     }
 

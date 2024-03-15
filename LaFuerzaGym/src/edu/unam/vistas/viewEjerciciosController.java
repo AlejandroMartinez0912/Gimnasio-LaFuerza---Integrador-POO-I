@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -185,38 +186,47 @@ public class viewEjerciciosController {
             }
         });
 
+        //Eliminación de datos
         btnEliminarEjercicio.setOnAction((ActionEvent event) -> {
+            //Obtenemos los detalles del ejercicio seleccionado
             Ejercicio data = tableViewEjercicios.getSelectionModel().getSelectedItem();
-            
-            try {
-                // Llamar al servicio para eliminar el ejercicio
-                servicioEjercicio.eliminarEjercicio(data);
-                tableViewEjercicios.getItems().remove(data);
-                
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("El ejercicio se eliminó correctamente.");
-    
-                alertSuccess.showAndWait();
-            } catch (Exception e) {
-                // En caso de error, mostrar mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("Hubo un error al eliminar el ejercicio.");
-                alertError.showAndWait();
-            }
+            //Mostramos un Mensaje de Confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Esta seguro que desea eliminar este ejercicio?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    //Si el usuario confirma, eliminamos el ejercicio
+                    servicioEjercicio.eliminarEjercicio(data);
+                    tableViewEjercicios.getItems().remove(data);
+                    //Mostramos un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El ejercicio se eliminó correctamente.");
+                    alertSuccess.showAndWait();
+                }
+            });
+            //Deshabilitamos los botones de eliminar
             btnEliminarEjercicio.setDisable(true);
         });
 
         btnEditarEjercicio.setOnAction((ActionEvent event) -> {
+            //Obtenemos los detalles del ejercicio seleccionado
             Ejercicio data = tableViewEjercicios.getSelectionModel().getSelectedItem();
 
-            try {
-                // Llamar al servicio para editar el ejercicio
-                data.setNombre(txtNombreEjercicio.getText());
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Esta seguro que desea editar este ejercicio?");
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                    //Si el usuario confirma, habilitamos el botón de guardar
+                    btnGuardarNuevoEjercicio.setDisable(false);
+
+                    data.setNombre(txtNombreEjercicio.getText());
                 String nombreGrupoMuscularSeleccionado = comboBoxGrupoMuscular.getValue();
                 GrupoMuscular grupoMuscularSeleccionado = gruposMusculares
                 .stream()
@@ -234,15 +244,13 @@ public class viewEjerciciosController {
                 alertSuccess.setContentText("El ejercicio se editó correctamente.");
     
                 alertSuccess.showAndWait();
-            } catch (Exception e) {
-                // En caso de error, mostrar mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("Hubo un error al editar el ejercicio.");
-                alertError.showAndWait();
-            }
-            btnEditarEjercicio.setDisable(true);
+                }
+                
+                //Deshabilitamos el botón de editar
+                btnEditarEjercicio.setDisable(true);
+                
+            });
+            
         });
        
     }

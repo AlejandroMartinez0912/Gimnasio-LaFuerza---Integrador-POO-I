@@ -141,8 +141,16 @@ public class viewTutorController {
             }
         });
         btnEliminarTutor.setOnAction((ActionEvent event) -> {
+            //Obtenemos el tutor seleccionado
             Tutor data = tutoresTable.getSelectionModel().getSelectedItem();
-    
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que quieres eliminar el tutor?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) 
+                //Si el usuario presiona OK, eliminamos el tutor
+            {    
             try {
                 // Llamar al servicio para eliminar el tutor
                 servicioTutor.eliminarTutor(data);
@@ -168,11 +176,20 @@ public class viewTutorController {
                 alertError.showAndWait();
             }
             btnEliminarTutor.setDisable(true);
+        }
         });
     
         btnEditarTutor.setOnAction((ActionEvent event) -> {
+            //Obtenemos el tutor seleccionado
             Tutor data = tutoresTable.getSelectionModel().getSelectedItem();
-    
+            //Mostramos un mensaje de confirmación
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro que quieres editar el tutor?");
+            if (alert.showAndWait().get().getText().equals("Aceptar")) 
+                //Si el usuario presiona OK, editamos el tutor
+            {    
             try {
                 data.setNombre(txtNombreTutor.getText());
                 data.setApellido(txtApellidoTutor.getText());
@@ -199,6 +216,7 @@ public class viewTutorController {
                 alertError.showAndWait();
             }
             btnEditarTutor.setDisable(true);
+        }
         });
     }
 
