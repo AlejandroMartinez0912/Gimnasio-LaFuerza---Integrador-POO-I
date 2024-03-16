@@ -78,7 +78,11 @@ public class viewGruposMuscularesController {
 
         String nombreGrupoMuscular = txtGrupoMuscular.getText().trim(); // Obtener el texto del campo y eliminar espacios en blanco al inicio y al final
 
-        if (!nombreGrupoMuscular.isEmpty() && nombreGrupoMuscular.matches("[a-zA-Z]+")) { // Verificar si el campo no está vacío y contiene solo letras
+        if(!nombreGrupoMuscular.matches("[a-zA-Z ]+")){
+            alertError.setContentText("Error al registrar el grupo muscular. El nombre del grupo muscular solo puede contener letras.");
+        }
+
+        if (!nombreGrupoMuscular.isEmpty() && nombreGrupoMuscular.matches("[a-zA-Z ]+")) { // Verificar si el campo no está vacío y contiene solo letras
             // Crear una nueva instancia de GrupoMuscular
             GrupoMuscular nuevoGrupoMuscular = new GrupoMuscular();
             nuevoGrupoMuscular.setNombre(nombreGrupoMuscular);

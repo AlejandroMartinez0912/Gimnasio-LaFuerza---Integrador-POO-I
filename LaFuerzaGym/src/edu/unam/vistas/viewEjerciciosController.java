@@ -112,8 +112,12 @@ public class viewEjerciciosController {
             return;
         }
 
+        if(!nombreEjercicio.matches("[a-zA-Z ]+")){
+            alertError.setContentText("Error al registrar el ejercicio. El nombre del ejercicio solo puede contener letras.");
+        }
+
         // Verificamos si el campo no está vacío y contiene solo letras        
-        if (!nombreEjercicio.isEmpty() && nombreEjercicio.matches("[a-zA-Z]+")) {
+        if (!nombreEjercicio.isEmpty() && nombreEjercicio.matches("[a-zA-Z ]+")) {
 
             // Creamos una nueva instancia de Ejercicio
             Ejercicio nuevoEjercicio = new Ejercicio();
