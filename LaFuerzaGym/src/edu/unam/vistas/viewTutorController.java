@@ -86,7 +86,20 @@ public class viewTutorController {
         String nombreTutor = txtNombreTutor.getText().trim(); // Obtener el texto del campo y eliminar espacios en blanco al inicio y al final
         String apellidoTutor = txtApellidoTutor.getText().trim();
 
-        if (!nombreTutor.isEmpty() && nombreTutor.matches("[a-zA-Z]+") && !apellidoTutor.isEmpty() && apellidoTutor.matches("[a-zA-Z]+")) { // Verificar si el campo no está vacío y contiene solo letras
+        if(!nombreTutor.matches("[a-zA-Z ]+")){
+            alertError.setContentText("Error al registrar el tutor. El nombre del tutor solo puede contener letras.");
+        }
+
+        if(!apellidoTutor.matches("[a-zA-Z ]+")){
+            alertError.setContentText("Error al registrar el tutor. El apellido del tutor solo puede contener letras.");
+        }
+
+        if(nombreTutor.isEmpty() || apellidoTutor.isEmpty()){
+            alertError.setContentText("Error al registrar el tutor. Los campos no pueden estar vacíos.");
+            alertError.showAndWait();
+        }
+
+        if (!nombreTutor.isEmpty() && nombreTutor.matches("[a-zA-Z ]+") && !apellidoTutor.isEmpty() && apellidoTutor.matches("[a-zA-Z ]+")) { // Verificar si el campo no está vacío y contiene solo letras
             // Crear una nueva instancia de Tutor
             Tutor nuevoTutor = new Tutor();
             nuevoTutor.setNombre(nombreTutor);

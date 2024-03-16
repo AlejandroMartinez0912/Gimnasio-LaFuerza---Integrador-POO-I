@@ -7,14 +7,10 @@ import java.util.Set;
 
 import edu.unam.App;
 import edu.unam.modelo.DetalleRutina;
-import edu.unam.modelo.Ejercicio;
 import edu.unam.modelo.EntrenamientoCliente;
 import edu.unam.modelo.Rutina;
 import edu.unam.repositorio.Repositorio;
-import edu.unam.servicios.ServicioCliente;
 import edu.unam.servicios.ServicioDetalleRutina;
-import edu.unam.servicios.ServicioEntrenamientoCliente;
-import edu.unam.servicios.ServicioRutina;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import javafx.beans.property.SimpleStringProperty;
@@ -35,20 +31,11 @@ public class viewDetalleRutinaController {
     private EntityManagerFactory emf;
     private Repositorio repositorio;
     private ServicioDetalleRutina servicioDetalleRutina;
-    @SuppressWarnings("unused")
-    private ServicioEntrenamientoCliente servicioEntrenamientoCliente;
-    @SuppressWarnings("unused")
-    private ServicioRutina servicioRutina;
-    @SuppressWarnings("unused")
-    private ServicioCliente servicioCliente;
 
     public viewDetalleRutinaController() {
         emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
         repositorio = new Repositorio(emf);
         servicioDetalleRutina = new ServicioDetalleRutina(repositorio);
-        servicioEntrenamientoCliente = new ServicioEntrenamientoCliente(repositorio);
-        servicioRutina = new ServicioRutina(repositorio);
-        servicioCliente = new ServicioCliente(repositorio);
     }
 
     @FXML
