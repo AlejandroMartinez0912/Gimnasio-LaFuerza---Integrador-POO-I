@@ -112,6 +112,9 @@ public class viewEntrenamientoClienteController {
     private TableColumn<EntrenamientoCliente, Integer> idColumn;
 
     @FXML
+    private TableColumn<EntrenamientoCliente, Double> volumenSemanalColumn;
+
+    @FXML
     private Label labelCliente;
 
     @FXML
@@ -168,6 +171,13 @@ public class viewEntrenamientoClienteController {
             alertError.showAndWait();
             return;
         }
+
+        //Validamos que se se ingresaron las fechas correctas
+        if(fechaInicio.isAfter(fechaFin)){
+            alertError.setContentText("La fecha de inicio no puede ser mayor a la fecha de fin");
+            alertError.showAndWait();
+            return;
+        }
         
         try {
                 
@@ -189,13 +199,19 @@ public class viewEntrenamientoClienteController {
             //Limpiamos los campos de selección
             comboBoxCliente.getSelectionModel().clearSelection();
             comboBoxTutor.getSelectionModel().clearSelection();
-            //Limpiamos la tabla de rutinas seleccionadas
-            tableSeleccionEntrenamientos.getSelectionModel().clearSelection();
-
             //Limpiamos los input date
             dateFechaInicio.setValue(null);
             dateFechaFin.setValue(null);
-            
+            //Limpiamos la tabla de rutinas seleccionadas
+            tableSeleccionEntrenamientos.getSelectionModel().clearSelection();
+            tableEntrenamientosClientes.refresh();
+            tableSeleccionEntrenamientos.refresh();
+
+            //Reestablecemos sus promptText
+            comboBoxCliente.setPromptText("Clientes...");
+            comboBoxTutor.setPromptText("Tutores...");
+            dateFechaInicio.setPromptText("dd/mm/aa");
+            dateFechaFin.setPromptText("dd/mm/aa");
         }
         catch(Exception e){
             alertError.setContentText("Error al guardar el entrenamiento del cliente");
@@ -282,6 +298,7 @@ public class viewEntrenamientoClienteController {
         clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombre() + " " + cellData.getValue().getCliente().getApellido()));
         fechaFinColumn.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
         evaluacionColumn.setCellValueFactory(new PropertyValueFactory<>("evaluacionTutor"));
+        volumenSemanalColumn.setCellValueFactory(new PropertyValueFactory<>("volumenSemanal"));
         grupoMuscularEntrenamientoClienteColumn.setCellValueFactory(cellData -> {
             Set<Rutina> misRutinas = cellData.getValue().getRutinas();
             StringBuilder nombresGruposMusculares = new StringBuilder();
@@ -378,6 +395,12 @@ public class viewEntrenamientoClienteController {
                     alertSuccess.setContentText("El entrenamiento del cliente se eliminó correctamente.");
         
                     alertSuccess.showAndWait();
+
+                    //Reestablecemos sus promptText
+                    comboBoxCliente.setPromptText("Clientes...");
+                    comboBoxTutor.setPromptText("Tutores...");
+                    dateFechaInicio.setPromptText("dd/mm/aa");
+                    dateFechaFin.setPromptText("dd/mm/aa");
                 } catch (Exception e) {
                     // En caso de error, mostrar mensaje de error
                     Alert alertError = new Alert(Alert.AlertType.ERROR);
@@ -430,6 +453,12 @@ public class viewEntrenamientoClienteController {
                 btnEliminarEntrenamientoCliente.setDisable(true);
 
                 alertSuccess.showAndWait();
+
+                //Reestablecemos sus promptText
+                comboBoxCliente.setPromptText("Clientes...");
+                comboBoxTutor.setPromptText("Tutores...");
+                dateFechaInicio.setPromptText("dd/mm/aa");
+                dateFechaFin.setPromptText("dd/mm/aa");
             } catch (Exception e) {
                 // En caso de error, mostrar mensaje de error
                 Alert alertError = new Alert(Alert.AlertType.ERROR);

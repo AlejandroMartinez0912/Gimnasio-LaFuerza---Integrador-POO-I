@@ -125,31 +125,59 @@ public class viewClientesController {
                 || fechaIngreso == null) {
             alertError.setContentText("Todos los campos son obligatorios.");
             alertError.showAndWait();
-        } else {
-            try {
-                Cliente cliente = new Cliente();
-                cliente.setNombre(nombreCliente);
-                cliente.setApellido(apellidoCliente);
-                cliente.setSexo(sexoCliente);
-                cliente.setFechaNacimiento(fechaNacimiento);
-                cliente.setFechaIngreso(fechaIngreso);
+        }
 
-                
-                servicioCliente.agregarCliente(cliente);
-                clientesTable.getItems().add(cliente);
+        //Validamos el nombre ingresado
+        if(!nombreCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
+            alertError.setContentText("Error al registrar el cliente. El nombre del cliente solo puede contener letras.");
+            alertError.showAndWait();
+            txtNombre.clear();
+            txtNombre.setPromptText("Nombre");
+        }
 
-                txtApellido.clear();
-                txtNombre.clear();
-                comboBoxSexo.setValue(null);
-                dateFechaNacimiento.setValue(null);
-                dateFechaIngreso.setValue(null);
+        //Validamos el apellido ingresado
+        if(!apellidoCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
+            alertError.setContentText("Error al registrar el cliente. El apellido del cliente solo puede contener letras.");
+            alertError.showAndWait();
+        }
 
-                alertSuccess.setContentText("Cliente guardado con éxito.");
-                alertSuccess.showAndWait();
-            } catch (Exception e) {
-                alertError.setContentText("Error al guardar el cliente.");
-                alertError.showAndWait();
-            }
+        //Validamos que el sexo no esté vacío
+        if(sexoCliente == null){
+            alertError.setContentText("Error al registrar el cliente. El sexo del cliente es obligatorio.");
+            alertError.showAndWait();
+            comboBoxSexo.setPromptText("Sexo");
+        }
+
+        try {
+            Cliente cliente = new Cliente();
+            cliente.setNombre(nombreCliente);
+            cliente.setApellido(apellidoCliente);
+            cliente.setSexo(sexoCliente);
+            cliente.setFechaNacimiento(fechaNacimiento);
+            cliente.setFechaIngreso(fechaIngreso);
+
+            
+            servicioCliente.agregarCliente(cliente);
+            clientesTable.getItems().add(cliente);
+
+            txtApellido.clear();
+            txtNombre.clear();
+            comboBoxSexo.setValue(null);
+            dateFechaNacimiento.setValue(null);
+            dateFechaIngreso.setValue(null);
+
+            alertSuccess.setContentText("Cliente guardado con éxito.");
+            alertSuccess.showAndWait();
+
+            //Reestablecemos sus PromptText
+            txtNombre.setPromptText("Nombre");
+            txtApellido.setPromptText("Apellido");
+            comboBoxSexo.setPromptText("Sexo");
+            dateFechaNacimiento.setPromptText("dd/mm/yy");
+            dateFechaIngreso.setPromptText("dd/mm/yy");
+        } catch (Exception e) {
+            alertError.setContentText("Error al guardar el cliente.");
+            alertError.showAndWait();
         }
     }
 
@@ -238,6 +266,13 @@ public class viewClientesController {
 
                 alertSuccess.showAndWait();
 
+                //Reestablecemos sus PromptText
+                txtNombre.setPromptText("Nombre");
+                txtApellido.setPromptText("Apellido");
+                comboBoxSexo.setPromptText("Sexo");
+                dateFechaNacimiento.setPromptText("dd/mm/yy");
+                dateFechaIngreso.setPromptText("dd/mm/yy");
+
             } catch (Exception e) {
                 Alert alertError = new Alert(Alert.AlertType.ERROR);
                 alertError.setTitle("Error");
@@ -282,6 +317,13 @@ public class viewClientesController {
                 alertSuccess.setContentText("Cliente actualizado con éxito.");
 
                 alertSuccess.showAndWait();
+
+                //Reestablecemos sus PromptText
+                txtNombre.setPromptText("Nombre");
+                txtApellido.setPromptText("Apellido");
+                comboBoxSexo.setPromptText("Sexo");
+                dateFechaNacimiento.setPromptText("dd/mm/yy");
+                dateFechaIngreso.setPromptText("dd/mm/yy");
             } catch (Exception e) {
                 // En caso de error, mostrar mensaje de error
                 Alert alertError = new Alert(Alert.AlertType.ERROR);

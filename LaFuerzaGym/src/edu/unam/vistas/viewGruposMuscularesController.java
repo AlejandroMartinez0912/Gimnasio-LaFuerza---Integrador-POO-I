@@ -78,11 +78,11 @@ public class viewGruposMuscularesController {
 
         String nombreGrupoMuscular = txtGrupoMuscular.getText().trim(); // Obtener el texto del campo y eliminar espacios en blanco al inicio y al final
 
-        if(!nombreGrupoMuscular.matches("[a-zA-Z ]+")){
+        if(!nombreGrupoMuscular.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
             alertError.setContentText("Error al registrar el grupo muscular. El nombre del grupo muscular solo puede contener letras.");
         }
 
-        if (!nombreGrupoMuscular.isEmpty() && nombreGrupoMuscular.matches("[a-zA-Z ]+")) { // Verificar si el campo no está vacío y contiene solo letras
+        if (!nombreGrupoMuscular.isEmpty() && nombreGrupoMuscular.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")) { // Verificar si el campo no está vacío y contiene solo letras
             // Crear una nueva instancia de GrupoMuscular
             GrupoMuscular nuevoGrupoMuscular = new GrupoMuscular();
             nuevoGrupoMuscular.setNombre(nombreGrupoMuscular);
@@ -93,6 +93,9 @@ public class viewGruposMuscularesController {
             // Limpiar el campo de texto después de agregar el grupo muscular
             txtGrupoMuscular.clear();
             alertSuccess.showAndWait();
+
+            //Reestablecemos sus promptText
+            txtGrupoMuscular.setPromptText("Nombre del grupo muscular");
         } else {
             // Mostrar un mensaje de error al usuario indicando que el campo es obligatorio
             alertError.showAndWait();
@@ -161,6 +164,9 @@ public class viewGruposMuscularesController {
                     alertSuccess.setContentText("El grupo muscular se eliminó correctamente.");
         
                     alertSuccess.showAndWait();
+                    
+                    //Reestablecemos sus promptText
+                    txtGrupoMuscular.setPromptText("Nombre del grupo muscular");
                 } catch (Exception e) {
                     // En caso de error, mostrar mensaje de error
                     Alert alertError = new Alert(Alert.AlertType.ERROR);
@@ -202,6 +208,9 @@ public class viewGruposMuscularesController {
                     alertSuccess.setContentText("El grupo muscular se editó correctamente.");
         
                     alertSuccess.showAndWait();
+
+                    //Reestablecemos sus promptText
+                    txtGrupoMuscular.setPromptText("Nombre del grupo muscular");
                 } catch (Exception e) {
                     // En caso de error, mostramos mensaje de error
                     Alert alertError = new Alert(Alert.AlertType.ERROR);

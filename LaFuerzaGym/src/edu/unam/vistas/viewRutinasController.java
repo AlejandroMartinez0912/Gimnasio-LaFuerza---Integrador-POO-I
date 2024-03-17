@@ -133,24 +133,51 @@ public class viewRutinasController {
             return;
         }
 
-        //Creamos un nuevo entrenamiento
-        Rutina nuevaRutina = new Rutina();
-        nuevaRutina.setDescanso(descansoIngresado);
-        nuevaRutina.setRepeticiones(repeticionesIngresadas);
-        nuevaRutina.setSeries(seriesSeleccionada);
-        nuevaRutina.setEjercicio(ejercicioEncontrado);
+        //Validamos que se ingresó un número en el campo de repeticiones
+        if(!txtRepeticiones.getText().matches("[0-9]+")){
+            alertError.setContentText("El campo de repeticiones debe ser un número entero.");
+            alertError.showAndWait();
+            return;
+        }
 
-        //Guardamos el nuevo entrenamiento
-        // Llamar al servicio para agregar el nuevo Entrenamiento
-        servicioRutina.agregarRutina(nuevaRutina);
-        tableviewRutinas.getItems().add(nuevaRutina);
-        // Limpiar el campo de texto después de agregar el grupo muscular
-        txtDescanso.clear();
-        txtRepeticiones.clear();
-        //Limpiamos los campos de selección
-        comboBoxEjercicio.getSelectionModel().clearSelection();
-        comboBoxSeries.getSelectionModel().clearSelection();
-        alertSuccess.showAndWait();
+        //Validamos que se ingresó un número en el campo de descanso
+        if(!txtDescanso.getText().matches("[0-9]+")){
+            alertError.setContentText("El campo de descanso debe ser un número entero.");
+            alertError.showAndWait();
+            return;
+        }
+
+        try {
+            //Creamos un nuevo entrenamiento
+            Rutina nuevaRutina = new Rutina();
+            nuevaRutina.setDescanso(descansoIngresado);
+            nuevaRutina.setRepeticiones(repeticionesIngresadas);
+            nuevaRutina.setSeries(seriesSeleccionada);
+            nuevaRutina.setEjercicio(ejercicioEncontrado);
+
+            //Guardamos el nuevo entrenamiento
+            // Llamar al servicio para agregar el nuevo Entrenamiento
+            servicioRutina.agregarRutina(nuevaRutina);
+            tableviewRutinas.getItems().add(nuevaRutina);
+
+            // Limpiar el campo de texto después de agregar el grupo muscular
+            txtDescanso.clear();
+            txtRepeticiones.clear();
+            //Limpiamos los campos de selección
+            comboBoxEjercicio.getSelectionModel().clearSelection();
+            comboBoxSeries.getSelectionModel().clearSelection();
+
+            //Reestablecemos sus promptText
+            comboBoxEjercicio.setPromptText("Ejercicios");
+            comboBoxSeries.setPromptText("Series");
+            txtDescanso.setPromptText("Tiempo de descanso");
+            txtRepeticiones.setPromptText("Número de repeticiones");
+
+            //Mostramos la alerta de éxito
+            alertSuccess.showAndWait();
+        } catch (Exception e) {
+            alertError.showAndWait();
+        }
     }
 
      @FXML

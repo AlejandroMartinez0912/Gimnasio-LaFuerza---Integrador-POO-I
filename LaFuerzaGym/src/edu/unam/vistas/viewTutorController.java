@@ -86,11 +86,11 @@ public class viewTutorController {
         String nombreTutor = txtNombreTutor.getText().trim(); // Obtener el texto del campo y eliminar espacios en blanco al inicio y al final
         String apellidoTutor = txtApellidoTutor.getText().trim();
 
-        if(!nombreTutor.matches("[a-zA-Z ]+")){
+        if(!nombreTutor.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
             alertError.setContentText("Error al registrar el tutor. El nombre del tutor solo puede contener letras.");
         }
 
-        if(!apellidoTutor.matches("[a-zA-Z ]+")){
+        if(!apellidoTutor.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
             alertError.setContentText("Error al registrar el tutor. El apellido del tutor solo puede contener letras.");
         }
 
@@ -99,7 +99,7 @@ public class viewTutorController {
             alertError.showAndWait();
         }
 
-        if (!nombreTutor.isEmpty() && nombreTutor.matches("[a-zA-Z ]+") && !apellidoTutor.isEmpty() && apellidoTutor.matches("[a-zA-Z ]+")) { // Verificar si el campo no está vacío y contiene solo letras
+        if (!nombreTutor.isEmpty() && nombreTutor.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$") && !apellidoTutor.isEmpty() && apellidoTutor.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")) { // Verificar si el campo no está vacío y contiene solo letras
             // Crear una nueva instancia de Tutor
             Tutor nuevoTutor = new Tutor();
             nuevoTutor.setNombre(nombreTutor);
@@ -113,6 +113,10 @@ public class viewTutorController {
             txtNombreTutor.clear();
             txtApellidoTutor.clear();
             alertSuccess.showAndWait();
+
+            //Reestablecemos sus promptText
+            txtNombreTutor.setPromptText("Nombre del tutor");
+            txtApellidoTutor.setPromptText("Apellido del tutor");
 
         } else {
             // Mostrar un mensaje de error al usuario indicando que el campo es obligatorio

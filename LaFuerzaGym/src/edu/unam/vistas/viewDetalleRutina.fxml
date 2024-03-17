@@ -55,7 +55,6 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="comboBoxRepeticiones" layoutX="245.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Repeticiones" />
       <TableView fx:id="tableDetalleEntrenamiento" layoutX="16.0" layoutY="247.0" prefHeight="180.0" prefWidth="608.0">
         <columns>
           <TableColumn fx:id="idColumn" prefWidth="42.0" text="Id" />
@@ -78,5 +77,6 @@
          </font>
       </Label>
       <TextField fx:id="txtPeso" layoutX="475.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Ingrese el peso" />
+      <TextField fx:id="txtRepeticiones" layoutX="245.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Número de repeticiones" />
    </children>
 </AnchorPane>

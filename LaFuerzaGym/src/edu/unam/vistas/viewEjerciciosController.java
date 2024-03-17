@@ -112,12 +112,13 @@ public class viewEjerciciosController {
             return;
         }
 
-        if(!nombreEjercicio.matches("[a-zA-Z ]+")){
+        if(!nombreEjercicio.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
             alertError.setContentText("Error al registrar el ejercicio. El nombre del ejercicio solo puede contener letras.");
+            alertError.showAndWait();
         }
 
         // Verificamos si el campo no está vacío y contiene solo letras        
-        if (!nombreEjercicio.isEmpty() && nombreEjercicio.matches("[a-zA-Z ]+")) {
+        if (!nombreEjercicio.isEmpty() && nombreEjercicio.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")) {
 
             // Creamos una nueva instancia de Ejercicio
             Ejercicio nuevoEjercicio = new Ejercicio();
@@ -129,7 +130,16 @@ public class viewEjerciciosController {
             tableViewEjercicios.getItems().add(nuevoEjercicio);
             // Limpiar el campo de texto después de agregar el grupo muscular
             txtNombreEjercicio.clear();
+            //Limpiar la selección del combobox
+            comboBoxGrupoMuscular.getSelectionModel().clearSelection();
+
+            // Mostrar un mensaje de éxito al usuario
             alertSuccess.showAndWait();
+
+            //Reestablecemos sus textPrompt
+            txtNombreEjercicio.setPromptText("Nombre del ejercicio");
+            comboBoxGrupoMuscular.setPromptText("Grupo muscular");
+            
         } else {
             // Mostrar un mensaje de error al usuario indicando que el campo es obligatorio
             alertError.showAndWait();
@@ -212,6 +222,10 @@ public class viewEjerciciosController {
                     alertSuccess.setHeaderText(null);
                     alertSuccess.setContentText("El ejercicio se eliminó correctamente.");
                     alertSuccess.showAndWait();
+
+                    //Reestablecemos sus promtText
+                    txtNombreEjercicio.setPromptText("Nombre del ejercicio");
+                    comboBoxGrupoMuscular.setPromptText("Grupo muscular");
                 }
             });
             //Deshabilitamos los botones de eliminar
@@ -235,23 +249,27 @@ public class viewEjerciciosController {
                     btnGuardarNuevoEjercicio.setDisable(false);
 
                     data.setNombre(txtNombreEjercicio.getText());
-                String nombreGrupoMuscularSeleccionado = comboBoxGrupoMuscular.getValue();
-                GrupoMuscular grupoMuscularSeleccionado = gruposMusculares
-                .stream()
-                .filter(grupo -> grupo.getNombre().equals(nombreGrupoMuscularSeleccionado))
-                .findFirst()
-                .orElse(null);
-                data.setGrupoMuscular(grupoMuscularSeleccionado);                
-                servicioEjercicio.editarEjercicio(data);
-                tableViewEjercicios.refresh();
-                
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("El ejercicio se editó correctamente.");
-    
-                alertSuccess.showAndWait();
+                    String nombreGrupoMuscularSeleccionado = comboBoxGrupoMuscular.getValue();
+                    GrupoMuscular grupoMuscularSeleccionado = gruposMusculares
+                    .stream()
+                    .filter(grupo -> grupo.getNombre().equals(nombreGrupoMuscularSeleccionado))
+                    .findFirst()
+                    .orElse(null);
+                    data.setGrupoMuscular(grupoMuscularSeleccionado);                
+                    servicioEjercicio.editarEjercicio(data);
+                    tableViewEjercicios.refresh();
+                    
+                    // Para mostrar un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("El ejercicio se editó correctamente.");
+        
+                    alertSuccess.showAndWait();
+
+                    //Reestablecemos sus promtText
+                    txtNombreEjercicio.setPromptText("Nombre del ejercicio");
+                    comboBoxGrupoMuscular.setPromptText("Grupo muscular");
                 }
                 
                 //Deshabilitamos el botón de editar
