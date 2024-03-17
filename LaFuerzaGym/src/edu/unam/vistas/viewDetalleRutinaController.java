@@ -11,6 +11,7 @@ import edu.unam.modelo.EntrenamientoCliente;
 import edu.unam.modelo.Rutina;
 import edu.unam.repositorio.Repositorio;
 import edu.unam.servicios.ServicioDetalleRutina;
+import edu.unam.servicios.ServicioEntrenamientoCliente;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import javafx.beans.property.SimpleStringProperty;
@@ -31,11 +32,13 @@ public class viewDetalleRutinaController {
     private EntityManagerFactory emf;
     private Repositorio repositorio;
     private ServicioDetalleRutina servicioDetalleRutina;
+    private ServicioEntrenamientoCliente servicioEntrenamientoCliente;
 
     public viewDetalleRutinaController() {
         emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
         repositorio = new Repositorio(emf);
         servicioDetalleRutina = new ServicioDetalleRutina(repositorio);
+        servicioEntrenamientoCliente = new ServicioEntrenamientoCliente(repositorio);
     }
 
     @FXML
@@ -54,7 +57,7 @@ public class viewDetalleRutinaController {
     private ComboBox<String> comboBoxEjercicio;
 
     @FXML
-    private ComboBox<Integer> comboBoxRepeticiones;
+    private TextField txtRepeticiones;
     
     @FXML
     private Label labelEjercicio;
@@ -130,9 +133,6 @@ public class viewDetalleRutinaController {
         //Agregamos los valores al combobox series
         comboBoxSeries.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 
-        //Agregamos los valores al combobox repeticiones
-        comboBoxRepeticiones.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
-
         //Comenzamos a rellenar la tabla
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idDetalleRutina"));
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
@@ -142,7 +142,7 @@ public class viewDetalleRutinaController {
         ejercicioColumn.setCellValueFactory(new PropertyValueFactory<>("nombreEjercicio"));
 
         //Obtenemos el nombre y apellido del cliente de entrenamientoCliente
-        clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEntrenamientoCliente().getCliente().getNombre())); 
+        clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEntrenamientoCliente().getCliente().getNombre() + " " + cellData.getValue().getEntrenamientoCliente().getCliente().getApellido())); 
 
         // Obtener los entrenamientos de los clientes del repositorio
         List<DetalleRutina> detalleRutinas = servicioDetalleRutina.obtenerTodos();
@@ -165,7 +165,7 @@ public class viewDetalleRutinaController {
 
                 //Obtener los datos cargados anteriormente
                 comboBoxEjercicio.setValue(newSelection.getNombreEjercicio());
-                comboBoxRepeticiones.setValue(newSelection.getRepeticiones());
+                txtRepeticiones.setText(Integer.toString(newSelection.getRepeticiones()));
                 comboBoxSeries.setValue(newSelection.getSeries());
                 txtPeso.setText(Double.toString(newSelection.getPeso()));
 
@@ -219,9 +219,9 @@ public class viewDetalleRutinaController {
                     data.setEntrenamientoCliente(entrenamientoCliente);
                     data.setNombreEjercicio(comboBoxEjercicio.getValue());
                     data.setSeries(comboBoxSeries.getValue());
-                    data.setRepeticiones(comboBoxRepeticiones.getValue());
+                    data.setRepeticiones(Integer.parseInt(txtRepeticiones.getText()));
                     data.setPeso(Double.parseDouble(txtPeso.getText()));
-                    data.setVolumenRutina(comboBoxSeries.getValue() * comboBoxRepeticiones.getValue() * Double.parseDouble(txtPeso.getText()));
+                    data.setVolumenRutina(comboBoxSeries.getValue() * Integer.parseInt(txtRepeticiones.getText()) * Double.parseDouble(txtPeso.getText()));
                     servicioDetalleRutina.editarDetalleRutina(data);
 
                     tableDetalleEntrenamiento.refresh();
@@ -232,6 +232,12 @@ public class viewDetalleRutinaController {
                     alertSuccess.setHeaderText(null);
                     alertSuccess.setContentText("El detalle de la rutina del cliente se editó correctamente.");
                     alertSuccess.showAndWait();
+
+                    //Reestablecemos sus promptText
+                    comboBoxEjercicio.setPromptText("Ejercicio");
+                    txtRepeticiones.setPromptText("Número de repeticiones");
+                    comboBoxSeries.setPromptText("Series");
+                    txtPeso.setPromptText("Peso");
                 }
             });
             tableDetalleEntrenamiento.getSelectionModel().clearSelection();
@@ -255,10 +261,24 @@ public class viewDetalleRutinaController {
         alertError.setHeaderText(null);
         alertError.setContentText("Error al guardar el detalle de la rutina del cliente.");
 
+        //Validamos que se ingresó un número en el campo de repeticiones
+        if(!txtRepeticiones.getText().matches("[0-9]+")){
+            alertError.setContentText("El campo de repeticiones debe ser un número entero.");
+            alertError.showAndWait();
+            return;
+        }
+
+        //Validamos que se ingresó un número double en el campo de peso
+        if(!txtPeso.getText().matches("[0-9]+([.][0-9]+)?")){
+            alertError.setContentText("El campo de peso debe ser un número decimal.");
+            alertError.showAndWait();
+            return;
+        }
+
         //Obtenemos los valores de los campos
         String nombreEjercicio = comboBoxEjercicio.getValue();
         Integer series = comboBoxSeries.getValue();
-        Integer repeticiones = comboBoxRepeticiones.getValue();
+        Integer repeticiones = Integer.parseInt(txtRepeticiones.getText());
         Double peso = Double.parseDouble(txtPeso.getText());
 
         //Realizamos la validación de los campos
@@ -267,7 +287,7 @@ public class viewDetalleRutinaController {
             alertError.showAndWait();
             return;
         }
-
+        
         try {
             DetalleRutina detalleRutina = new DetalleRutina();
             detalleRutina.setEntrenamientoCliente(entrenamientoCliente);
@@ -281,15 +301,26 @@ public class viewDetalleRutinaController {
             servicioDetalleRutina.agregarDetalleRutina(detalleRutina);
             tableDetalleEntrenamiento.getItems().add(detalleRutina);
 
+            //Actualizamos el volumen semanal del entrenamientoCliente
+            entrenamientoCliente.setVolumenSemanal(entrenamientoCliente.getVolumenSemanal() + detalleRutina.getVolumenRutina());
+            servicioEntrenamientoCliente.editarEntrenamientoCliente(entrenamientoCliente);
+
             //Mostramos mensaje de éxito
             alertSuccess.showAndWait();
 
             //Limpiamos los campos de entrada
             comboBoxEjercicio.getSelectionModel().clearSelection();
-            comboBoxRepeticiones.getSelectionModel().clearSelection();
+            txtRepeticiones.clear();
+            txtRepeticiones.setText(null);
             comboBoxSeries.getSelectionModel().clearSelection();
             txtPeso.clear();
             txtPeso.setText(null);
+
+            //Reestablecemos sus promptText
+            comboBoxEjercicio.setPromptText("Ejercicio");
+            txtRepeticiones.setPromptText("Número de repeticiones");
+            comboBoxSeries.setPromptText("Series");
+            txtPeso.setPromptText("Peso");
 
         } catch (Exception e) {
             alertError.showAndWait();
@@ -299,7 +330,7 @@ public class viewDetalleRutinaController {
 
     @FXML
     void volverHome(ActionEvent event) throws IOException {
-        App.setRoot("homeView");
+        App.setRoot("viewEntrenamientoCliente");
     }
 
 }

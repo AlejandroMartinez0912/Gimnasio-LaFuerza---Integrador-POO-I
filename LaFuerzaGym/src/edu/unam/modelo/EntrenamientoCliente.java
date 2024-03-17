@@ -55,13 +55,13 @@ public class EntrenamientoCliente {
 
     @Basic
     @Column(name = "volumen_semanal")
-    private int volumenSemanal;
+    private double volumenSemanal;
 
     public EntrenamientoCliente() {
     }
 
     public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Rutina> rutinas, LocalDate fechaInicio,
-            LocalDate fechaFin, Tutor tutor, String evaluacionTutor, int volumenSemanal) {
+            LocalDate fechaFin, Tutor tutor, String evaluacionTutor, double volumenSemanal) {
         this.idEntrenamientoCliente = idEntrenamientoCliente;
         this.cliente = cliente;
         this.rutinas = rutinas;
@@ -128,11 +128,11 @@ public class EntrenamientoCliente {
         this.evaluacionTutor = evaluacionTutor;
     }
 
-    public int getVolumenSemanal() {
+    public double getVolumenSemanal() {
         return volumenSemanal;
     }
 
-    public void setVolumenSemanal(int volumenSemanal) {
+    public void setVolumenSemanal(double volumenSemanal) {
         this.volumenSemanal = volumenSemanal;
     }
 }
