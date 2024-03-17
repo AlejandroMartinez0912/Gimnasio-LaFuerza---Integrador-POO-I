@@ -178,6 +178,7 @@ public class viewEjerciciosController {
             if (newSelection != null) {
                 btnEditarEjercicio.setDisable(false);
                 btnEliminarEjercicio.setDisable(false);
+                btnGuardarNuevoEjercicio.setDisable(true); // Deshabilitamos el botón de guardar
 
                 txtNombreEjercicio.setText(newSelection.getNombre());
                 comboBoxGrupoMuscular.setValue(newSelection.getGrupoMuscular().getNombre());
@@ -185,6 +186,7 @@ public class viewEjerciciosController {
             }else{
                 btnEditarEjercicio.setDisable(true);
                 btnEliminarEjercicio.setDisable(true);
+                btnGuardarNuevoEjercicio.setDisable(false); // Habilitamos el botón de guardar
                 txtNombreEjercicio.clear();
                 comboBoxGrupoMuscular.setValue(null);
             }
@@ -214,6 +216,8 @@ public class viewEjerciciosController {
             });
             //Deshabilitamos los botones de eliminar
             btnEliminarEjercicio.setDisable(true);
+            tableViewEjercicios.getSelectionModel().clearSelection();
+            tableViewEjercicios.refresh();
         });
 
         btnEditarEjercicio.setOnAction((ActionEvent event) -> {
@@ -252,6 +256,8 @@ public class viewEjerciciosController {
                 
                 //Deshabilitamos el botón de editar
                 btnEditarEjercicio.setDisable(true);
+                tableViewEjercicios.getSelectionModel().clearSelection();
+                tableViewEjercicios.refresh();
                 
             });
             

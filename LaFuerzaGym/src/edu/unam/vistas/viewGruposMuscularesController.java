@@ -31,7 +31,7 @@ public class viewGruposMuscularesController {
     }
     
     @FXML
-    private Button btnGuardarNuevoCliente;
+    private Button btnGuardarNuevoGrupoMuscular;
 
     @FXML
     private Button btnEditarGrupoMuscular;
@@ -125,11 +125,13 @@ public class viewGruposMuscularesController {
             if (newSelection != null) {
                 btnEditarGrupoMuscular.setDisable(false);
                 btnEliminarGrupoMuscular.setDisable(false);
+                btnGuardarNuevoGrupoMuscular.setDisable(true); //Deshabilitamos el botón de guardar
 
                 txtGrupoMuscular.setText(newSelection.getNombre());
             }else{
                 btnEditarGrupoMuscular.setDisable(true);
                 btnEliminarGrupoMuscular.setDisable(true);
+                btnGuardarNuevoGrupoMuscular.setDisable(false); //Habilitamos el botón de guardar
                 txtGrupoMuscular.clear();
             }
         });
@@ -169,6 +171,8 @@ public class viewGruposMuscularesController {
                     alertError.showAndWait();
                 }
                 btnEditarGrupoMuscular.setDisable(true);
+                gruposMuscularesTable.getSelectionModel().clearSelection();
+                gruposMuscularesTable.refresh();
             }
             
         });
@@ -208,6 +212,8 @@ public class viewGruposMuscularesController {
                     alertError.showAndWait();
                 }
                 btnEditarGrupoMuscular.setDisable(true);
+                gruposMuscularesTable.getSelectionModel().clearSelection();
+                gruposMuscularesTable.refresh();
             }
         });
     }

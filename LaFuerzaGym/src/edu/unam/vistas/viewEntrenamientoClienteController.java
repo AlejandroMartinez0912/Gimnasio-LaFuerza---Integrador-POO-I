@@ -387,6 +387,8 @@ public class viewEntrenamientoClienteController {
                     alertError.showAndWait();
                 }
                 btnEliminarEntrenamientoCliente.setDisable(true);
+                tableEntrenamientosClientes.getSelectionModel().clearSelection();
+                tableEntrenamientosClientes.refresh();
             }
         });
 
@@ -437,6 +439,8 @@ public class viewEntrenamientoClienteController {
                 alertError.showAndWait();
             }
             btnActualizarEntrenamientoCliente.setDisable(true);
+            tableEntrenamientosClientes.getSelectionModel().clearSelection();
+            tableEntrenamientosClientes.refresh();
         }
         });
 

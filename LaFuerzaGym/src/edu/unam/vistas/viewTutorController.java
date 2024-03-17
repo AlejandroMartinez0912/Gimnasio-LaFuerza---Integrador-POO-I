@@ -143,12 +143,14 @@ public class viewTutorController {
             if (newSelection != null) {
                 btnEditarTutor.setDisable(false);
                 btnEliminarTutor.setDisable(false);
+                btnGuardarTutor.setDisable(true); //Deshabilitamos el botón de guardar
     
                 txtNombreTutor.setText(newSelection.getNombre());
                 txtApellidoTutor.setText(newSelection.getApellido());
             } else {
                 btnEditarTutor.setDisable(true);
                 btnEliminarTutor.setDisable(true);
+                btnGuardarTutor.setDisable(false); //Habilitamos el botón de guardar
                 txtNombreTutor.clear();
                 txtApellidoTutor.clear();
             }
@@ -189,6 +191,8 @@ public class viewTutorController {
                 alertError.showAndWait();
             }
             btnEliminarTutor.setDisable(true);
+            tutoresTable.getSelectionModel().clearSelection();
+            tutoresTable.refresh();
         }
         });
     
@@ -229,6 +233,8 @@ public class viewTutorController {
                 alertError.showAndWait();
             }
             btnEditarTutor.setDisable(true);
+            tutoresTable.getSelectionModel().clearSelection();
+            tutoresTable.refresh();
         }
         });
     }
