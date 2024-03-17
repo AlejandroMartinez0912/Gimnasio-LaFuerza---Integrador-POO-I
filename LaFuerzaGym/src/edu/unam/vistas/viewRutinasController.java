@@ -199,6 +199,7 @@ public class viewRutinasController {
             if (newSelection != null) {
                 btnEditarRutina.setDisable(false);
                 btnEliminarRutina.setDisable(false);
+                btnGuardarNuevaRutina.setDisable(true); //Deshabilitamos el botón de guardar
 
                 txtDescanso.setText(Integer.toString(newSelection.getDescanso()));
                 txtRepeticiones.setText(Integer.toString(newSelection.getRepeticiones()));
@@ -207,6 +208,7 @@ public class viewRutinasController {
             }else{
                 btnEditarRutina.setDisable(true);
                 btnEliminarRutina.setDisable(true);
+                btnGuardarNuevaRutina.setDisable(false); //Habilitamos el botón de guardar
                 txtDescanso.clear();
                 txtRepeticiones.clear();
                 comboBoxEjercicio.setValue(null);
@@ -243,7 +245,9 @@ public class viewRutinasController {
                     alertError.setContentText("Hubo un error al eliminar el entrenamiento.");
                     alertError.showAndWait();
                 }
-                btnEliminarRutina.setDisable(true);   
+                btnEliminarRutina.setDisable(true);
+                tableviewRutinas.getSelectionModel().clearSelection();
+                tableviewRutinas.refresh();
             }
         });
 
@@ -289,6 +293,8 @@ public class viewRutinasController {
                 alertError.showAndWait();
             }
             btnEditarRutina.setDisable(true);
+            tableviewRutinas.getSelectionModel().clearSelection();
+            tableviewRutinas.refresh();
         }
         });
        

@@ -189,6 +189,7 @@ public class viewClientesController {
             if (newSelection != null) {
                 btnActualizarCliente.setDisable(false);
                 btnEliminarCliente.setDisable(false);
+                btnGuardarNuevoCliente.setDisable(true); //Deshabilitar el botón de guardar para evitar guardar datos duplicados
 
                 txtNombre.setText(newSelection.getNombre());
                 txtApellido.setText(newSelection.getApellido());
@@ -205,6 +206,7 @@ public class viewClientesController {
             } else {
                 btnActualizarCliente.setDisable(true);
                 btnEliminarCliente.setDisable(true);
+                btnGuardarNuevoCliente.setDisable(false); //Habilitar el botón de guardar
                 txtNombre.clear();
                 txtApellido.clear();
                 comboBoxSexo.setValue(null);
@@ -244,6 +246,8 @@ public class viewClientesController {
                 alertError.showAndWait();
             }   
             btnEliminarCliente.setDisable(true);
+            clientesTable.getSelectionModel().clearSelection();
+            clientesTable.refresh();
         }
         });
         
@@ -287,6 +291,8 @@ public class viewClientesController {
                 alertError.showAndWait();
             }
             btnActualizarCliente.setDisable(true);
+            clientesTable.getSelectionModel().clearSelection();
+            clientesTable.refresh();
         }
         });
     }

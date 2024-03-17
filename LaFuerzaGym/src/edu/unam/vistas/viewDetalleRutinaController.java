@@ -199,6 +199,8 @@ public class viewDetalleRutinaController {
                     alertSuccess.showAndWait();
                 }
             });
+            tableDetalleEntrenamiento.getSelectionModel().clearSelection();
+            tableDetalleEntrenamiento.refresh();
         });
 
         //Edición de datos
@@ -232,7 +234,8 @@ public class viewDetalleRutinaController {
                     alertSuccess.showAndWait();
                 }
             });
-
+            tableDetalleEntrenamiento.getSelectionModel().clearSelection();
+            tableDetalleEntrenamiento.refresh();
         });
 
 
