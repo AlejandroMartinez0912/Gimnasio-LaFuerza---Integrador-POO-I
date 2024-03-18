@@ -2,12 +2,7 @@ package edu.unam.vistas;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-//import java.util.stream.Collectors;
-
-//import javax.swing.text.html.parser.Entity;
 
 import edu.unam.App;
 import edu.unam.modelo.Cliente;
@@ -30,15 +25,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewClientesController {
-    private final Repositorio repositorio;
-    private final ServicioCliente servicioCliente;
+    private final Repositorio Repositorio;
+    private final ServicioCliente ServicioCliente;
     private EntityManagerFactory emf;
 
     public viewClientesController() {
         emf = Persistence.createEntityManagerFactory("LaFuerzaPU");
-        repositorio = new Repositorio(emf);
-        servicioCliente = new ServicioCliente(repositorio);
+        Repositorio = new Repositorio(emf);
+        ServicioCliente = new ServicioCliente(Repositorio);
     }
+
     @FXML
     private TableColumn<Cliente, String> apellidoColumn;
 
@@ -47,6 +43,7 @@ public class viewClientesController {
 
     @FXML
     private Button btnEliminarCliente;
+
     @FXML
     private Button btnGuardarNuevoCliente;
 
@@ -100,7 +97,6 @@ public class viewClientesController {
 
     @FXML
     private TextField txtApellido;
-    
 
     @FXML
     private TextField txtNombre;
@@ -118,8 +114,8 @@ public class viewClientesController {
         String nombreCliente = txtNombre.getText();
         String apellidoCliente = txtApellido.getText();
         String sexoCliente = comboBoxSexo.getValue();
-        Date fechaNacimiento = java.sql.Date.valueOf(dateFechaNacimiento.getValue());
-        Date fechaIngreso = java.sql.Date.valueOf(dateFechaIngreso.getValue());
+        LocalDate fechaNacimiento = dateFechaNacimiento.getValue();
+        LocalDate fechaIngreso = dateFechaIngreso.getValue();
 
         if (nombreCliente.isEmpty() || apellidoCliente.isEmpty() || sexoCliente == null || fechaNacimiento == null
                 || fechaIngreso == null) {
@@ -128,27 +124,27 @@ public class viewClientesController {
             return;
         }
 
-        //Validamos el nombre ingresado
-        if(!nombreCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
-            alertError.setContentText("Error al registrar el cliente. El nombre del cliente solo puede contener letras.");
+        if (!nombreCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")) {
+            alertError.setContentText(
+                    "Error al registrar el cliente. El nombre del cliente solo puede contener letras.");
             alertError.showAndWait();
             txtNombre.clear();
             txtNombre.setPromptText("Nombre");
             return;
         }
 
-        //Validamos el apellido ingresado
-        if(!apellidoCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
-            alertError.setContentText("Error al registrar el cliente. El apellido del cliente solo puede contener letras.");
+        if (!apellidoCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")) {
+            alertError.setContentText(
+                    "Error al registrar el cliente. El apellido del cliente solo puede contener letras.");
             alertError.showAndWait();
             return;
         }
 
-        //Validamos que el sexo no esté vacío
-        if(sexoCliente == null){
+        if (sexoCliente == null) {
             alertError.setContentText("Error al registrar el cliente. El sexo del cliente es obligatorio.");
             alertError.showAndWait();
             comboBoxSexo.setPromptText("Sexo");
+            return;
         }
 
         try {
@@ -159,8 +155,7 @@ public class viewClientesController {
             cliente.setFechaNacimiento(fechaNacimiento);
             cliente.setFechaIngreso(fechaIngreso);
 
-            
-            servicioCliente.agregarCliente(cliente);
+            ServicioCliente.agregarCliente(cliente);
             clientesTable.getItems().add(cliente);
 
             txtApellido.clear();
@@ -172,7 +167,7 @@ public class viewClientesController {
             alertSuccess.setContentText("Cliente guardado con éxito.");
             alertSuccess.showAndWait();
 
-            //Reestablecemos sus PromptText
+            // Reestablecemos sus PromptText
             txtNombre.setPromptText("Nombre");
             txtApellido.setPromptText("Apellido");
             comboBoxSexo.setPromptText("Sexo");
@@ -186,15 +181,13 @@ public class viewClientesController {
 
     @FXML
     public void initialize() {
-        //Deshabilitar el botón elininar y editar
+        // Deshabilitar el botón eliminar y editar
         btnActualizarCliente.setDisable(true);
         btnEliminarCliente.setDisable(true);
         btnGuardarNuevoCliente.setDisable(false);
 
         // Obtener los clientes
-        List<Cliente> clientes = servicioCliente.obtenerTodos();
-
-        //
+        List<Cliente> clientes = ServicioCliente.obtenerTodos();
 
         // Configurar la tabla
         idColumn.setCellValueFactory(new PropertyValueFactory<>("idCliente"));
@@ -220,24 +213,18 @@ public class viewClientesController {
             if (newSelection != null) {
                 btnActualizarCliente.setDisable(false);
                 btnEliminarCliente.setDisable(false);
-                btnGuardarNuevoCliente.setDisable(true); //Deshabilitar el botón de guardar para evitar guardar datos duplicados
+                btnGuardarNuevoCliente.setDisable(true); // Deshabilitar el botón de guardar para evitar guardar
+                                                          // datos duplicados
 
                 txtNombre.setText(newSelection.getNombre());
                 txtApellido.setText(newSelection.getApellido());
                 comboBoxSexo.setValue(newSelection.getSexo());
-                LocalDate fechaNacimiento = newSelection.getFechaNacimiento().toInstant().atZone(ZoneId.systemDefault())
-                        .toLocalDate();
-                dateFechaNacimiento.setValue(fechaNacimiento);
-                //dateFechaNacimiento.setValue(newSelection.getFechaNacimiento());
-                LocalDate fechaIngreso = newSelection.getFechaIngreso().toInstant().atZone(ZoneId.systemDefault())
-                        .toLocalDate();
-                dateFechaIngreso.setValue(fechaIngreso);
-
-                //dateFechaIngreso.setValue(newSelection.getFechaIngreso());
+                dateFechaNacimiento.setValue(newSelection.getFechaNacimiento());
+                dateFechaIngreso.setValue(newSelection.getFechaIngreso());
             } else {
                 btnActualizarCliente.setDisable(true);
                 btnEliminarCliente.setDisable(true);
-                btnGuardarNuevoCliente.setDisable(false); //Habilitar el botón de guardar
+                btnGuardarNuevoCliente.setDisable(false); // Habilitar el botón de guardar
                 txtNombre.clear();
                 txtApellido.clear();
                 comboBoxSexo.setValue(null);
@@ -249,101 +236,98 @@ public class viewClientesController {
         btnEliminarCliente.setOnAction((ActionEvent event) -> {
             // Obtener el cliente seleccionado
             Cliente cliente = clientesTable.getSelectionModel().getSelectedItem();
-            //Mostramos un mensaje de confirmación
+            // Mostramos un mensaje de confirmación
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmación");
             alert.setHeaderText(null);
             alert.setContentText("¿Está seguro que desea eliminar el cliente?");
             if (alert.showAndWait().get().getText().equals("Aceptar")) {
-                //Si el usuario presiona OK, eliminamos el cliente
-            try {
-                // Llamar al servicio para eliminar el cliente
-                servicioCliente.eliminarCliente(cliente);
-                clientesTable.getItems().remove(cliente);
+                // Si el usuario presiona OK, eliminamos el cliente
+                try {
+                    // Llamar al servicio para eliminar el cliente
+                    ServicioCliente.eliminarCliente(cliente);
+                    clientesTable.getItems().remove(cliente);
 
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("Cliente eliminado con éxito.");
+                    // Para mostrar un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("Cliente eliminado con éxito.");
 
-                alertSuccess.showAndWait();
+                    alertSuccess.showAndWait();
 
-                //Reestablecemos sus PromptText
-                txtNombre.setPromptText("Nombre");
-                txtApellido.setPromptText("Apellido");
-                comboBoxSexo.setPromptText("Sexo");
-                dateFechaNacimiento.setPromptText("dd/mm/yy");
-                dateFechaIngreso.setPromptText("dd/mm/yy");
+                    // Reestablecemos sus PromptText
+                    txtNombre.setPromptText("Nombre");
+                    txtApellido.setPromptText("Apellido");
+                    comboBoxSexo.setPromptText("Sexo");
+                    dateFechaNacimiento.setPromptText("dd/mm/yy");
+                    dateFechaIngreso.setPromptText("dd/mm/yy");
 
-            } catch (Exception e) {
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("Error al eliminar el cliente.");
-                alertError.showAndWait();
-            }   
-            btnEliminarCliente.setDisable(true);
-            clientesTable.getSelectionModel().clearSelection();
-            clientesTable.refresh();
-        }
+                } catch (Exception e) {
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("Error al eliminar el cliente.");
+                    alertError.showAndWait();
+                }
+                btnEliminarCliente.setDisable(true);
+                clientesTable.getSelectionModel().clearSelection();
+                clientesTable.refresh();
+            }
         });
-        
+
         btnActualizarCliente.setOnAction((ActionEvent event) -> {
             // Obtener el cliente seleccionado
             Cliente cliente = clientesTable.getSelectionModel().getSelectedItem();
-            //Mostramos un mensaje de confirmación
+            // Mostramos un mensaje de confirmación
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmación");
             alert.setHeaderText(null);
             alert.setContentText("¿Está seguro que desea actualizar el cliente?");
             if (alert.showAndWait().get().getText().equals("Aceptar")) {
-                //Si el usuario presiona OK, actualizamos el cliente
-            try {
-                // Llamar al servicio para editar el cliente
-                cliente.setNombre(txtNombre.getText());
-                cliente.setApellido(txtApellido.getText());
-                cliente.setSexo(comboBoxSexo.getValue());
-                Date fechaNacimiento = java.sql.Date.valueOf(dateFechaNacimiento.getValue());
-                Date fechaIngreso = java.sql.Date.valueOf(dateFechaIngreso.getValue());
-                cliente.setFechaNacimiento(fechaNacimiento);
-                cliente.setFechaIngreso(fechaIngreso);
+                // Si el usuario presiona OK, actualizamos el cliente
+                try {
+                    // Llamar al servicio para editar el cliente
+                    cliente.setNombre(txtNombre.getText());
+                    cliente.setApellido(txtApellido.getText());
+                    cliente.setSexo(comboBoxSexo.getValue());
+                    cliente.setFechaNacimiento(dateFechaNacimiento.getValue());
+                    cliente.setFechaIngreso(dateFechaIngreso.getValue());
 
+                    ServicioCliente.editarCliente(cliente);
+                    clientesTable.refresh();
 
-                servicioCliente.editarCliente(cliente);
+                    // Para mostrar un mensaje de éxito
+                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
+                    alertSuccess.setTitle("Éxito");
+                    alertSuccess.setHeaderText(null);
+                    alertSuccess.setContentText("Cliente actualizado con éxito.");
+
+                    alertSuccess.showAndWait();
+
+                    // Reestablecemos sus PromptText
+                    txtNombre.setPromptText("Nombre");
+                    txtApellido.setPromptText("Apellido");
+                    comboBoxSexo.setPromptText("Sexo");
+                    dateFechaNacimiento.setPromptText("dd/mm/yy");
+                    dateFechaIngreso.setPromptText("dd/mm/yy");
+                } catch (Exception e) {
+                    // En caso de error, mostrar mensaje de error
+                    Alert alertError = new Alert(Alert.AlertType.ERROR);
+                    alertError.setTitle("Error");
+                    alertError.setHeaderText(null);
+                    alertError.setContentText("Error al actualizar el cliente.");
+                    alertError.showAndWait();
+                }
+                btnActualizarCliente.setDisable(true);
+                clientesTable.getSelectionModel().clearSelection();
                 clientesTable.refresh();
-
-                // Para mostrar un mensaje de éxito
-                Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                alertSuccess.setTitle("Éxito");
-                alertSuccess.setHeaderText(null);
-                alertSuccess.setContentText("Cliente actualizado con éxito.");
-
-                alertSuccess.showAndWait();
-
-                //Reestablecemos sus PromptText
-                txtNombre.setPromptText("Nombre");
-                txtApellido.setPromptText("Apellido");
-                comboBoxSexo.setPromptText("Sexo");
-                dateFechaNacimiento.setPromptText("dd/mm/yy");
-                dateFechaIngreso.setPromptText("dd/mm/yy");
-            } catch (Exception e) {
-                // En caso de error, mostrar mensaje de error
-                Alert alertError = new Alert(Alert.AlertType.ERROR);
-                alertError.setTitle("Error");
-                alertError.setHeaderText(null);
-                alertError.setContentText("Error al actualizar el cliente.");
-                alertError.showAndWait();
             }
-            btnActualizarCliente.setDisable(true);
-            clientesTable.getSelectionModel().clearSelection();
-            clientesTable.refresh();
-        }
         });
     }
+
     @FXML
     private void volverHome() throws IOException {
         App.setRoot("homeView");
     }
 }
-
