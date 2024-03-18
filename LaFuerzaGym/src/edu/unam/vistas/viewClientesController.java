@@ -125,6 +125,7 @@ public class viewClientesController {
                 || fechaIngreso == null) {
             alertError.setContentText("Todos los campos son obligatorios.");
             alertError.showAndWait();
+            return;
         }
 
         //Validamos el nombre ingresado
@@ -133,12 +134,14 @@ public class viewClientesController {
             alertError.showAndWait();
             txtNombre.clear();
             txtNombre.setPromptText("Nombre");
+            return;
         }
 
         //Validamos el apellido ingresado
         if(!apellidoCliente.matches("^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$")){
             alertError.setContentText("Error al registrar el cliente. El apellido del cliente solo puede contener letras.");
             alertError.showAndWait();
+            return;
         }
 
         //Validamos que el sexo no esté vacío
