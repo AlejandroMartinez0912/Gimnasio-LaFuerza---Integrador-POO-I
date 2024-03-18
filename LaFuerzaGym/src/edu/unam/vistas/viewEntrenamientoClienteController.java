@@ -109,7 +109,7 @@ public class viewEntrenamientoClienteController {
     private TableColumn<Rutina, String> grupoMuscularRutinaColumn;
 
     @FXML
-    private TableColumn<EntrenamientoCliente, Integer> idColumn;
+    private TableColumn<EntrenamientoCliente, LocalDate> fechaInicioColumn;
 
     @FXML
     private TableColumn<EntrenamientoCliente, Double> volumenSemanalColumn;
@@ -294,7 +294,7 @@ public class viewEntrenamientoClienteController {
         tableSeleccionEntrenamientos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         //Comenzamos a rellenar la tabla de entrenamientos de clientes
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idEntrenamientoCliente"));
+        fechaInicioColumn.setCellValueFactory(new PropertyValueFactory<>("fechaInicio"));
         clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombre() + " " + cellData.getValue().getCliente().getApellido()));
         fechaFinColumn.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
         evaluacionColumn.setCellValueFactory(new PropertyValueFactory<>("evaluacionTutor"));

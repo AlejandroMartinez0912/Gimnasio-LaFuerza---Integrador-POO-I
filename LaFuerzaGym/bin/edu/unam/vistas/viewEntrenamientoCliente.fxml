@@ -66,13 +66,13 @@
       </Label>
       <TableView fx:id="tableEntrenamientosClientes" layoutX="14.0" layoutY="317.0" prefHeight="118.0" prefWidth="614.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="29.0" text="Id" />
-          <TableColumn fx:id="clienteColumn" prefWidth="97.0" text="Cliente" />
-            <TableColumn fx:id="ejercicioColumn" prefWidth="121.0" text="Ejercicios" />
-            <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="117.0" text="Grupo muscular" />
-            <TableColumn fx:id="fechaFinColumn" prefWidth="64.0" text="Fecha fin" />
-            <TableColumn fx:id="evaluacionColumn" text="Evaluación" />
-            <TableColumn fx:id="volumenSemanalColumn" prefWidth="105.0" text="Volumen semanal" />
+          <TableColumn fx:id="clienteColumn" prefWidth="85.0" text="Cliente" />
+          <TableColumn fx:id="ejercicioColumn" prefWidth="83.0" text="Ejercicios" />
+            <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="111.0" text="Grupo muscular" />
+            <TableColumn fx:id="fechaInicioColumn" prefWidth="83.0" text="Fecha inicio" />
+            <TableColumn fx:id="fechaFinColumn" prefWidth="73.0" text="Fecha fin" />
+            <TableColumn fx:id="volumenSemanalColumn" prefWidth="111.0" text="Volumen semanal" />
+            <TableColumn fx:id="evaluacionColumn" prefWidth="67.0" text="Evaluación" />
         </columns>
       </TableView>
       <Button fx:id="btnEliminarEntrenamientoCliente" disable="true" layoutX="348.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">
