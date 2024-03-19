@@ -112,7 +112,7 @@ public class viewEntrenamientoClienteController {
     private TableColumn<EntrenamientoCliente, LocalDate> fechaInicioColumn;
 
     @FXML
-    private TableColumn<EntrenamientoCliente, Double> volumenSemanalColumn;
+    private TableColumn<EntrenamientoCliente, Double> volumenTotalColumn;
 
     @FXML
     private Label labelCliente;
@@ -298,7 +298,7 @@ public class viewEntrenamientoClienteController {
         clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCliente().getNombre() + " " + cellData.getValue().getCliente().getApellido()));
         fechaFinColumn.setCellValueFactory(new PropertyValueFactory<>("fechaFin"));
         evaluacionColumn.setCellValueFactory(new PropertyValueFactory<>("evaluacionTutor"));
-        volumenSemanalColumn.setCellValueFactory(new PropertyValueFactory<>("volumenSemanal"));
+        volumenTotalColumn.setCellValueFactory(new PropertyValueFactory<>("volumenTotal"));
         grupoMuscularEntrenamientoClienteColumn.setCellValueFactory(cellData -> {
             Set<Rutina> misRutinas = cellData.getValue().getRutinas();
             StringBuilder nombresGruposMusculares = new StringBuilder();

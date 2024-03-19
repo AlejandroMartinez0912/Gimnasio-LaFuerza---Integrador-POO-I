@@ -57,11 +57,11 @@
       </Label>
       <TableView fx:id="tableDetalleEntrenamiento" layoutX="16.0" layoutY="247.0" prefHeight="180.0" prefWidth="608.0">
         <columns>
-          <TableColumn fx:id="semanaColumn" prefWidth="42.0" text="Semana" />
-          <TableColumn fx:id="clienteColumn" prefWidth="140.0" text="Cliente" />
+          <TableColumn fx:id="semanaColumn" prefWidth="55.0" text="Semana" />
+          <TableColumn fx:id="clienteColumn" prefWidth="127.0" text="Cliente" />
             <TableColumn fx:id="ejercicioColumn" prefWidth="134.0" text="Ejercicio" />
-            <TableColumn fx:id="pesoColumn" prefWidth="73.0" text="Peso" />
-            <TableColumn fx:id="repeticionesColumn" prefWidth="77.0" text="Repeticiones" />
+            <TableColumn fx:id="pesoColumn" prefWidth="57.0" text="Peso" />
+            <TableColumn fx:id="repeticionesColumn" prefWidth="93.0" text="Repeticiones" />
             <TableColumn fx:id="seriesColumn" prefWidth="40.0" text="Series" />
             <TableColumn fx:id="volumenRutinaColumn" prefWidth="101.0" text="Volumen rutina" />
         </columns>
@@ -84,5 +84,17 @@
          </font>
       </Label>
       <ComboBox fx:id="comboBoxSemana" layoutX="244.0" layoutY="95.0" prefHeight="25.0" prefWidth="152.0" promptText="Semana" />
+      <TextField fx:id="txtVolumenSemanal" disable="true" editable="false" layoutX="521.0" layoutY="439.0" prefHeight="25.0" prefWidth="104.0" />
+      <Label fx:id="labelVolumenSemanal" disable="true" layoutX="358.0" layoutY="440.0" text="Volumen Semanal" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelSemana2" disable="true" layoutX="226.0" layoutY="439.0" text="Semana" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSemana" disable="true" editable="false" layoutX="299.0" layoutY="440.0" prefHeight="25.0" prefWidth="46.0" />
    </children>
 </AnchorPane>

@@ -70,9 +70,9 @@
           <TableColumn fx:id="ejercicioColumn" prefWidth="83.0" text="Ejercicios" />
             <TableColumn fx:id="grupoMuscularEntrenamientoClienteColumn" prefWidth="111.0" text="Grupo muscular" />
             <TableColumn fx:id="fechaInicioColumn" prefWidth="83.0" text="Fecha inicio" />
-            <TableColumn fx:id="fechaFinColumn" prefWidth="73.0" text="Fecha fin" />
-            <TableColumn fx:id="volumenSemanalColumn" prefWidth="111.0" text="Volumen semanal" />
-            <TableColumn fx:id="evaluacionColumn" prefWidth="67.0" text="Evaluación" />
+            <TableColumn fx:id="fechaFinColumn" prefWidth="81.0" text="Fecha fin" />
+            <TableColumn fx:id="volumenTotalColumn" prefWidth="97.0" text="Volumen Total" />
+            <TableColumn fx:id="evaluacionColumn" prefWidth="73.0" text="Evaluación" />
         </columns>
       </TableView>
       <Button fx:id="btnEliminarEntrenamientoCliente" disable="true" layoutX="348.0" layoutY="273.0" mnemonicParsing="false" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Eliminar" textFill="WHITE">

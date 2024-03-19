@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import edu.unam.App;
 import edu.unam.modelo.DetalleRutina;
@@ -78,6 +79,12 @@ public class viewDetalleRutinaController {
     private Label labelSemana;
 
     @FXML
+    private Label labelSemana2;
+
+    @FXML
+    private Label labelVolumenSemanal;
+
+    @FXML
     private ComboBox<Integer> comboBoxSeries;
 
     @FXML
@@ -109,6 +116,12 @@ public class viewDetalleRutinaController {
 
     @FXML
     private TextField txtPeso;
+
+    @FXML
+    private TextField txtSemana;
+
+    @FXML
+    private TextField txtVolumenSemanal;
 
     private EntrenamientoCliente entrenamientoCliente;
 
@@ -151,7 +164,7 @@ public class viewDetalleRutinaController {
         //Obtenemos el nombre y apellido del cliente de entrenamientoCliente
         clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEntrenamientoCliente().getCliente().getNombre() + " " + cellData.getValue().getEntrenamientoCliente().getCliente().getApellido())); 
 
-        // Obtener los entrenamientos de los clientes del repositorio
+        // Obtener los entrenamientos del cliente asociado a entrenamientoCliente
         List<DetalleRutina> detalleRutinas = servicioDetalleRutina.obtenerTodos();
 
         //Si la lista está vacía, mostramos un mensaje en la tabla
@@ -176,6 +189,31 @@ public class viewDetalleRutinaController {
                 txtRepeticiones.setText(Integer.toString(newSelection.getRepeticiones()));
                 comboBoxSeries.setValue(newSelection.getSeries());
                 txtPeso.setText(Double.toString(newSelection.getPeso()));
+                txtSemana.setText(Integer.toString(newSelection.getSemana()));
+                
+                //Mostramos el volumen semanal
+                //Primero obtenemos el entrenamientoCliente asociado
+                EntrenamientoCliente entrenamientoCliente = newSelection.getEntrenamientoCliente();
+                //Obtenemos todos los detalles de rutina del entrenamientoCliente en la semana seleccionada
+                List<DetalleRutina> detalles = servicioDetalleRutina.obtenerTodos();
+                List<DetalleRutina> detalleSemana = detalles.stream()
+                    .filter(detalle  -> Integer.valueOf(detalle.getSemana()).equals(newSelection.getSemana()))
+                    .filter(detalle -> detalle.getEntrenamientoCliente().equals(entrenamientoCliente))
+                    .collect(Collectors.toList());
+
+                //Calculamos el volumen semanal
+                Double volumenSemanal = 0.0;
+                for(DetalleRutina detalle : detalleSemana){
+                    volumenSemanal += detalle.getVolumenRutina();
+                }
+                
+                txtVolumenSemanal.setText(Double.toString(volumenSemanal));
+
+                //Habilitamos el txtVolumenSemanal y txtSemana
+                txtVolumenSemanal.setDisable(false);
+                txtSemana.setDisable(false);
+                labelSemana2.setDisable(false);
+                labelVolumenSemanal.setDisable(false);
 
             } else {
                 btnEditarDetalleRutina.setDisable(true);
@@ -308,13 +346,13 @@ public class viewDetalleRutinaController {
             detalleRutina.setPeso(peso);
             detalleRutina.setVolumenRutina(series * repeticiones * peso);
             detalleRutina.setSemana(semana);
-
+            
             //Guardamos el detalle de la rutina
             servicioDetalleRutina.agregarDetalleRutina(detalleRutina);
             tableDetalleEntrenamiento.getItems().add(detalleRutina);
 
             //Actualizamos el volumen semanal del entrenamientoCliente
-            entrenamientoCliente.setVolumenSemanal(entrenamientoCliente.getVolumenSemanal() + detalleRutina.getVolumenRutina());
+            entrenamientoCliente.setVolumenTotal(entrenamientoCliente.getVolumenTotal() + detalleRutina.getVolumenRutina());
             servicioEntrenamientoCliente.editarEntrenamientoCliente(entrenamientoCliente);
 
             //Mostramos mensaje de éxito
