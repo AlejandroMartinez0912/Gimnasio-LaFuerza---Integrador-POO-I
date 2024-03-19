@@ -57,7 +57,7 @@
       </Label>
       <TableView fx:id="tableDetalleEntrenamiento" layoutX="16.0" layoutY="247.0" prefHeight="180.0" prefWidth="608.0">
         <columns>
-          <TableColumn fx:id="idColumn" prefWidth="42.0" text="Id" />
+          <TableColumn fx:id="semanaColumn" prefWidth="42.0" text="Semana" />
           <TableColumn fx:id="clienteColumn" prefWidth="140.0" text="Cliente" />
             <TableColumn fx:id="ejercicioColumn" prefWidth="134.0" text="Ejercicio" />
             <TableColumn fx:id="pesoColumn" prefWidth="73.0" text="Peso" />
@@ -78,5 +78,11 @@
       </Label>
       <TextField fx:id="txtPeso" layoutX="475.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Ingrese el peso" />
       <TextField fx:id="txtRepeticiones" layoutX="245.0" layoutY="162.0" prefHeight="25.0" prefWidth="150.0" promptText="Número de repeticiones" />
+      <Label fx:id="labelSemana" layoutX="245.0" layoutY="66.0" prefHeight="30.0" prefWidth="83.0" text="Semana" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxSemana" layoutX="244.0" layoutY="95.0" prefHeight="25.0" prefWidth="152.0" promptText="Semana" />
    </children>
 </AnchorPane>

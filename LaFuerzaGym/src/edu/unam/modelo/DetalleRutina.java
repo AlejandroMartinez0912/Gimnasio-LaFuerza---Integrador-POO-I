@@ -42,11 +42,15 @@ public class DetalleRutina {
     @Basic
     private double volumenRutina;
 
+    @Column (name = "semana", nullable = false)
+    @Basic
+    private int semana;
+
     public DetalleRutina() {
     }
 
     public DetalleRutina(int idDetalleRutina, EntrenamientoCliente entrenamientoCliente, String nombreEjercicio,
-            int series, int repeticiones, double peso, double volumenRutina) {
+            int series, int repeticiones, double peso, double volumenRutina, int semana) {
         this.idDetalleRutina = idDetalleRutina;
         this.entrenamientoCliente = entrenamientoCliente;
         this.nombreEjercicio = nombreEjercicio;
@@ -54,6 +58,7 @@ public class DetalleRutina {
         this.repeticiones = repeticiones;
         this.peso = peso;
         this.volumenRutina = volumenRutina;
+        this.semana = semana;
     }
 
 
@@ -111,5 +116,13 @@ public class DetalleRutina {
 
     public void setNombreEjercicio(String nombreEjercicio) {
         this.nombreEjercicio = nombreEjercicio;
+    }
+
+    public int getSemana() {
+        return semana;
+    }
+
+    public void setSemana(int semana) {
+        this.semana = semana;
     }
 }
