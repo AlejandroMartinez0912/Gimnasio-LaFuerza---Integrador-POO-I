@@ -54,14 +54,14 @@ public class EntrenamientoCliente {
     private String evaluacionTutor; 
 
     @Basic
-    @Column(name = "volumen_semanal")
-    private double volumenSemanal;
+    @Column(name = "volumen_total")
+    private double volumenTotal;
 
     public EntrenamientoCliente() {
     }
 
     public EntrenamientoCliente(int idEntrenamientoCliente, Cliente cliente, Set<Rutina> rutinas, LocalDate fechaInicio,
-            LocalDate fechaFin, Tutor tutor, String evaluacionTutor, double volumenSemanal) {
+            LocalDate fechaFin, Tutor tutor, String evaluacionTutor, double volumenTotal) {
         this.idEntrenamientoCliente = idEntrenamientoCliente;
         this.cliente = cliente;
         this.rutinas = rutinas;
@@ -69,7 +69,7 @@ public class EntrenamientoCliente {
         this.fechaFin = fechaFin;
         this.tutor = tutor;
         this.evaluacionTutor = evaluacionTutor;
-        this.volumenSemanal = volumenSemanal;
+        this.volumenTotal = volumenTotal;
     }
 
     public int getIdEntrenamientoCliente() {
@@ -128,11 +128,11 @@ public class EntrenamientoCliente {
         this.evaluacionTutor = evaluacionTutor;
     }
 
-    public double getVolumenSemanal() {
-        return volumenSemanal;
+    public double getVolumenTotal() {
+        return volumenTotal;
     }
 
-    public void setVolumenSemanal(double volumenSemanal) {
-        this.volumenSemanal = volumenSemanal;
+    public void setVolumenTotal(double volumenTotal) {
+        this.volumenTotal = volumenTotal;
     }
 }
