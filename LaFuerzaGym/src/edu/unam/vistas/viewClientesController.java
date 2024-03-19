@@ -139,11 +139,17 @@ public class viewClientesController {
             alertError.showAndWait();
             return;
         }
-
-        if (sexoCliente == null) {
-            alertError.setContentText("Error al registrar el cliente. El sexo del cliente es obligatorio.");
+        
+        if (sexoCliente == null || sexoCliente.isEmpty()) {
+            alertError.setContentText("Debe seleccionar el sexo del cliente.");
             alertError.showAndWait();
-            comboBoxSexo.setPromptText("Sexo");
+            return;
+        }
+
+        LocalDate edadMinima = LocalDate.now().minusYears(13);
+        if (fechaNacimiento.isAfter(edadMinima)) {
+            alertError.setContentText("El cliente que se desea Registrar no cumple con el minimo de edad.");
+            alertError.showAndWait();
             return;
         }
 
