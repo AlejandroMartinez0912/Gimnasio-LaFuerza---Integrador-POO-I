@@ -75,7 +75,13 @@ public class viewDetalleRutinaController {
     private Label labelTítuloVista;
 
     @FXML
+    private Label labelSemana;
+
+    @FXML
     private ComboBox<Integer> comboBoxSeries;
+
+    @FXML
+    private ComboBox<Integer> comboBoxSemana;
 
     @FXML
     private TableColumn<DetalleRutina, String> clienteColumn;
@@ -84,7 +90,7 @@ public class viewDetalleRutinaController {
     private TableColumn<DetalleRutina, String> ejercicioColumn;
 
     @FXML
-    private TableColumn<DetalleRutina, Integer> idColumn;
+    private TableColumn<DetalleRutina, Integer> semanaColumn;
 
     @FXML
     private TableColumn<DetalleRutina, Double> pesoColumn;
@@ -133,8 +139,9 @@ public class viewDetalleRutinaController {
         //Agregamos los valores al combobox series
         comboBoxSeries.getItems().addAll(1,2,3,4,5,6,7,8,9,10);
 
+        comboBoxSemana.getItems().addAll(1,2,3,4);
         //Comenzamos a rellenar la tabla
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("idDetalleRutina"));
+        semanaColumn.setCellValueFactory(new PropertyValueFactory<>("semana"));
         seriesColumn.setCellValueFactory(new PropertyValueFactory<>("series"));
         repeticionesColumn.setCellValueFactory(new PropertyValueFactory<>("repeticiones"));
         pesoColumn.setCellValueFactory(new PropertyValueFactory<>("peso"));
@@ -164,6 +171,7 @@ public class viewDetalleRutinaController {
                 btnGuardarNuevoDetalleRutina.setDisable(true);
 
                 //Obtener los datos cargados anteriormente
+                comboBoxSemana.setValue(newSelection.getSemana());
                 comboBoxEjercicio.setValue(newSelection.getNombreEjercicio());
                 txtRepeticiones.setText(Integer.toString(newSelection.getRepeticiones()));
                 comboBoxSeries.setValue(newSelection.getSeries());
@@ -216,6 +224,7 @@ public class viewDetalleRutinaController {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     //Si el usuario confirma, editamos el detalle de la rutina
+                    data.setSemana(comboBoxSemana.getValue());
                     data.setEntrenamientoCliente(entrenamientoCliente);
                     data.setNombreEjercicio(comboBoxEjercicio.getValue());
                     data.setSeries(comboBoxSeries.getValue());
@@ -234,6 +243,7 @@ public class viewDetalleRutinaController {
                     alertSuccess.showAndWait();
 
                     //Reestablecemos sus promptText
+                    comboBoxSemana.setPromptText("Semana");
                     comboBoxEjercicio.setPromptText("Ejercicio");
                     txtRepeticiones.setPromptText("Número de repeticiones");
                     comboBoxSeries.setPromptText("Series");
@@ -280,6 +290,7 @@ public class viewDetalleRutinaController {
         Integer series = comboBoxSeries.getValue();
         Integer repeticiones = Integer.parseInt(txtRepeticiones.getText());
         Double peso = Double.parseDouble(txtPeso.getText());
+        Integer semana = comboBoxSemana.getValue();
 
         //Realizamos la validación de los campos
         if(nombreEjercicio == null || series == null || repeticiones == null || peso == null){
@@ -288,7 +299,7 @@ public class viewDetalleRutinaController {
             return;
         }
         
-        try {
+        try {// Creamos un nuevo detalle de la rutina
             DetalleRutina detalleRutina = new DetalleRutina();
             detalleRutina.setEntrenamientoCliente(entrenamientoCliente);
             detalleRutina.setNombreEjercicio(nombreEjercicio);
@@ -296,6 +307,7 @@ public class viewDetalleRutinaController {
             detalleRutina.setRepeticiones(repeticiones);
             detalleRutina.setPeso(peso);
             detalleRutina.setVolumenRutina(series * repeticiones * peso);
+            detalleRutina.setSemana(semana);
 
             //Guardamos el detalle de la rutina
             servicioDetalleRutina.agregarDetalleRutina(detalleRutina);
@@ -313,6 +325,7 @@ public class viewDetalleRutinaController {
             txtRepeticiones.clear();
             txtRepeticiones.setText(null);
             comboBoxSeries.getSelectionModel().clearSelection();
+            comboBoxSemana.getSelectionModel().clearSelection();
             txtPeso.clear();
             txtPeso.setText(null);
 
@@ -320,6 +333,7 @@ public class viewDetalleRutinaController {
             comboBoxEjercicio.setPromptText("Ejercicio");
             txtRepeticiones.setPromptText("Número de repeticiones");
             comboBoxSeries.setPromptText("Series");
+            comboBoxSemana.setPromptText("Semana");
             txtPeso.setPromptText("Peso");
 
         } catch (Exception e) {
