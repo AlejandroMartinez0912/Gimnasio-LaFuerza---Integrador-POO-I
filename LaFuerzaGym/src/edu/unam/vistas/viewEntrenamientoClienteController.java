@@ -178,6 +178,27 @@ public class viewEntrenamientoClienteController {
             alertError.showAndWait();
             return;
         }
+
+        //Validamos que las fechas ingresadas duren 4 semanas
+        if(fechaInicio.plusWeeks(4).isBefore(fechaFin)){
+            alertError.setContentText("El entrenamiento no puede durar más de 4 semanas");
+            alertError.showAndWait();
+            return;
+        }
+
+        //Validamos que las fechas no duren menos de 4 semanas
+        if(fechaInicio.plusWeeks(4).isAfter(fechaFin)){
+            alertError.setContentText("El entrenamiento no puede durar menos de 4 semanas");
+            alertError.showAndWait();
+            return;
+        }
+
+        //Validamos que se hayan seleccionado al menos una rutina
+        if(rutinasSeleccionadas.isEmpty()){
+            alertError.setContentText("Debes seleccionar al menos una rutina");
+            alertError.showAndWait();
+            return;
+        }
         
         try {
                 
