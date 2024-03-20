@@ -110,6 +110,9 @@ public class viewDetalleRutinaController {
 
     @FXML
     private TableColumn<DetalleRutina, Double> volumenRutinaColumn;
+    
+    @FXML
+    private TableColumn<DetalleRutina, Double> volumenSemanalColumn;
 
     @FXML
     private TableView<DetalleRutina> tableDetalleEntrenamiento;
@@ -160,6 +163,8 @@ public class viewDetalleRutinaController {
         pesoColumn.setCellValueFactory(new PropertyValueFactory<>("peso"));
         volumenRutinaColumn.setCellValueFactory(new PropertyValueFactory<>("volumenRutina"));
         ejercicioColumn.setCellValueFactory(new PropertyValueFactory<>("nombreEjercicio"));
+
+        volumenSemanalColumn.setCellValueFactory(new PropertyValueFactory<>("volumenSemanal"));
 
         //Obtenemos el nombre y apellido del cliente de entrenamientoCliente
         clienteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEntrenamientoCliente().getCliente().getNombre() + " " + cellData.getValue().getEntrenamientoCliente().getCliente().getApellido())); 
@@ -219,6 +224,21 @@ public class viewDetalleRutinaController {
                 btnEditarDetalleRutina.setDisable(true);
                 btnEliminarDetalleRutina.setDisable(true);
                 btnGuardarNuevoDetalleRutina.setDisable(false);
+
+                //Deshabilitamos el txtVolumenSemanal y txtSemana
+                txtVolumenSemanal.setDisable(true);
+                txtSemana.setDisable(true);
+                labelSemana2.setDisable(true);
+                labelVolumenSemanal.setDisable(true);
+                txtVolumenSemanal.clear();
+                txtSemana.clear();
+
+                //Reestablecemos sus promptText
+                comboBoxSemana.setPromptText("Semana");
+                comboBoxEjercicio.setPromptText("Ejercicio");
+                txtRepeticiones.setPromptText("Número de repeticiones");
+                comboBoxSeries.setPromptText("Series");
+                txtPeso.setPromptText("Peso");
             }
         });
 
@@ -245,6 +265,21 @@ public class viewDetalleRutinaController {
                     alertSuccess.showAndWait();
                 }
             });
+            //Reestablecemos sus promptText
+            comboBoxSemana.setPromptText("Semana");
+            comboBoxEjercicio.setPromptText("Ejercicio");
+            txtRepeticiones.setPromptText("Número de repeticiones");
+            comboBoxSeries.setPromptText("Series");
+            txtPeso.setPromptText("Peso");
+
+            //Deshabilitamos el txtVolumenSemanal y txtSemana
+            txtVolumenSemanal.setDisable(true);
+            txtSemana.setDisable(true);
+            labelSemana2.setDisable(true);
+            labelVolumenSemanal.setDisable(true);
+            txtVolumenSemanal.clear();
+            txtSemana.clear();
+
             tableDetalleEntrenamiento.getSelectionModel().clearSelection();
             tableDetalleEntrenamiento.refresh();
         });
@@ -269,8 +304,30 @@ public class viewDetalleRutinaController {
                     data.setRepeticiones(Integer.parseInt(txtRepeticiones.getText()));
                     data.setPeso(Double.parseDouble(txtPeso.getText()));
                     data.setVolumenRutina(comboBoxSeries.getValue() * Integer.parseInt(txtRepeticiones.getText()) * Double.parseDouble(txtPeso.getText()));
-                    servicioDetalleRutina.editarDetalleRutina(data);
 
+                    //Actualizamos el volumen semanal
+                    //Obtenemos todos los detalles de rutina del entrenamientoCliente en la semana seleccionada
+                    List<DetalleRutina> detalles = servicioDetalleRutina.obtenerTodos();
+                    List<DetalleRutina> detalleSemana = detalles.stream()
+                        .filter(detalle  -> Integer.valueOf(detalle.getSemana()).equals(comboBoxSemana.getValue()))
+                        .filter(detalle -> detalle.getEntrenamientoCliente().equals(entrenamientoCliente))
+                        .collect(Collectors.toList());
+
+                    if(detalleSemana.isEmpty()){
+                        data.setVolumenSemanal(comboBoxSeries.getValue() * Integer.parseInt(txtRepeticiones.getText()) * Double.parseDouble(txtPeso.getText()));
+                    }else{
+                        //Calculamos el volumen semanal
+                        Double volumenSemanal = 0.0;
+                        for(DetalleRutina detalle : detalleSemana){
+                            volumenSemanal += detalle.getVolumenRutina();
+                        }
+
+                        //Guardamos el volumen semanal
+                        data.setVolumenSemanal(volumenSemanal + (comboBoxSeries.getValue() * Integer.parseInt(txtRepeticiones.getText()) * Double.parseDouble(txtPeso.getText())));
+                    }
+
+                    //Guardamos la edición
+                    servicioDetalleRutina.editarDetalleRutina(data);
                     tableDetalleEntrenamiento.refresh();
 
                     //Mensaje de éxito
@@ -280,18 +337,29 @@ public class viewDetalleRutinaController {
                     alertSuccess.setContentText("El detalle de la rutina del cliente se editó correctamente.");
                     alertSuccess.showAndWait();
 
-                    //Reestablecemos sus promptText
-                    comboBoxSemana.setPromptText("Semana");
-                    comboBoxEjercicio.setPromptText("Ejercicio");
-                    txtRepeticiones.setPromptText("Número de repeticiones");
-                    comboBoxSeries.setPromptText("Series");
-                    txtPeso.setPromptText("Peso");
+                    //Actualizamos el volumen total
+                    entrenamientoCliente.setVolumenTotal(entrenamientoCliente.getVolumenTotal() + data.getVolumenRutina());
+                    servicioEntrenamientoCliente.editarEntrenamientoCliente(entrenamientoCliente);
                 }
             });
+            //Reestablecemos sus promptText
+            comboBoxSemana.setPromptText("Semana");
+            comboBoxEjercicio.setPromptText("Ejercicio");
+            txtRepeticiones.setPromptText("Número de repeticiones");
+            comboBoxSeries.setPromptText("Series");
+            txtPeso.setPromptText("Peso");
+
+            //Deshabilitamos el txtVolumenSemanal y txtSemana
+            txtVolumenSemanal.setDisable(true);
+            txtSemana.setDisable(true);
+            labelSemana2.setDisable(true);
+            labelVolumenSemanal.setDisable(true);
+            txtVolumenSemanal.clear();
+            txtSemana.clear();
+
             tableDetalleEntrenamiento.getSelectionModel().clearSelection();
             tableDetalleEntrenamiento.refresh();
         });
-
 
     }
 
@@ -346,10 +414,37 @@ public class viewDetalleRutinaController {
             detalleRutina.setPeso(peso);
             detalleRutina.setVolumenRutina(series * repeticiones * peso);
             detalleRutina.setSemana(semana);
+
+            //Obtenemos todos los detalles de rutina del entrenamientoCliente en la semana seleccionada
+            System.out.println(semana);
+            List<DetalleRutina> detalles = servicioDetalleRutina.obtenerTodos();
+            System.out.println(detalles);
+            List<DetalleRutina> detalleSemana = detalles.stream()
+                .filter(detalle  -> Integer.valueOf(detalle.getSemana()).equals(semana))
+                .filter(detalle -> detalle.getEntrenamientoCliente().equals(entrenamientoCliente))
+                .collect(Collectors.toList());
             
+            System.out.println(detalleSemana);
+
+            if(detalleSemana.isEmpty()){
+                System.out.println("sin registros previos.");
+                detalleRutina.setVolumenSemanal(series * repeticiones * peso);
+            }else{
+                System.out.println("Si hay registros previos");
+                //Calculamos el volumen semanal
+                Double volumenSemanal = 0.0;
+                for(DetalleRutina detalle : detalleSemana){
+                    volumenSemanal += detalle.getVolumenRutina();
+                }
+
+                //Guardamos el volumen semanal
+                detalleRutina.setVolumenSemanal(volumenSemanal + (series * repeticiones * peso));
+            }
+
             //Guardamos el detalle de la rutina
             servicioDetalleRutina.agregarDetalleRutina(detalleRutina);
             tableDetalleEntrenamiento.getItems().add(detalleRutina);
+            tableDetalleEntrenamiento.refresh();
 
             //Actualizamos el volumen semanal del entrenamientoCliente
             entrenamientoCliente.setVolumenTotal(entrenamientoCliente.getVolumenTotal() + detalleRutina.getVolumenRutina());
