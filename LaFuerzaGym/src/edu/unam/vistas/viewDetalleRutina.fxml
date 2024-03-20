@@ -57,13 +57,14 @@
       </Label>
       <TableView fx:id="tableDetalleEntrenamiento" layoutX="16.0" layoutY="247.0" prefHeight="180.0" prefWidth="608.0">
         <columns>
-          <TableColumn fx:id="semanaColumn" prefWidth="55.0" text="Semana" />
-          <TableColumn fx:id="clienteColumn" prefWidth="127.0" text="Cliente" />
-            <TableColumn fx:id="ejercicioColumn" prefWidth="134.0" text="Ejercicio" />
-            <TableColumn fx:id="pesoColumn" prefWidth="57.0" text="Peso" />
-            <TableColumn fx:id="repeticionesColumn" prefWidth="93.0" text="Repeticiones" />
-            <TableColumn fx:id="seriesColumn" prefWidth="40.0" text="Series" />
+          <TableColumn fx:id="semanaColumn" prefWidth="49.0" text="Semana" />
+          <TableColumn fx:id="clienteColumn" prefWidth="100.0" text="Cliente" />
+            <TableColumn fx:id="ejercicioColumn" prefWidth="115.0" text="Ejercicio" />
+            <TableColumn fx:id="pesoColumn" prefWidth="43.0" text="Peso" />
+            <TableColumn fx:id="repeticionesColumn" prefWidth="76.0" text="Repeticiones" />
+            <TableColumn fx:id="seriesColumn" prefWidth="38.0" text="Series" />
             <TableColumn fx:id="volumenRutinaColumn" prefWidth="101.0" text="Volumen rutina" />
+            <TableColumn fx:id="volumenSemanalColumn" prefWidth="85.0" text="Vol. Semanal" />
         </columns>
       </TableView>
       <Button fx:id="btnVolverHome" layoutX="18.0" layoutY="436.0" mnemonicParsing="false" onAction="#volverHome" style="-fx-background-color: bc0b0b; -fx-background-radius: 50; -fx-cursor: hand;" text="Volver" textFill="WHITE">
